@@ -1,7 +1,8 @@
 <script lang="ts">
 	import '../app.postcss';
 	import { AppShell, AppBar } from '@skeletonlabs/skeleton';
-
+    import { AppRail, AppRailTile, AppRailAnchor } from '@skeletonlabs/skeleton';
+	import { page } from '$app/stores';
 	// Highlight JS
 	import hljs from 'highlight.js';
 	import 'highlight.js/styles/github-dark.css';
@@ -12,44 +13,70 @@
 	import { computePosition, autoUpdate, flip, shift, offset, arrow } from '@floating-ui/dom';
 	import { storePopup } from '@skeletonlabs/skeleton';
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
+
+
 </script>
+
+
 
 <!-- App Shell -->
 <AppShell>
+
 	<svelte:fragment slot="header">
-		<!-- App Bar -->
 		<AppBar>
 			<svelte:fragment slot="lead">
-				<strong class="text-xl uppercase">Skeleton</strong>
+				<a href="/">
+					<strong class="text-xl uppercase">
+						Skeleton
+					</strong>
+				</a>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
 				<a
 					class="btn btn-sm variant-ghost-surface"
-					href="https://discord.gg/EXqV7W8MtY"
-					target="_blank"
-					rel="noreferrer"
+					href="/profile/dashboard"
 				>
-					Discord
+					Profile
+				</a>
+				<!-- <a
+					class="btn btn-sm variant-ghost-surface"
+					href="/login"
+				>
+					Login
 				</a>
 				<a
 					class="btn btn-sm variant-ghost-surface"
-					href="https://twitter.com/SkeletonUI"
-					target="_blank"
-					rel="noreferrer"
+					href="/sign-up"
 				>
-					Twitter
-				</a>
-				<a
-					class="btn btn-sm variant-ghost-surface"
-					href="https://github.com/skeletonlabs/skeleton"
-					target="_blank"
-					rel="noreferrer"
-				>
-					GitHub
-				</a>
+					Sign up
+				</a> -->
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
-	<!-- Page Route Content -->
-	<slot />
+
+	<svelte:fragment slot="sidebarLeft">
+		<AppRail>
+			<AppRailAnchor href="/profile/dashboard" selected={$page.url.pathname === '/profile/dashboard'}>
+				<svelte:fragment slot="lead">(icon)</svelte:fragment>
+				<span>Dashboard</span>
+			</AppRailAnchor>
+			<AppRailAnchor href="/profile/sample" selected={$page.url.pathname === '/profile/sample'}>
+				<svelte:fragment slot="lead">(icon)</svelte:fragment>
+				<span>Sample</span>
+			</AppRailAnchor>
+			<AppRailAnchor href="/profile/settings" selected={$page.url.pathname === '/profile/settings'}>
+				<svelte:fragment slot="lead">(icon)</svelte:fragment>
+				<span>Settings</span>
+			</AppRailAnchor>
+		
+		
+		</AppRail>
+	</svelte:fragment>
+
+
+
+	<slot/>
+	
+
+
 </AppShell>
