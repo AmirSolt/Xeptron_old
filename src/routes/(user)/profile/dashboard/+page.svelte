@@ -1,24 +1,24 @@
 <script lang="ts">
+    import DetectionProfile from '$lib/comp/check/DetectionProfile.svelte';
+	import SampleWarning from '$lib/comp/sample/SampleWarning.svelte';
+
+
+    export let data;
+    const {personality} = data;
+
+
+    const detectionProfile:DetectionProfileData = {pfpSrc:"",name:"yo",state:"loading"}
+
 </script>
 
 <form method="POST" action="?/test">
 
-    <div>
-        <aside class="alert variant-ghost-warning">
-            <i class="fa-solid fa-triangle-exclamation text-4xl" />
-            <div class="alert-message" data-toc-ignore>
-                <h2 class="h3" data-toc-ignore>Warning</h2>
-                <h3>Sample Text is incomplete</h3>
-                <p>Please, complete Sample Text, AI needs to know your writting style for best results.</p>
-            </div>
-            <div class="alert-actions">
-                <a href="/profile/sample" class="btn variant-filled">Go to Sample</a>
-            </div>
-        </aside>
+    {#if personality.sampleText==null}
+        <SampleWarning />
         <input type="text" class="opacity-0 w-50 h-0" name="" value="" required>
-    </div>
-
-    <!-- <input type="text" class="opacity-0 w-50 h-0" name="" value="{sampleText}" required> -->
+    {:else}
+        <input type="text" class="opacity-0 w-50 h-0" name="" value="{personality.sampleText}" required>
+    {/if}
 
     <br>
 	<label>
@@ -42,6 +42,19 @@
 
 <br>
 <br>
+
+<div class="flex justify-evenly items-center">
+
+    <DetectionProfile detectionProfile={detectionProfile} />
+    <DetectionProfile detectionProfile={detectionProfile} />
+    <DetectionProfile detectionProfile={detectionProfile} />
+    <DetectionProfile detectionProfile={detectionProfile} />
+    <DetectionProfile detectionProfile={detectionProfile} />
+    <DetectionProfile detectionProfile={detectionProfile} />
+</div>
+
+<br>
+
 
 <label class="label">
     <h1>

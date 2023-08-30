@@ -1,8 +1,6 @@
 import { personality } from '$lib/server/funcs/database/index.js';
 
-
 export async function load({ cookies }) {
-    
 
     return {
         personality

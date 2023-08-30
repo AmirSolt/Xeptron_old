@@ -60,9 +60,9 @@
 				<svelte:fragment slot="lead">(icon)</svelte:fragment>
 				<span>Dashboard</span>
 			</AppRailAnchor>
-			<AppRailAnchor href="/profile/sample" selected={$page.url.pathname === '/profile/sample'}>
+			<AppRailAnchor href="/profile/personalize" selected={$page.url.pathname === '/profile/personalize'}>
 				<svelte:fragment slot="lead">(icon)</svelte:fragment>
-				<span>Sample</span>
+				<span>Personalize</span>
 			</AppRailAnchor>
 			<AppRailAnchor href="/profile/settings" selected={$page.url.pathname === '/profile/settings'}>
 				<svelte:fragment slot="lead">(icon)</svelte:fragment>
