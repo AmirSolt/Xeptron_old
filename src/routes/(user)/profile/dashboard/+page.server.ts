@@ -11,15 +11,3 @@ export async function load() {
         wallet,
     }
 }
-
-/** @type {import('./$types').Actions} */
-export const actions = {
-    generateText: async ({ request }) => {
-        console.log("?/generateText")
-
-        
-        
-
-        return { success: true };
-    },
-};

@@ -2,7 +2,7 @@
 	import { Avatar } from '@skeletonlabs/skeleton';
 	export let detector: Detector;
 	export let text: string;
-	export let isGenerationOver:boolean;
+	export let isStreamingOver:boolean;
 	let state: 'start' | 'loading' | 'success' | 'fail' = 'start';
 
 	async function detectText(detector: Detector, text:string) {
@@ -28,7 +28,7 @@
         state = hasSucceeded? 'success' : 'fail'
     }
 
-    $:if(isGenerationOver){
+    $:if(isStreamingOver){
         updateState(detector, text)
     }
 </script>

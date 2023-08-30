@@ -37,6 +37,7 @@ function getSSEResponse(problem:string|null, sampleText:string|null, newContentC
 				return
 			}
 
+			console.log(">>>>",e)
 			const completionResponse = JSON.parse(e.data)
 			const [{ delta }] = completionResponse.choices
 

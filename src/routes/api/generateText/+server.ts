@@ -24,10 +24,14 @@ export const POST = async ({request}) => {
     const sampleText:string|null = input.sampleText
 
     if(problem == null || sampleText==null){
-        return new Response(JSON.stringify({errorMessage: "There was a problem with input"}), { status: 500 });
+        // return new Response(JSON.stringify({errorMessage: "There was a problem with input"}), { status: 500 });
+        throw new Error("There was a problem with input")
     }
   
-    return new Response("id:"+makeid(10), {
+    let response = `id:${makeid(10)}`
+    response += `data:${makeid(10)}\n\n`
+
+    return new Response(response, {
         headers: {
             'Content-Type': 'text/event-stream',
             'Cache-Control': 'no-cache',

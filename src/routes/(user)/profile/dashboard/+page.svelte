@@ -6,27 +6,30 @@
     export let data;
     const {personality, detectors, wallet} = data;
 
-    let problem:string;
+    let problem:string|null=null;
 
     let answer:string;
-    let isGenerationOver:boolean=false;
+    let isStreamingOver:boolean=false;
 
 
     // =====================================
     function newContentCallback(newContent:string){
-        comparisonBody += newContent;
-        isStreaming = true;
+        answer += newContent;
     }
     function overCallback(){
-        isStreaming=false
-        console.log(comparisonBody)
+        isStreamingOver=true
+        console.log(">>answer",answer)
     }
     function errorCallback<T>(err: T){
-        throw error(400, "Something went wrong!")
+        // throw error(400, "Something went wrong!")
+        console.log(">>>> Something went wrong!",err)
     }
-    const eventSource = getSSE(problem, personality.sampleText, newContentCallback, overCallback, errorCallback)
-    if(eventSource){
-        eventSource.stream()
+
+    function getAnswer(problem:string|null, sampleText:string|null){
+        const eventSource = getSSE(problem, sampleText, newContentCallback, overCallback, errorCallback)
+        if(eventSource){
+            eventSource.stream()
+        }
     }
     // =====================================
 
@@ -44,14 +47,12 @@
 <br>
 
 
-<form method="POST" action="?/generateText">
+<div>
 
     {#if personality.sampleText==null}
         <SampleWarning />
-        <input type="text" class="opacity-0 w-50 h-0" name="" value="" required>
     {:else}
-        <p>- Personalized text has been complete</p>
-        <input type="hidden" name="" value="{personality.sampleText}" required>
+        <p>- Personalized text has been completed</p>
     {/if}
 
     <br>
@@ -63,15 +64,15 @@
             <small>
                 Explain what you want to be generated
             </small>
-            <textarea class="textarea" rows="4" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit." required />
+            <textarea class="textarea" rows="4" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit." bind:value={problem}/>
         </label>
 	</label>
     <br>
-    <button type="submit" class="btn variant-filled">
+    <button class="btn variant-filled" on:click={()=>getAnswer(problem, personality.sampleText)}>
         Submit
     </button>
+</div>
 
-</form>
 
 
 <br>
@@ -79,7 +80,7 @@
 
 <div class="flex flex-wrap justify-start items-center gap-8">
     {#each detectors as detector}
-        <DetectionProfile {detector} text={answer} {isGenerationOver} />
+        <DetectionProfile {detector} text={answer} {isStreamingOver} />
     {/each}
 </div>
 
