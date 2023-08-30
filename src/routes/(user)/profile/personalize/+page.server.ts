@@ -1,4 +1,4 @@
-import { personality } from '$lib/server/funcs/database/index.js';
+import { personality } from '$lib/server/database/index.js';
 
 export async function load({ cookies }) {
 
@@ -9,7 +9,7 @@ export async function load({ cookies }) {
 
 /** @type {import('./$types').Actions} */
 export const actions = {
-    test: async ({ cookies, request }) => {
+    saveSample: async ({ cookies, request }) => {
         console.log("test")
         return { success: true };
     },

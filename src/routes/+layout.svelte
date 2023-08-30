@@ -19,6 +19,13 @@
 
 
 
+<svelte:head>
+	<title>Enterprise</title>
+	<link rel="icon" href="https://fav.farm/🔥" />
+</svelte:head>
+
+
+
 <!-- App Shell -->
 <AppShell>
 
@@ -63,6 +70,10 @@
 			<AppRailAnchor href="/profile/personalize" selected={$page.url.pathname === '/profile/personalize'}>
 				<svelte:fragment slot="lead">(icon)</svelte:fragment>
 				<span>Personalize</span>
+			</AppRailAnchor>
+			<AppRailAnchor href="/profile/wallet" selected={$page.url.pathname === '/profile/wallet'}>
+				<svelte:fragment slot="lead">(icon)</svelte:fragment>
+				<span>Wallet</span>
 			</AppRailAnchor>
 			<AppRailAnchor href="/profile/settings" selected={$page.url.pathname === '/profile/settings'}>
 				<svelte:fragment slot="lead">(icon)</svelte:fragment>

@@ -1,7 +1,7 @@
 <script lang="ts">
     import { Avatar } from '@skeletonlabs/skeleton';
     export let detectionProfile:DetectionProfileData;
-
+    let state:"start"|"loading"|"success"|"fail" = "start"
 </script>
 
 <div class="flex flex-col justify-center items-center">
@@ -11,22 +11,16 @@
     <div class="text-center">
         <h2>{detectionProfile.name}</h2>
         
-        {#if detectionProfile.state === "loading"}
-        
+        {#if state === "start"}
+            <p>Start</p>
+        {:else if state === "loading"}
             <p>Loading</p>
-        
-        {:else if detectionProfile.state === "success"}
-        
+        {:else if state === "success"}
             <p>Success</p>
-        
-        {:else if detectionProfile.state === "fail"}
-        
+        {:else if state === "fail"}
             <p>Failed</p>
-        
         {:else}
-        
             <p>Error</p>
-        
         {/if}
     
     </div>

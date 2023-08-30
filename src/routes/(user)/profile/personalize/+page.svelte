@@ -10,7 +10,7 @@
 </script>
 
 
-<form method="POST" action="?/test">
+<form method="POST" action="?/saveSample">
 
     {#if personality.sampleText!=null}
         <SampleSuccess />

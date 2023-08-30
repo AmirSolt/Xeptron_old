@@ -1,11 +1,9 @@
-import { personality } from '$lib/server/database/index.js';
 import { wallet } from '$lib/server/database/index.js';
 
 
 export async function load({ cookies }) {
     
     return {
-        personality,
         wallet
     }
 }

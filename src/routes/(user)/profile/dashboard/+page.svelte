@@ -4,20 +4,30 @@
 
 
     export let data;
-    const {personality} = data;
+    const {personality, wallet} = data;
 
 
-    const detectionProfile:DetectionProfileData = {pfpSrc:"",name:"yo",state:"loading"}
+    const detectionProfile:DetectionProfileData = {pfpSrc:"",name:"yo"}
 
 </script>
 
-<form method="POST" action="?/test">
+<div class="flex justify-start text-center items-center gap-4">
+    <h1>
+        Credits:
+    </h1>
+    <a href="/profile/wallet" class="btn-icon btn-icon-xl variant-filled">{wallet.credits}</a>
+</div>
+
+<br>
+
+
+<form method="POST" action="?/generateText">
 
     {#if personality.sampleText==null}
         <SampleWarning />
         <input type="text" class="opacity-0 w-50 h-0" name="" value="" required>
     {:else}
-        <input type="text" class="opacity-0 w-50 h-0" name="" value="{personality.sampleText}" required>
+        <input type="hidden" name="" value="{personality.sampleText}" required>
     {/if}
 
     <br>
@@ -45,7 +55,6 @@
 
 <div class="flex justify-evenly items-center">
 
-    <DetectionProfile detectionProfile={detectionProfile} />
     <DetectionProfile detectionProfile={detectionProfile} />
     <DetectionProfile detectionProfile={detectionProfile} />
     <DetectionProfile detectionProfile={detectionProfile} />
