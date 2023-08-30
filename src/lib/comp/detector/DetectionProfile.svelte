@@ -34,7 +34,7 @@
 </script>
 
 <div class="flex flex-col justify-center items-center">
-	<Avatar src={detector.pfpSrc} width="w-32" rounded="rounded-full" />
+	<Avatar src={detector.pfpSrc} width="w-24" rounded="rounded-full" />
 
 	<div class="text-center">
 		<h2>{detector.name}</h2>

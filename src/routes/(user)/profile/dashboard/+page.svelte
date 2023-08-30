@@ -27,6 +27,7 @@
         <SampleWarning />
         <input type="text" class="opacity-0 w-50 h-0" name="" value="" required>
     {:else}
+        <p>- Personalized text has been complete</p>
         <input type="hidden" name="" value="{personality.sampleText}" required>
     {/if}
 
@@ -53,7 +54,7 @@
 <br>
 <br>
 
-<div class="flex justify-evenly items-center">
+<div class="flex flex-wrap justify-start items-center gap-8">
     {#each detectors as detector}
         <DetectionProfile {detector} text={answer} {isGenerationOver} />
     {/each}

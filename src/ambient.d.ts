@@ -9,6 +9,10 @@ interface Personality{
 
 interface Wallet{
     credits:number
+    paymentMethod:PaymentMethod|null
+}
+interface PaymentMethod{
+    
 }
 
 interface Detector{
@@ -21,3 +25,4 @@ interface DetectorResponse{
     errorMessage:string|null
     hasSucceeded:boolean
 }
+

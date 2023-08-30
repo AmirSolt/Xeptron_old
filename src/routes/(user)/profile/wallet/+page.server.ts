@@ -1,7 +1,7 @@
-import { wallet } from '$lib/server/database/index.js';
+import { wallet } from '$lib/funcs/server/database/index.js';
 
 
-export async function load({ cookies }) {
+export async function load() {
     
     return {
         wallet
@@ -10,7 +10,7 @@ export async function load({ cookies }) {
 
 /** @type {import('./$types').Actions} */
 export const actions = {
-    generateText: async ({ cookies, request }) => {
+    addCredits: async ({ request }) => {
         console.log("test")
         return { success: true };
     },

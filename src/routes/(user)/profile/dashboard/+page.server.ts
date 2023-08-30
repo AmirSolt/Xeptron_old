@@ -14,9 +14,10 @@ export async function load() {
 
 /** @type {import('./$types').Actions} */
 export const actions = {
-    generateText: async ({ cookies, request }) => {
-        console.log("test")
+    generateText: async ({ request }) => {
+        console.log("?/generateText")
 
+        // generateText
         // let streamFunction = await AI.createComparisonStream(products, selectedFeatures)
         // if(!streamFunction){
         //     return new Response("AI response Failed",{status:400})
@@ -28,6 +29,7 @@ export const actions = {
         //         'Content-Type': 'text/event-stream'
         //     }
         // });
+
         return { success: true };
     },
 };

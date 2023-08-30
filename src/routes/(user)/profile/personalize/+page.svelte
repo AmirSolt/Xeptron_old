@@ -28,7 +28,7 @@
             <small class="alert variant-ghost-warning">
                 DEV: Pop up on click if personality.sampleText != null
             </small>
-            <textarea class="textarea" rows="4" placeholder="" value="{personality.sampleText}" required  />
+            <textarea class="textarea" rows="4" placeholder="Write a paragraph about your favourite movie" name="sampleText" value={personality.sampleText??""} required  />
         </label>
 	</label>
     <br>
