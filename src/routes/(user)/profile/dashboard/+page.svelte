@@ -1,13 +1,13 @@
 <script lang="ts">
-    import DetectionProfile from '$lib/comp/check/DetectionProfile.svelte';
+    import DetectionProfile from '$lib/comp/detector/DetectionProfile.svelte';
 	import SampleWarning from '$lib/comp/sample/SampleWarning.svelte';
 
 
     export let data;
-    const {personality, wallet} = data;
+    const {personality, detectors, wallet} = data;
 
-
-    const detectionProfile:DetectionProfileData = {pfpSrc:"",name:"yo"}
+    let answer:string;
+    let isGenerationOver:boolean;
 
 </script>
 
@@ -54,12 +54,9 @@
 <br>
 
 <div class="flex justify-evenly items-center">
-
-    <DetectionProfile detectionProfile={detectionProfile} />
-    <DetectionProfile detectionProfile={detectionProfile} />
-    <DetectionProfile detectionProfile={detectionProfile} />
-    <DetectionProfile detectionProfile={detectionProfile} />
-    <DetectionProfile detectionProfile={detectionProfile} />
+    {#each detectors as detector}
+        <DetectionProfile {detector} text={answer} {isGenerationOver} />
+    {/each}
 </div>
 
 <br>

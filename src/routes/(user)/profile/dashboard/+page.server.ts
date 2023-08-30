@@ -1,11 +1,13 @@
-import { personality } from '$lib/server/database/index.js';
-import { wallet } from '$lib/server/database/index.js';
+import { personality } from '$lib/funcs/server/database/index.js';
+import { detectors } from '$lib/funcs/server/database/index.js';
+import { wallet } from '$lib/funcs/server/database/index.js';
 
 
-export async function load({ cookies }) {
+export async function load() {
     
     return {
         personality,
+        detectors,
         wallet
     }
 }
@@ -14,6 +16,18 @@ export async function load({ cookies }) {
 export const actions = {
     generateText: async ({ cookies, request }) => {
         console.log("test")
+
+        // let streamFunction = await AI.createComparisonStream(products, selectedFeatures)
+        // if(!streamFunction){
+        //     return new Response("AI response Failed",{status:400})
+        // }
+        // let response = await streamFunction()
+        
+        // return new Response(response.body, {
+        //     headers: {
+        //         'Content-Type': 'text/event-stream'
+        //     }
+        // });
         return { success: true };
     },
 };
