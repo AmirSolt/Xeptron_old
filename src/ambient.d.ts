@@ -26,3 +26,4 @@ interface DetectorResponse{
     hasSucceeded:boolean
 }
 
+

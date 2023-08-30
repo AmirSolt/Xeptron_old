@@ -1,13 +1,36 @@
 <script lang="ts">
     import DetectionProfile from '$lib/comp/detector/DetectionProfile.svelte';
 	import SampleWarning from '$lib/comp/sample/SampleWarning.svelte';
-
+    import {getSSE} from '$lib/funcs/generatorSSE/index.js';
 
     export let data;
     const {personality, detectors, wallet} = data;
 
+    let problem:string;
+
     let answer:string;
-    let isGenerationOver:boolean;
+    let isGenerationOver:boolean=false;
+
+
+    // =====================================
+    function newContentCallback(newContent:string){
+        comparisonBody += newContent;
+        isStreaming = true;
+    }
+    function overCallback(){
+        isStreaming=false
+        console.log(comparisonBody)
+    }
+    function errorCallback<T>(err: T){
+        throw error(400, "Something went wrong!")
+    }
+    const eventSource = getSSE(problem, personality.sampleText, newContentCallback, overCallback, errorCallback)
+    if(eventSource){
+        eventSource.stream()
+    }
+    // =====================================
+
+
 
 </script>
 
