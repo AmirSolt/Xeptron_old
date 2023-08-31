@@ -10,17 +10,21 @@ import { StreamingTextResponse, experimental_StreamData } from 'ai';
 
 export const POST = async ({request}) => {
 
-    const { prompt, sampleText } = await request.json();
-   
+    const req = await request.json();
+    const prompt = req.prompt
+    const personality:Personality = req.personality
+    // const {prompt, personality} = await request.json();
 
-    if(prompt == null || sampleText==null){
+
+    
+
+    if(prompt == null || personality==null){
         // return new Response(JSON.stringify({errorMessage: "There was a problem with input"}), { status: 500 });
         throw new Error("There was a problem with input")
     }
     
-    const systemPrompt = "Example of my writting style: "+sampleText
-    const userPrompt = "Use my writting style to: "+prompt
-    let stream = await getGenerateStream(systemPrompt, userPrompt)
+    
+    let stream = await getGenerateStream(personality, prompt)
     if(stream == null){
         return json({success:false, errorMessage:"Generation has failed"})
     }

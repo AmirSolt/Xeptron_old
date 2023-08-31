@@ -3,7 +3,9 @@
 	export let detector: Detector;
 	export let text: string;
 	export let isStreamingOver:boolean;
-	let state: 'start' | 'loading' | 'success' | 'fail' = 'start';
+
+	let isDetectorResponseValid:boolean=false;
+	let hasDetectorSucceeded:boolean=false;
 
 	async function detectText(detector: Detector, text:string) {
 		const response = await fetch("/api/detectText", {
@@ -19,18 +21,19 @@
         const detectorResponse:DetectorResponse = await response.json();
         if(detectorResponse.errorMessage!=null
             && detectorResponse.errorMessage.length > 0){
-
-        }
+				isDetectorResponseValid=false
+        }else{
+			isDetectorResponseValid=true
+		}
         return detectorResponse.hasSucceeded
 	}
     async function updateState(detector: Detector, text:string){
-        const hasSucceeded = await detectText(detector, text)
-        state = hasSucceeded? 'success' : 'fail'
+        hasDetectorSucceeded = await detectText(detector, text)
     }
-
-    $:if(isStreamingOver){
-        updateState(detector, text)
-    }
+	$:if(isStreamingOver){
+		updateState(detector, text)
+	}
+ 
 </script>
 
 <div class="flex flex-col justify-center items-center">
@@ -39,13 +42,15 @@
 	<div class="text-center">
 		<h2>{detector.name}</h2>
 
-		{#if state === 'start'}
+		{#if text.length==0 && !isStreamingOver}
 			<p>Start</p>
-		{:else if state === 'loading'}
+		{:else if text.length>0 && !isStreamingOver }
 			<p>Loading</p>
-		{:else if state === 'success'}
+		{:else if isStreamingOver && !isDetectorResponseValid}
+			<p>Error</p>
+		{:else if isStreamingOver && isDetectorResponseValid && hasDetectorSucceeded}
 			<p>Success</p>
-		{:else if state === 'fail'}
+		{:else if isStreamingOver && isDetectorResponseValid && !hasDetectorSucceeded}
 			<p>Failed</p>
 		{:else}
 			<p>Error</p>

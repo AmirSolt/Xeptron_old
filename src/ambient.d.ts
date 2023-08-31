@@ -5,6 +5,7 @@ interface User{
 
 interface Personality{
     sampleText:string|null
+    level:string|null
 }
 
 interface Wallet{

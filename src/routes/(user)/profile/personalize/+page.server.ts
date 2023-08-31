@@ -13,9 +13,10 @@ export const actions = {
         console.log("?/saveSample")
         const data = await request.formData();
         const sampleText = data.get('sampleText');
-        if(sampleText != null){
-            personality.sampleText = String(sampleText);
-        }
+        const level = data.get('level');
+        if(sampleText != null) personality.sampleText = String(sampleText);
+        if(level != null) personality.level = String(level);
+        
         return { success: true };
     },
 };

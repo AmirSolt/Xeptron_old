@@ -1,8 +1,8 @@
 <script lang="ts">
     import DetectionProfile from '$lib/comp/detector/DetectionProfile.svelte';
-	import SampleWarning from '$lib/comp/sample/SampleWarning.svelte';
     import { useCompletion } from 'ai/svelte';
     import CopyClipboard from '../tools/CopyClipboard.svelte';
+	import PersonalizeCompletion from '../personalization/PersonalizeCompletion.svelte';
     export let personality:Personality;
     export let detectors:Detector[];
     
@@ -28,7 +28,7 @@
         onFinish: overCallback,
         onError: errorCallback,
         body: {
-            sampleText:personality.sampleText
+            personality:personality
         }
     });
     // =====================================
@@ -41,11 +41,7 @@
 <!-- =================================================================== -->
 <form on:submit={handleSubmit}>
 
-    {#if personality.sampleText==null}
-        <SampleWarning />
-    {:else}
-        <p>- Personalized text has been completed</p>
-    {/if}
+    <PersonalizeCompletion {personality} />
 
     <br>
 	<label>

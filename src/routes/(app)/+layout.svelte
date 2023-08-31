@@ -1,8 +1,8 @@
 <script lang="ts">
-	import '../app.postcss';
+	import '../../app.postcss';
+	import { LightSwitch } from '@skeletonlabs/skeleton';
 	import { AppShell, AppBar } from '@skeletonlabs/skeleton';
-    import { AppRail, AppRailTile, AppRailAnchor } from '@skeletonlabs/skeleton';
-	import { page } from '$app/stores';
+
 	// Highlight JS
 	import hljs from 'highlight.js';
 	import 'highlight.js/styles/github-dark.css';
@@ -39,6 +39,8 @@
 				</a>
 			</svelte:fragment>
 			<svelte:fragment slot="trail">
+				<LightSwitch />
+
 				<a
 					class="btn btn-sm variant-ghost-surface"
 					href="/profile/dashboard"
@@ -61,33 +63,6 @@
 		</AppBar>
 	</svelte:fragment>
 
-	<svelte:fragment slot="sidebarLeft">
-		<AppRail>
-			<AppRailAnchor href="/profile/dashboard" selected={$page.url.pathname === '/profile/dashboard'}>
-				<svelte:fragment slot="lead">(icon)</svelte:fragment>
-				<span>Dashboard</span>
-			</AppRailAnchor>
-			<AppRailAnchor href="/profile/personalize" selected={$page.url.pathname === '/profile/personalize'}>
-				<svelte:fragment slot="lead">(icon)</svelte:fragment>
-				<span>Personalize</span>
-			</AppRailAnchor>
-			<AppRailAnchor href="/profile/wallet" selected={$page.url.pathname === '/profile/wallet'}>
-				<svelte:fragment slot="lead">(icon)</svelte:fragment>
-				<span>Wallet</span>
-			</AppRailAnchor>
-			<AppRailAnchor href="/profile/settings" selected={$page.url.pathname === '/profile/settings'}>
-				<svelte:fragment slot="lead">(icon)</svelte:fragment>
-				<span>Settings</span>
-			</AppRailAnchor>
-		
-		
-		</AppRail>
-	</svelte:fragment>
-
-
-
 	<slot/>
-	
-
 
 </AppShell>
