@@ -17,12 +17,12 @@
 	<label>
         <label class="label">
             <h1>
-                Language Level
+                Use Case
             </h1>
             <small>
-                What are you and what level of sophistication are you expecting.
+                What is your usecase and what level of sophistication are you expecting.
             </small>
-            <input class="input" type="text" placeholder="e.g. Student, grade 12 essay" name="level" value={personality.level??""} required/>
+            <input class="input" type="text" placeholder="e.g. Blog about food, Student grade 12, Marketing" name="level" value={personality.level??""} required/>
         </label>
 	</label>
     <br>
@@ -38,7 +38,7 @@
                 Write a short paragraph.
                 The purpose of this is for the AI to understand and follow your writting style.
             </small>
-            <textarea class="textarea" rows="4" placeholder="Write a paragraph about your favourite movie" name="sampleText" value={personality.sampleText??""} required/>
+            <textarea class="textarea" rows="6" placeholder="Write a paragraph about your favourite movie" name="sampleText" value={personality.sampleText??""} required/>
         </label>
 	</label>
     <br>
