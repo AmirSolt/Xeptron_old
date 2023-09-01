@@ -4,6 +4,8 @@
 	export let text: string;
 	export let isStreamingOver:boolean;
 
+	let hasDetectorStarted:boolean=false;
+    let hasDetectorFinished:boolean=false;
 	let isDetectorResponseValid:boolean=false;
 	let hasDetectorSucceeded:boolean=false;
 
@@ -28,7 +30,12 @@
         return detectorResponse.hasSucceeded
 	}
     async function updateState(detector: Detector, text:string){
+		isDetectorResponseValid = false
+		hasDetectorSucceeded = false
+		hasDetectorFinished = false
+		hasDetectorStarted = true
         hasDetectorSucceeded = await detectText(detector, text)
+		hasDetectorFinished = true
     }
 	$:if(isStreamingOver){
 		updateState(detector, text)
@@ -42,15 +49,15 @@
 	<div class="text-center">
 		<h2>{detector.name}</h2>
 
-		{#if text.length==0 && !isStreamingOver}
-			<p>Start</p>
-		{:else if text.length>0 && !isStreamingOver }
+		{#if !hasDetectorStarted && !hasDetectorFinished}
+			<p>Waiting to Start</p>
+		{:else if hasDetectorStarted && !hasDetectorFinished}
 			<p>Loading</p>
-		{:else if isStreamingOver && !isDetectorResponseValid}
+		{:else if hasDetectorFinished && !isDetectorResponseValid}
 			<p>Error</p>
-		{:else if isStreamingOver && isDetectorResponseValid && hasDetectorSucceeded}
+		{:else if hasDetectorFinished && isDetectorResponseValid && hasDetectorSucceeded}
 			<p>Success</p>
-		{:else if isStreamingOver && isDetectorResponseValid && !hasDetectorSucceeded}
+		{:else if hasDetectorFinished && isDetectorResponseValid && !hasDetectorSucceeded}
 			<p>Failed</p>
 		{:else}
 			<p>Error</p>

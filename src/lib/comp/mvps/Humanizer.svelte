@@ -24,13 +24,18 @@
 
 
     const { input, handleSubmit, completion } = useCompletion({
-        api: '/api/generateText',
+        api: '/api/convertText',
         onFinish: overCallback,
         onError: errorCallback,
         body: {
             personality:personality
         }
     });
+    function submitWrapper(e){
+        isStreamingOver=false
+        handleSubmit(e)
+    }
+
     // =====================================
 
 
@@ -39,22 +44,20 @@
 
 
 <!-- =================================================================== -->
-<form on:submit={handleSubmit}>
+<form on:submit={submitWrapper}>
 
     <PersonalizeCompletion {personality} />
 
     <br>
-	<label>
-        <label class="label">
-            <h1>
-                Problem
-            </h1>
-            <small>
-                Explain what you want to be generated
-            </small>
-            <textarea class="textarea" rows="4" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit." bind:value={$input}/>
-        </label>
-	</label>
+    <label >
+        <h1>
+            Input your text
+        </h1>
+        <small>
+            AI will convert the text to you writting style.
+        </small>
+        <textarea class="textarea" rows="4" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit." bind:value={$input}/>
+    </label>
     <br>
     <button  class="btn variant-filled" >
         Submit
