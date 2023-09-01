@@ -10,6 +10,13 @@
 
 <CreditCounter {wallet} />
 
+
+<br>
+
+<h1 class="text-6xl">
+    🤖🗒️ ➡️ 👨🗒️
+</h1>
+
 <br>
 
 <Humanizer {detectors} {personality} />

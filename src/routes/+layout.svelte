@@ -4,6 +4,9 @@
 	import { LightSwitch } from '@skeletonlabs/skeleton';
     import { AppRail, AppRailTile, AppRailAnchor } from '@skeletonlabs/skeleton';
 	import { page } from '$app/stores';
+	import { Toast, initializeStores } from '@skeletonlabs/skeleton';
+	initializeStores();
+
 	// Highlight JS
 	import hljs from 'highlight.js';
 	import 'highlight.js/styles/github-dark.css';
@@ -95,7 +98,7 @@
 		</AppRail>
 	</svelte:fragment>
 
-
+	<Toast position='t' background='variant-filled-error' />
     <div class="p-5">
 
         <slot/>

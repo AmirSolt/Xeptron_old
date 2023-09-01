@@ -1,10 +1,10 @@
 
 <script lang="ts">
-    import Detector from '$lib/comp/mvps/Detector.svelte';
+    import Detectors from '$lib/comp/mvps/Detectors.svelte';
     import CreditCounter from '$lib/comp/wallet/CreditCounter.svelte';
 
     export let data;
-    const {mainDetector, wallet} = data;
+    const {detectors, wallet} = data;
 </script>
 
 
@@ -12,4 +12,11 @@
 
 <br>
 
-<Detector detector={mainDetector}/>
+<h1 class="text-6xl">
+    🤖🗒️ 🆚 👨🗒️
+</h1>
+
+<br>
+
+
+<Detectors {detectors}/>

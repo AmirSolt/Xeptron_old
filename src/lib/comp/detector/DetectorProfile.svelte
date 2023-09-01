@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { Avatar } from '@skeletonlabs/skeleton';
+
+
 	export let detector: Detector;
 	export let text: string;
-	export let isStreamingOver:boolean;
 
 	let hasDetectorStarted:boolean=false;
     let hasDetectorFinished:boolean=false;
-	let isDetectorResponseValid:boolean=false;
-	let hasDetectorSucceeded:boolean=false;
+	let isDetectorResponseValid:boolean=true;
+	let detectorResult:number;
 
 	async function detectText(detector: Detector, text:string) {
 		const response = await fetch("/api/detectText", {
@@ -27,19 +28,19 @@
         }else{
 			isDetectorResponseValid=true
 		}
-        return detectorResponse.hasSucceeded
+        return detectorResponse.humanPerc
 	}
     async function updateState(detector: Detector, text:string){
-		isDetectorResponseValid = false
-		hasDetectorSucceeded = false
 		hasDetectorFinished = false
 		hasDetectorStarted = true
-        hasDetectorSucceeded = await detectText(detector, text)
+        detectorResult = await detectText(detector, text)
 		hasDetectorFinished = true
     }
-	$:if(isStreamingOver){
+
+	export function startDetection(){
 		updateState(detector, text)
 	}
+
  
 </script>
 
@@ -55,10 +56,8 @@
 			<p>Loading</p>
 		{:else if hasDetectorFinished && !isDetectorResponseValid}
 			<p>Error</p>
-		{:else if hasDetectorFinished && isDetectorResponseValid && hasDetectorSucceeded}
-			<p>Success</p>
-		{:else if hasDetectorFinished && isDetectorResponseValid && !hasDetectorSucceeded}
-			<p>Failed</p>
+		{:else if hasDetectorFinished && isDetectorResponseValid && detectorResult}
+			<p>%{detectorResult}</p>
 		{:else}
 			<p>Error</p>
 		{/if}

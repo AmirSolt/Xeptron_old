@@ -12,4 +12,10 @@
 
 <br>
 
+<h1 class="text-6xl">
+    👨 ➡️ 🗒️
+</h1>
+
+<br>
+
 <Generator {detectors} {personality} />

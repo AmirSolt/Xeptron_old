@@ -24,7 +24,7 @@ interface Detector{
 }
 interface DetectorResponse{
     errorMessage:string|null
-    hasSucceeded:boolean
+    humanPerc:number
 }
 
 

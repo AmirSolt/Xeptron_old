@@ -6,7 +6,7 @@
     export let personality:Personality;
     export let detectors:Detector[];
     
-
+    let detectorComps:any[] = []
     let isStreamingOver:boolean=false;
 
 
@@ -16,6 +16,9 @@
     // }
     function overCallback(){
         isStreamingOver=true
+        detectorComps.forEach(detectorComp => {
+            detectorComp.startDetection()
+        });
     }
     function errorCallback<T>(err: T){
         // throw error(400, "Something went wrong!")
@@ -31,11 +34,7 @@
             personality:personality
         }
     });
-    function submitWrapper(e){
-        isStreamingOver=false
-        handleSubmit(e)
-    }
-
+ 
     // =====================================
 
 
@@ -44,7 +43,7 @@
 
 
 <!-- =================================================================== -->
-<form on:submit={submitWrapper}>
+<form on:submit={handleSubmit}>
 
     <PersonalizeCompletion {personality} />
 
@@ -74,8 +73,8 @@
 <div>
     <h1>Detectors</h1>
     <div class="flex flex-wrap justify-start items-center gap-8">
-        {#each detectors as detector}
-            <DetectionProfile {detector} text={$completion} {isStreamingOver} />
+        {#each detectors as detector, i}
+            <DetectionProfile {detector} text={$completion} bind:this={detectorComps[i]} />
         {/each}
     </div>
 </div>
