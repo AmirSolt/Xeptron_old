@@ -1,5 +1,5 @@
 <script lang="ts">
-    import DetectionProfile from '$lib/comp/detector/DetectionProfile.svelte';
+    import DetectionProfile from '$lib/comp/detector/DetectorProfile.svelte';
     import { useCompletion } from 'ai/svelte';
     import CopyClipboard from '../tools/CopyClipboard.svelte';
 	import PersonalizeCompletion from '../personalization/PersonalizeCompletion.svelte';

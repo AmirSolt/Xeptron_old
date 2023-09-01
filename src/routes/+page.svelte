@@ -1,6 +1,6 @@
 
 <script lang="ts">
-    import Completion from '$lib/comp/completion/Completion.svelte';
+    import Generator from '$lib/comp/mvps/Generator.svelte';
     import CreditCounter from '$lib/comp/wallet/CreditCounter.svelte';
 
     export let data;
@@ -12,4 +12,4 @@
 
 <br>
 
-<Completion {detectors} {personality} />
+<Generator {detectors} {personality} />

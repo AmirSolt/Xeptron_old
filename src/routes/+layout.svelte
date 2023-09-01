@@ -1,5 +1,5 @@
 <script lang="ts">
-	import '../../app.postcss';
+	import '../app.postcss';
 	import { AppShell, AppBar } from '@skeletonlabs/skeleton';
 	import { LightSwitch } from '@skeletonlabs/skeleton';
     import { AppRail, AppRailTile, AppRailAnchor } from '@skeletonlabs/skeleton';
@@ -66,19 +66,27 @@
 
 	<svelte:fragment slot="sidebarLeft">
 		<AppRail>
-			<AppRailAnchor href="/profile/dashboard" selected={$page.url.pathname === '/profile/dashboard'}>
+			<AppRailAnchor href="/" selected={$page.url.pathname === '/'}>
 				<svelte:fragment slot="lead">(icon)</svelte:fragment>
-				<span>Dashboard</span>
+				<span>Generate</span>
 			</AppRailAnchor>
-			<AppRailAnchor href="/profile/personalize" selected={$page.url.pathname === '/profile/personalize'}>
+			<AppRailAnchor href="/humanize" selected={$page.url.pathname === '/humanize'}>
+				<svelte:fragment slot="lead">(icon)</svelte:fragment>
+				<span>Humanize</span>
+			</AppRailAnchor>
+			<AppRailAnchor href="/detect" selected={$page.url.pathname === '/detect'}>
+				<svelte:fragment slot="lead">(icon)</svelte:fragment>
+				<span>Detect AI</span>
+			</AppRailAnchor>
+			<AppRailAnchor href="/personalize" selected={$page.url.pathname === '/personalize'}>
 				<svelte:fragment slot="lead">(icon)</svelte:fragment>
 				<span>Personalize</span>
 			</AppRailAnchor>
-			<AppRailAnchor href="/profile/wallet" selected={$page.url.pathname === '/profile/wallet'}>
+			<AppRailAnchor href="/wallet" selected={$page.url.pathname === '/wallet'}>
 				<svelte:fragment slot="lead">(icon)</svelte:fragment>
 				<span>Wallet</span>
 			</AppRailAnchor>
-			<AppRailAnchor href="/profile/settings" selected={$page.url.pathname === '/profile/settings'}>
+			<AppRailAnchor href="/settings" selected={$page.url.pathname === '/settings'}>
 				<svelte:fragment slot="lead">(icon)</svelte:fragment>
 				<span>Settings</span>
 			</AppRailAnchor>
