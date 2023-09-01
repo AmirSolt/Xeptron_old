@@ -4,7 +4,6 @@
 
 import { json } from '@sveltejs/kit';
 
-import { setTimeout } from "timers/promises";
 
 export const POST = async ({request}) => {
 
@@ -12,8 +11,7 @@ export const POST = async ({request}) => {
     const text:string = input.text
     const detector:Detector = input.detector
 
-	// check validness
-    await setTimeout(5000);
+	
 
 
     const response:DetectorResponse = {
