@@ -9,7 +9,7 @@
 </script>
 
 
-{#if personality.sampleText==null || personality.level==null}
+{#if personality.sampleText==null || personality.useCase==null}
     <div>
         <aside class="alert variant-ghost-error">
             <i class="fa-solid fa-triangle-exclamation text-4xl" />

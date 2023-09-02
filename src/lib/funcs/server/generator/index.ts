@@ -5,7 +5,7 @@ import {createChat} from '../openai/index.js'
 export async function getGenerateStream(personality:Personality, prompt:string){
 
 
-    let systemPrompt = "The writting level is: "+personality.level
+    let systemPrompt = "The contextual use case is: "+personality.useCase
     systemPrompt += " Example of my writting style: "+personality.sampleText
     let userPrompt = "Use my writting style to: "+prompt
 

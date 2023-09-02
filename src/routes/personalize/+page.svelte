@@ -23,7 +23,7 @@
                 What is your usecase and what level of sophistication are you expecting.
                 e.g. Blog about food, Student grade 12, Marketing, better SEO
             </small>
-            <input class="input" type="text" placeholder="e.g. Blog about food" name="level" value={personality.level??""} required/>
+            <input class="input" type="text" placeholder="e.g. Blog about food" name="useCase" value={personality.useCase??""} required/>
         </label>
 	</label>
     <br>

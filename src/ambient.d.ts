@@ -1,19 +1,12 @@
 
-interface User{
-    email:string
-}
 
 interface Personality{
     sampleText:string|null
-    level:string|null
+    useCase:string|null
 }
 
 interface Wallet{
     credits:number
-    paymentMethod:PaymentMethod|null
-}
-interface PaymentMethod{
-    
 }
 
 interface Detector{

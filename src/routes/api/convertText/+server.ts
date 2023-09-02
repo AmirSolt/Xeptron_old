@@ -15,9 +15,6 @@ export const POST = async ({request}) => {
     const personality:Personality = req.personality
     // const {prompt, personality} = await request.json();
 
-
-    
-
     if(prompt == null || personality==null){
         // return new Response(JSON.stringify({errorMessage: "There was a problem with input"}), { status: 500 });
         throw new Error("There was a problem with input")
