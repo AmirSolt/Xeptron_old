@@ -1,6 +1,8 @@
 
 <script lang="ts">
 
+    // user
+    // get $20
     export let personality:Personality;
 
     

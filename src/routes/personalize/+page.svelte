@@ -1,6 +1,5 @@
 <script lang="ts">
-    import PersonalizeCompletion from '$lib/comp/personalization/PersonalizeCompletion.svelte';
-
+    import Steps from '$lib/comp/steps/Steps.svelte';
 
     export let data;
     const {personality} = data;
@@ -10,7 +9,7 @@
 
 <form method="POST" action="?/saveSample">
 
-    <PersonalizeCompletion {personality} />
+    <Steps {personality} />
 
 
     <br>

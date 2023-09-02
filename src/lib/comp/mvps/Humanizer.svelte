@@ -2,7 +2,7 @@
     import DetectionProfile from '$lib/comp/detector/DetectorProfile.svelte';
     import { useCompletion } from 'ai/svelte';
     import CopyClipboard from '../tools/CopyClipboard.svelte';
-	import PersonalizeCompletion from '../personalization/PersonalizeCompletion.svelte';
+    import Steps from '../steps/Steps.svelte';
     export let personality:Personality;
     export let detectors:Detector[];
     
@@ -45,7 +45,7 @@
 <!-- =================================================================== -->
 <form on:submit={handleSubmit}>
 
-    <PersonalizeCompletion {personality} />
+    <Steps {personality} />
 
     <br>
     <label >
