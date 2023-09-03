@@ -1,42 +1,20 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms/client'
     import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte'
-    import { signupSchema } from '$lib/utils/schema'
+    import { signinSchema } from '$lib/utils/schema'
 
 	export let data
-
-	const { form, errors, constraints, enhance } = superForm(data.form, {validators:signupSchema})
+	const { form, errors, constraints, enhance } = superForm(data.form, {validators:signinSchema})
 </script>
 
 
 <SuperDebug data={$form}/>
 
 <div class="card m-auto mt-16 max-w-md p-8">
-	<h1>Sign up</h1>
+	<h1>Sign in</h1>
 
 	<form method="POST" class="mt-8 space-y-8" use:enhance>
-
-        <label class="label" for="name">
-			<span class="block">Name</span>
-			<input
-				class="input"
-				type="text"
-				name="name"
-                placeholder="(optional)"
-				id="name"
-				class:input-error={$errors.name}
-				data-invalid={$errors.name}
-				bind:value={$form.name}
-				{...$constraints.name}
-			/>
-		</label>
-		{#if $errors.name}
-			<span class="text-red-400">{$errors.name}</span>
-        {:else}
-            <span></span>
-		{/if}
-
-		<label class="label" for="email">
+		<label class="label" for="username">
 			<span class="block">Email</span>
 			<input
 				class="input"
@@ -74,13 +52,14 @@
             <span></span>
 		{/if}
 
+
 		<div class="flex justify-between items-center">
 
-			<button class="btn variant-filled" type="submit">Sign up</button>
+			<button class="btn variant-filled" type="submit">Sign in</button>
 	
 			<p class="text-center">
-				Have an account?
-				<a href="/auth/signin" class="underline ">Sign in</a>
+				Don't have an account?
+				<a href="/auth/signup" class="underline ">Sign up</a>
 			</p>
 		</div>
 	</form>

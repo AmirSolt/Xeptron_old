@@ -21,3 +21,12 @@ interface DetectorResponse{
 }
 
 
+interface AITextForm{
+    url:string
+    title:string
+    explanation:string
+    placeholder:string
+    isStreamingOver:boolean
+    response:string
+    formRows:number
+}
