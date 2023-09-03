@@ -25,3 +25,8 @@ export const generatorSchema = z.object({
 	email: z.string().email(),
 	password: z.string().min(4),
 })
+
+export const personalizationSchema = z.object({
+	writingStyle: z.string().min(4),
+	useCase: z.string().min(4),
+})

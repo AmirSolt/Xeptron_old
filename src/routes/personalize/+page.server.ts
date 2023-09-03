@@ -1,22 +1,33 @@
 import { personality } from '$lib/funcs/server/database/index.js';
+import { superValidate, setError } from 'sveltekit-superforms/server'
+import { personalizationSchema } from '$lib/utils/schema'
+import { fail, error } from '@sveltejs/kit';
 
-export async function load() {
-
+export async function load(event) {
+	const form = await superValidate(event, personalizationSchema)
     return {
+        form,
         personality
     }
 }
 
-/** @type {import('./$types').Actions} */
+
 export const actions = {
-    saveSample: async ({ request }) => {
-        console.log("?/saveSample")
-        const data = await request.formData();
-        const sampleText = data.get('sampleText');
-        const level = data.get('useCase');
-        if(sampleText != null) personality.sampleText = String(sampleText);
-        if(level != null) personality.useCase = String(level);
-        
-        return { success: true };
-    },
-};
+	default: async (event) => {
+		const form = await superValidate(event, personalizationSchema)
+        console.log(form)
+		if (!form.valid) {
+			return fail(400, { form })
+		}
+
+		// database
+
+		// if(personError!=null){
+		// 	throw error(personError.status??500, {
+		// 		message: personError.message,
+		// 	})
+		// }
+
+        return {form}
+    }
+}

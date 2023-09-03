@@ -1,7 +1,7 @@
 
 
 interface Personality{
-    sampleText:string|null
+    writingStyle:string|null
     useCase:string|null
 }
 

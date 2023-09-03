@@ -6,8 +6,8 @@ export async function getConvertorStream(personality:Personality, prompt:string)
 
 
     let systemPrompt = "The contextual use case is: "+personality.useCase
-    systemPrompt += " Example of my writting style: "+personality.sampleText
-    let userPrompt = "Convert this text to my style of writting: "+prompt
+    systemPrompt += " Example of my writing style: "+personality.sampleText
+    let userPrompt = "Convert this text to my style of writing: "+prompt
 
 
     let response = await createChat(systemPrompt, userPrompt)

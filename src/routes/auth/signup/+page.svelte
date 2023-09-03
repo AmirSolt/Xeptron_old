@@ -40,6 +40,8 @@
             <span></span>
 		{/if}
 
+
+
 		<label class="label" for="email">
 			<span class="block">Email</span>
 			<input

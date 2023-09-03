@@ -6,8 +6,8 @@ export async function getGenerateStream(personality:Personality, prompt:string){
 
 
     let systemPrompt = "The contextual use case is: "+personality.useCase
-    systemPrompt += " Example of my writting style: "+personality.sampleText
-    let userPrompt = "Use my writting style to: "+prompt
+    systemPrompt += " Example of my writing style: "+personality.sampleText
+    let userPrompt = "Use my writing style to: "+prompt
 
 
     let response = await createChat(systemPrompt, userPrompt)
