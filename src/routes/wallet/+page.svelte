@@ -1,7 +1,12 @@
 <script lang="ts">
+    import Steps from '$lib/comp/steps/Steps.svelte';
     export let data;
     const {wallet} = data;
+
 </script>
+
+
+<Steps personality={null} session={data.session} />
 
 
 <div class="flex justify-start text-center items-center gap-4">

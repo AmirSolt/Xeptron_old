@@ -1,5 +1,5 @@
-import { fail, redirect } from '@sveltejs/kit'
-import { superValidate, setError } from 'sveltekit-superforms/server'
+import { error, fail, redirect } from '@sveltejs/kit'
+import { superValidate } from 'sveltekit-superforms/server'
 
 import { signinSchema } from '$lib/utils/schema'
 
@@ -9,8 +9,6 @@ export const load = async (event) => {
     if (session) {
         throw redirect(302, '/')
     }
-
-	// always return `form` in load and form actions
 	const form = await superValidate(event, signinSchema)
 	return { form }
 }
@@ -23,6 +21,17 @@ export const actions = {
 			return fail(400, { form })
 		}
 
-        return {form }
+		const { data, error:signinError } = await event.locals.supabaseAuthServer.auth.signInWithPassword({
+			email: form.data.email,
+			password: form.data.password,
+		})
+
+		if(signinError!=null){
+			throw error(signinError.status??500, {
+				message: signinError.message,
+			})
+		}
+
+        return {form}
     }
 }

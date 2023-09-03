@@ -2,10 +2,14 @@
 	import { superForm } from 'sveltekit-superforms/client'
     import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte'
     import { signupSchema } from '$lib/utils/schema'
+    import {toastError} from '$lib/utils/toast'
 
 	export let data
 
-	const { form, errors, constraints, enhance } = superForm(data.form, {validators:signupSchema})
+	const { form, errors, constraints, enhance, message } = superForm(data.form, {
+		validators:signupSchema,
+		onError: (result)=>{$message = result.message; toastError($message, false)}
+	})
 </script>
 
 

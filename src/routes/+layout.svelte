@@ -11,12 +11,12 @@
 	import { invalidate } from '$app/navigation'
 	import { onMount } from 'svelte'
 	export let data
-	let { supabase, session } = data
-	$: ({ supabase, session } = data)
+	let { supabaseAuthClient, session } = data
+	$: ({ supabaseAuthClient, session } = data)
 	onMount(() => {
 		const {
 		data: { subscription },
-		} = supabase.auth.onAuthStateChange((event, _session) => {
+		} = supabaseAuthClient.auth.onAuthStateChange((event, _session) => {
 		if (_session?.expires_at !== session?.expires_at) {
 			invalidate('supabase:auth')
 		}
@@ -64,24 +64,27 @@
 			<svelte:fragment slot="trail">
 				<LightSwitch />
 
-				<a
-					class="btn btn-sm variant-ghost-surface"
-					href="/profile/dashboard"
-				>
-					Profile
-				</a>
-				<!-- <a
-					class="btn btn-sm variant-ghost-surface"
-					href="/login"
-				>
-					Login
-				</a>
-				<a
-					class="btn btn-sm variant-ghost-surface"
-					href="/sign-up"
-				>
-					Sign up
-				</a> -->
+				{#if session?.user}
+					<a
+						class="btn btn-sm variant-ghost-surface"
+						href="/profile/dashboard"
+					>
+						Profile
+					</a>
+				{:else}
+					<a
+						class="btn btn-sm variant-filled"
+						href="/auth/signin"
+					>
+						Log in
+					</a>
+					<a
+						class="btn btn-sm variant-filled-primary"
+						href="/auth/signup"
+					>
+						Sign up
+					</a>
+				{/if}
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>

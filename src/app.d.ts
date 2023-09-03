@@ -9,7 +9,7 @@ import type { Database } from '$lib/utils/database.types.js'
 declare global {
   namespace App {
     interface Locals {
-      supabase: SupabaseClient<Database>
+      supabaseAuthServer: SupabaseClient<Database>
       getSession(): Promise<Session | null>
     }
     interface PageData {

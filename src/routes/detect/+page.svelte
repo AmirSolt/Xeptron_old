@@ -2,6 +2,7 @@
 <script lang="ts">
     import CreditCounter from '$lib/comp/wallet/CreditCounter.svelte';
     import DetectionProfile from '$lib/comp/detector/DetectorProfile.svelte';
+    import Steps from '$lib/comp/steps/Steps.svelte';
 
     export let data;
     const {detectors, wallet} = data;
@@ -29,9 +30,9 @@
 
 
 
+<Steps personality={null} session={data.session} />
 
 <!-- =================================================================== -->
-
 
 
 <div>

@@ -7,11 +7,3 @@ export async function load() {
         wallet
     }
 }
-
-/** @type {import('./$types').Actions} */
-export const actions = {
-    addCredits: async ({ request }) => {
-        console.log("test")
-        return { success: true };
-    },
-};

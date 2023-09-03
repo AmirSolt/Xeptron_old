@@ -9,7 +9,8 @@
 
 <form method="POST" action="?/saveSample">
 
-    <Steps {personality} />
+    <Steps {personality} session={data.session} />
+
 
 
     <br>
