@@ -4,10 +4,12 @@
     import { signinSchema } from '$lib/utils/schema'
     import {toastError} from '$lib/utils/toast'
 
+
 	export let data
 	const { form, errors, constraints, enhance, message } = superForm(data.form, {
 		validators:signinSchema,
-		onError: (result)=>{$message = result.message; toastError($message, false)}
+		onError: (result)=>{toastError(result.result.error.message, false)},
+		taintedMessage:null
 	})
 </script>
 

@@ -8,7 +8,8 @@
 
 	const { form, errors, constraints, enhance, message } = superForm(data.form, {
 		validators:signupSchema,
-		onError: (result)=>{$message = result.message; toastError($message, false)}
+		onError: (result)=>{toastError(result.result.error.message, false)},
+		taintedMessage:null
 	})
 </script>
 

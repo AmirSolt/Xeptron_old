@@ -39,6 +39,6 @@ export const actions = {
 			})
 		}
 
-        throw redirect(302, '/auth/signup/confirm')
+        throw redirect(302, '/auth/confirm')
     }
 }

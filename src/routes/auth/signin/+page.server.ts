@@ -5,10 +5,10 @@ import { signinSchema } from '$lib/utils/schema'
 
 
 export const load = async (event) => {
-    const session = await event.locals.getSession()
-    if (session) {
-        throw redirect(302, '/')
-    }
+	const session = await event.locals.getSession()
+	if (session) {
+		throw redirect(302, '/')
+	}
 	const form = await superValidate(event, signinSchema)
 	return { form }
 }
@@ -16,22 +16,46 @@ export const load = async (event) => {
 export const actions = {
 	default: async (event) => {
 		const form = await superValidate(event, signinSchema)
-        console.log(form)
+		console.log(form)
 		if (!form.valid) {
 			return fail(400, { form })
 		}
 
-		const { data, error:signinError } = await event.locals.supabaseAuthServer.auth.signInWithPassword({
+		const { data: signinData, error: signinError } = await event.locals.supabaseAuthServer.auth.signInWithPassword({
 			email: form.data.email,
 			password: form.data.password,
 		})
-
-		if(signinError!=null){
-			throw error(signinError.status??500, {
+		if (signinError != null) {
+			throw error(signinError.status ?? 500, {
 				message: signinError.message,
 			})
 		}
 
-        return {form}
-    }
+
+
+		const { error: singoutError } = await event.locals.supabaseAuthServer.auth.signOut()
+		if (singoutError != null) {
+			throw error(singoutError.status ?? 500, {
+				message: singoutError.message,
+			})
+		}
+
+
+
+		const { data: otpData, error: otpError } = await event.locals.supabaseAuthServer.auth.signInWithOtp({
+			email: form.data.email,
+			options: {
+				emailRedirectTo: '/',
+				shouldCreateUser: false
+			}
+		})
+		if (otpError != null) {
+			throw error(otpError.status ?? 500, {
+				message: otpError.message,
+			})
+		}
+
+
+		throw redirect(302, '/auth/confirm')
+	}
 }

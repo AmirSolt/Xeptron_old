@@ -13,7 +13,7 @@
     const { form, errors, constraints, enhance, message  } = superForm(data.form, {
         taintedMessage:"Make sure to save your progress!!!",
 		validators:personalizationSchema,
-		onError: (result)=>{$message = result.message; toastError($message, false)},
+		onError: (result)=>{toastError(result.result.error.message, false)}
 	})
 
 

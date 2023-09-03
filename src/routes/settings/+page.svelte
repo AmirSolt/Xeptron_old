@@ -1,5 +1,6 @@
 
 <script lang="ts">
+    import { ProgressRadial } from '@skeletonlabs/skeleton';
     import Steps from '$lib/comp/steps/Steps.svelte';
     export let data;
 
@@ -17,15 +18,16 @@
 </h1>
 
 
-
-<a 
-    on:click={()=>logoutLoading=true}
-    href="/auth/signout"
-    class="btn btn-sm variant-filled-error">
-    {#if !logoutLoading}
-        Logout
-    {:else}
-        <!-- <ProgressRadial  width="w-12" stroke={100} /> -->
-        Loading...
-    {/if}
-</a>
+{#if !logoutLoading}
+    <a 
+        on:click={()=>logoutLoading=true}
+        href="/auth/signout"
+        class="btn btn-sm variant-filled-error">
+            Sign out
+            
+    </a>
+{:else}
+<div class="btn btn-sm variant-filled-error">
+    <ProgressRadial  width="w-6" stroke={100} />
+</div>
+{/if}
