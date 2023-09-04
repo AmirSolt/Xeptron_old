@@ -55,7 +55,7 @@
 		{:else if hasDetectorStarted && !hasDetectorFinished}
 			<p>Loading</p>
 		{:else if hasDetectorFinished && !isDetectorResponseValid}
-			<p>Error</p>
+			<span class="text-yellow-400">Error</span>
 		{:else if hasDetectorFinished && isDetectorResponseValid && detectorResult}
 			<p>%{detectorResult}</p>
 		{:else}

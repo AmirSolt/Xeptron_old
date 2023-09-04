@@ -8,7 +8,7 @@
     import AiAnswer from '$lib/comp/aiForms/AIAnswer.svelte';
 
     export let data;
-    const {detectors, personality, wallet} = data;
+    const {detectors, personality, wallet, session} = data;
 
     let aiTextForm:AITextForm = {
         url:"/api/generateText",
@@ -37,12 +37,12 @@
 <br>
 
 <!-- =================================================================== -->
-<Steps {personality} session={data.session} />
+<Steps {personality} {session} />
 
 
 
 <!-- =================================================================== -->
-<AiForm bind:aiTextForm={aiTextForm} {personality} />
+<AiForm bind:aiTextForm={aiTextForm} {personality} {session} />
 
 
 

@@ -1,16 +1,15 @@
 
 <script lang="ts">
-    import { ProgressRadial } from '@skeletonlabs/skeleton';
     import Steps from '$lib/comp/steps/Steps.svelte';
     import { superForm } from 'sveltekit-superforms/client'
     import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte'
     import { deleteUserSchema } from '$lib/utils/schema'
     import {toastError} from '$lib/utils/toast'
     import {deletePrompt} from '$lib/utils/config'
+    import LoadingButton from '$lib/comp/tools/LoadingButton.svelte';
 
     export let data;
 
-    let logoutLoading:boolean=false
 
 	const { form, errors, constraints, enhance, message } = superForm(data.form, {
 		validators:deleteUserSchema,
@@ -30,23 +29,15 @@
     Settings
 </h1>
 
-
-{#if !logoutLoading}
-    <a 
-        on:click={()=>logoutLoading=true}
-        href="/auth/signout"
-        class="btn btn-sm variant-filled-error">
-            Sign out
-            
-    </a>
-{:else}
-<div class="btn btn-sm variant-filled-error">
-    <ProgressRadial  width="w-6" stroke={100} />
-</div>
-{/if}
+<LoadingButton url="/auth/signout" color="variant-filled-error" text="Sign Out"/>
 
 
 
+<a 
+	href="/auth/resetPassword/update"
+	class="btn btn-sm variant-filled-warning">
+		Reset Password
+</a>
 
 
 <div class="card m-auto mt-16 max-w-md p-8">

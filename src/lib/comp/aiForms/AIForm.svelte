@@ -1,7 +1,10 @@
 <script lang="ts">
     import { useCompletion } from 'ai/svelte';
     import {toastError} from '$lib/utils/toast'
+	import type { Session } from '@supabase/supabase-js'
+    import LoadingButton from '$lib/comp/tools/LoadingButton.svelte';
 
+    export let session:Session|null
     export let aiTextForm:AITextForm
     export let personality:Personality
 
@@ -41,11 +44,16 @@
         <small>
             {aiTextForm.explanation}
         </small>
-        <textarea class="textarea" rows="{aiTextForm.formRows}" placeholder="{aiTextForm.placeholder}" autocomplete="off" bind:value={$input}/>
+        {#if session}
+            <textarea class="textarea" rows="{aiTextForm.formRows}" placeholder="{aiTextForm.placeholder}" autocomplete="off" bind:value={$input}/>
+        {:else}
+            <textarea class="textarea" rows="{aiTextForm.formRows}" placeholder="{aiTextForm.placeholder}" autocomplete="off" bind:value={$input}  on:focus={()=>toastError("Please Sign in")} />
+        {/if}
+
+
     </label>
     <br>
-    <button  class="btn variant-filled" >
-        Submit
-    </button>
+
+    <LoadingButton text="Submit" />
 </form>
 

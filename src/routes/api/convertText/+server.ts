@@ -4,11 +4,19 @@ export const config = {
 
 // import * as AI from '$lib/funcs/server/AI/index'
 import {getConvertorStream} from '$lib/funcs/server/convertor/index.js'
-import { json } from '@sveltejs/kit';
-import { StreamingTextResponse, experimental_StreamData } from 'ai';
+import { json, error } from '@sveltejs/kit';
+import { StreamingTextResponse } from 'ai';
 
 
-export const POST = async ({request}) => {
+export const POST = async ({request, locals:{getSession}}) => {
+
+	const session = await getSession()
+	if (!session) {
+		throw error(400, {
+            message: "You are not logged in!",
+        })
+	}
+
 
     const req = await request.json();
     const prompt = req.prompt

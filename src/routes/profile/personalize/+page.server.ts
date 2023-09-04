@@ -14,6 +14,15 @@ export async function load(event) {
 
 export const actions = {
 	default: async (event) => {
+
+		const session = await event.locals.getSession()
+		if (!session) {
+			throw error(400, {
+				message: "You are not logged in!",
+			})
+		}
+
+
 		const form = await superValidate(event, personalizationSchema)
         console.log(form)
 		if (!form.valid) {

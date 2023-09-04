@@ -8,5 +8,5 @@ export const GET = async ({ url, locals: { supabaseAuthServer } }) => {
     await supabaseAuthServer.auth.exchangeCodeForSession(code)
   }
 
-  throw redirect(303, '/account')
+  throw redirect(303, '/')
 }

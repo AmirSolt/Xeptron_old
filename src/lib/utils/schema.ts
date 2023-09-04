@@ -52,5 +52,5 @@ export const personalizationSchema = z.object({
 })
 
 export const deleteUserSchema = z.object({
-	prompt: z.string(),
+	deletePrompt: z.string(),
 })

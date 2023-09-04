@@ -3,9 +3,11 @@
     import CreditCounter from '$lib/comp/wallet/CreditCounter.svelte';
     import DetectionProfile from '$lib/comp/detector/DetectorProfile.svelte';
     import Steps from '$lib/comp/steps/Steps.svelte';
+	import { toastError } from '$lib/utils/toast.js';
+    import LoadingButton from '$lib/comp/tools/LoadingButton.svelte';
 
     export let data;
-    const {detectors, wallet} = data;
+    const {detectors, wallet, session} = data;
     let detectorComps:any[] = []
     let text:string;
 
@@ -55,10 +57,13 @@
         <small>
             Detect AI text
         </small>
-            <textarea class="textarea" name="text" bind:value={text} rows="4" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit."  autocomplete="off"/>
+            {#if session}
+            <textarea class="textarea" name="text" bind:value={text} rows="4" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit."  autocomplete="off" />
+            {:else}
+            <textarea class="textarea" name="text" bind:value={text} rows="4" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit."  autocomplete="off" on:focus={()=>toastError("Please Sign in")} />
+            {/if}
     </div>
     <br>
-    <button type="button" class="btn variant-filled" on:click={()=>detectAll} >
-        Submit
-    </button>
+
+    <LoadingButton text="Detect" buttonType="button" on:click={()=>detectAll}/>
 </div>
