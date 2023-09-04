@@ -1,33 +1,32 @@
 import { error, fail, redirect } from '@sveltejs/kit'
 import { superValidate } from 'sveltekit-superforms/server'
 
-import { signinSchema } from '$lib/utils/schema'
+import { resetPassSchema } from '$lib/utils/schema'
 
 
 export const load = async (event) => {
 	const session = await event.locals.getSession()
-	if (session) {
+	if (!session) {
 		throw redirect(302, '/')
 	}
-	const form = await superValidate(event, signinSchema)
+	const form = await superValidate(event, resetPassSchema)
 	return { form }
 }
 
 export const actions = {
 	default: async (event) => {
-		const form = await superValidate(event, signinSchema)
+		const form = await superValidate(event, resetPassSchema)
 		console.log(form)
 		if (!form.valid) {
 			return fail(400, { form })
 		}
 
-		const { data: signinData, error: signinError } = await event.locals.supabaseAuthServer.auth.signInWithPassword({
-			email: form.data.email,
-			password: form.data.password,
+		const { data: resetData, error: resetError } = await event.locals.supabaseAuthServer.auth.updateUser({
+			password: form.data.newPassword,
 		})
-		if (signinError != null) {
-			throw error(signinError.status ?? 500, {
-				message: signinError.message,
+		if (resetError != null) {
+			throw error(resetError.status ?? 500, {
+				message: resetError.message,
 			})
 		}
 
@@ -41,21 +40,6 @@ export const actions = {
 		}
 
 
-
-		const { data: otpData, error: otpError } = await event.locals.supabaseAuthServer.auth.signInWithOtp({
-			email: form.data.email,
-			options: {
-				emailRedirectTo: '/',
-				shouldCreateUser: false
-			}
-		})
-		if (otpError != null) {
-			throw error(otpError.status ?? 500, {
-				message: otpError.message,
-			})
-		}
-
-
-		throw redirect(302, '/auth/confirm')
+		throw redirect(302, '/auth/signin')
 	}
 }

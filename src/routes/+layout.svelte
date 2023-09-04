@@ -67,7 +67,7 @@
 				{#if session?.user}
 					<a
 						class="btn btn-sm variant-ghost-surface"
-						href="/profile/dashboard"
+						href="/profile/settings"
 					>
 						Profile
 					</a>
@@ -93,25 +93,29 @@
 		<AppRail>
 			<AppRailAnchor href="/" selected={$page.url.pathname === '/'}>
 				<svelte:fragment slot="lead">(icon)</svelte:fragment>
+				<span>Home</span>
+			</AppRailAnchor>
+			<AppRailAnchor href="/profile/generate" selected={$page.url.pathname === '/profile/generate'}>
+				<svelte:fragment slot="lead">(icon)</svelte:fragment>
 				<span>Generate</span>
 			</AppRailAnchor>
-			<AppRailAnchor href="/humanize" selected={$page.url.pathname === '/humanize'}>
+			<AppRailAnchor href="/profile/humanize" selected={$page.url.pathname === '/profile/humanize'}>
 				<svelte:fragment slot="lead">(icon)</svelte:fragment>
 				<span>Humanize</span>
 			</AppRailAnchor>
-			<AppRailAnchor href="/detect" selected={$page.url.pathname === '/detect'}>
+			<AppRailAnchor href="/profile/detect" selected={$page.url.pathname === '/profile/detect'}>
 				<svelte:fragment slot="lead">(icon)</svelte:fragment>
 				<span>Detect AI</span>
 			</AppRailAnchor>
-			<AppRailAnchor href="/personalize" selected={$page.url.pathname === '/personalize'}>
+			<AppRailAnchor href="/profile/personalize" selected={$page.url.pathname === '/profile/personalize'}>
 				<svelte:fragment slot="lead">(icon)</svelte:fragment>
 				<span>Personalize</span>
 			</AppRailAnchor>
-			<AppRailAnchor href="/wallet" selected={$page.url.pathname === '/wallet'}>
+			<AppRailAnchor href="/profile/wallet" selected={$page.url.pathname === '/profile/wallet'}>
 				<svelte:fragment slot="lead">(icon)</svelte:fragment>
 				<span>Wallet</span>
 			</AppRailAnchor>
-			<AppRailAnchor href="/settings" selected={$page.url.pathname === '/settings'}>
+			<AppRailAnchor href="/profile/settings" selected={$page.url.pathname === '/profile/settings'}>
 				<svelte:fragment slot="lead">(icon)</svelte:fragment>
 				<span>Settings</span>
 			</AppRailAnchor>

@@ -46,6 +46,7 @@
             data-invalid={$errors.useCase}
             bind:value={$form.useCase}
             {...$constraints.useCase}
+            autocomplete="off"
         />
     </label>
     {#if $errors.useCase}
@@ -75,6 +76,7 @@
             data-invalid={$errors.writingStyle}
             bind:value={$form.writingStyle}
             {...$constraints.writingStyle}
+            autocomplete="off"
         />
 
 

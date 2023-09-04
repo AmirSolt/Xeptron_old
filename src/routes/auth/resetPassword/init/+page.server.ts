@@ -1,7 +1,7 @@
 import { error, fail, redirect } from '@sveltejs/kit'
 import { superValidate } from 'sveltekit-superforms/server'
-
-import { resetPassSchema } from '$lib/utils/schema'
+import {DOMAIN} from '$env/static/public';
+import { initResetPassSchema } from '$lib/utils/schema'
 
 
 export const load = async (event) => {
@@ -9,24 +9,23 @@ export const load = async (event) => {
     if (session) {
         throw redirect(302, '/')
     }
-    const form = await superValidate(event, resetPassSchema)
+    const form = await superValidate(event, initResetPassSchema)
     return { form }
 }
 
 export const actions = {
     default: async (event) => {
-        const form = await superValidate(event, resetPassSchema)
+        const form = await superValidate(event, initResetPassSchema)
         console.log(form)
         if (!form.valid) {
             return fail(400, { form })
         }
 
-        const { data: resetPassData, error: resetPassError } = await event.locals.supabaseAuthServer.auth.resetPasswordForEmail({
-            email: form.data.email,
-            options:{
-                redirectTo: '/auth/resetPassword/otp'
-            }
-		})
+        const { data: resetPassData, error: resetPassError } = await event.locals.supabaseAuthServer.auth.resetPasswordForEmail(
+            form.data.email,
+            {
+                redirectTo: `${DOMAIN}/auth/resetPassword/update`
+        })
 
         if(resetPassError != null) {
             throw error(resetPassError.status ?? 500, {

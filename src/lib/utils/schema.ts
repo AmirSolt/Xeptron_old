@@ -20,16 +20,24 @@ export const signupSchema = z.object({
 })
 
 
-export const resetPassSchema = z.object({
+export const initResetPassSchema = z.object({
 	email: z.string().email(),
 })
-
-
 export const verifyOTPSchema = z.object({
 	email: z.string().email(),
 	token: z.string().min(1),
 })
-
+export const resetPassSchema = z.object({
+	newPassword: z.string().min(4),
+	confirmPassword: z.string().min(4),
+}).superRefine(({ confirmPassword, newPassword }, ctx) => {
+	if (confirmPassword !== newPassword) {
+	  ctx.addIssue({
+		code: "custom",
+		message: "The passwords did not match"
+	  });
+	}
+});
 
 
 export const generatorSchema = z.object({
@@ -41,4 +49,8 @@ export const generatorSchema = z.object({
 export const personalizationSchema = z.object({
 	writingStyle: z.string().min(4),
 	useCase: z.string().min(4),
+})
+
+export const deleteUserSchema = z.object({
+	prompt: z.string(),
 })

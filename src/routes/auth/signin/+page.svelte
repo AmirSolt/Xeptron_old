@@ -57,23 +57,26 @@
         {:else}
             <span></span>
 		{/if}
-
+		<br>
 		<button class="btn variant-filled" type="submit">Sign in</button>
 
-		<div class="flex justify-between items-center">
-			<p class="text-center">
-				Forgot password?
-				<a href="/auth/resetPassword/init" class="underline ">Reset Password</a>
-			</p>
-
-			<p class="text-center">
-				Or
-			</p>
-	
-			<p class="text-center">
-				Don't have an account?
-				<a href="/auth/signup" class="underline ">Sign up</a>
-			</p>
-		</div>
 	</form>
+</div>
+
+<br>
+
+<div class="flex flex-col justify-center items-center">
+	<p class="text-center">
+		Forgot password?
+		<a href="/auth/resetPassword/init" class="underline ">Reset Password</a>
+	</p>
+
+	<p class="text-center">
+		Or
+	</p>
+
+	<p class="text-center">
+		Don't have an account?
+		<a href="/auth/signup" class="underline ">Sign up</a>
+	</p>
 </div>

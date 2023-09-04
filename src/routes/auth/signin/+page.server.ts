@@ -30,32 +30,6 @@ export const actions = {
 				message: signinError.message,
 			})
 		}
-
-
-
-		const { error: singoutError } = await event.locals.supabaseAuthServer.auth.signOut()
-		if (singoutError != null) {
-			throw error(singoutError.status ?? 500, {
-				message: singoutError.message,
-			})
-		}
-
-
-
-		const { data: otpData, error: otpError } = await event.locals.supabaseAuthServer.auth.signInWithOtp({
-			email: form.data.email,
-			options: {
-				emailRedirectTo: '/',
-				shouldCreateUser: false
-			}
-		})
-		if (otpError != null) {
-			throw error(otpError.status ?? 500, {
-				message: otpError.message,
-			})
-		}
-
-
-		throw redirect(302, '/auth/confirm')
+		throw redirect(302, '/')
 	}
 }

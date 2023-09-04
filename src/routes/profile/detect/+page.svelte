@@ -55,7 +55,7 @@
         <small>
             Detect AI text
         </small>
-        <textarea class="textarea" name="text" bind:value={text} rows="4" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit." />
+            <textarea class="textarea" name="text" bind:value={text} rows="4" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit."  autocomplete="off"/>
     </div>
     <br>
     <button type="button" class="btn variant-filled" on:click={()=>detectAll} >

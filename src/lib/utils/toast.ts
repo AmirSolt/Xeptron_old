@@ -13,3 +13,14 @@ export function toastError(message:string="Something went wrong!", isErr:boolean
     if(isErr)
 		throw error(400, message);
 }
+
+
+export function toastSuccess(message:string){
+    const toastStore = getToastStore();
+
+    const t: ToastSettings = {
+        message: message,
+        background: 'variant-filled-success',
+    };
+    toastStore.trigger(t);
+}

@@ -41,7 +41,7 @@
         <small>
             {aiTextForm.explanation}
         </small>
-        <textarea class="textarea" rows="{aiTextForm.formRows}" placeholder="{aiTextForm.placeholder}" bind:value={$input}/>
+        <textarea class="textarea" rows="{aiTextForm.formRows}" placeholder="{aiTextForm.placeholder}" autocomplete="off" bind:value={$input}/>
     </label>
     <br>
     <button  class="btn variant-filled" >

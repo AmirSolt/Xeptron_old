@@ -80,15 +80,16 @@
         {:else}
             <span></span>
 		{/if}
+		<br>
 
-		<div class="flex justify-between items-center">
-
-			<button class="btn variant-filled" type="submit">Sign up</button>
-	
-			<p class="text-center">
-				Have an account?
-				<a href="/auth/signin" class="underline ">Sign in</a>
-			</p>
-		</div>
+		<button class="btn variant-filled" type="submit">Sign up</button>	
+			
 	</form>
 </div>
+
+<br>
+
+<p class="text-center">
+	Have an account?
+	<a href="/auth/signin" class="underline ">Sign in</a>
+</p>
