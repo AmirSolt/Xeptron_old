@@ -4,16 +4,18 @@
     import { superForm } from 'sveltekit-superforms/client'
     import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte'
     import { deleteUserSchema } from '$lib/utils/schema'
-    import {toastError} from '$lib/utils/toast'
-    import {deletePrompt} from '$lib/utils/config'
+    import {toastError} from '$lib/utils/toastHelper.js'
+    import {deletePromptConst} from '$lib/utils/config'
     import LoadingButton from '$lib/comp/tools/LoadingButton.svelte';
+	import { getToastStore } from '@skeletonlabs/skeleton';
+	let toastStore = getToastStore()
 
     export let data;
 
 
 	const { form, errors, constraints, enhance, message } = superForm(data.form, {
 		validators:deleteUserSchema,
-		onError: (result)=>{toastError(result.result.error.message, false)},
+		onError: (result)=>{toastError(result.result.error.message, toastStore)},
 		taintedMessage:null
 	})
 
@@ -35,7 +37,7 @@
 
 <a 
 	href="/auth/resetPassword/update"
-	class="btn btn-sm variant-filled-warning">
+	class="btn variant-filled-warning">
 		Reset Password
 </a>
 
@@ -45,7 +47,7 @@
 
 	<form method="POST" class="mt-8 space-y-8" use:enhance>
 		<label class="label" for="deletePrompt">
-			<span class="block">Type this text in the field: <b>{deletePrompt}</b></span>
+			<span class="block">Type this text in the field: <br> <b>{deletePromptConst}</b></span>
 			<input
 				class="input"
 				type="text"

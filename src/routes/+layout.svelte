@@ -124,7 +124,7 @@
 		</AppRail>
 	</svelte:fragment>
 
-	<Toast position='t' background='variant-filled-error' />
+	<Toast position='t' />
     <div class="p-5">
 
         <slot/>

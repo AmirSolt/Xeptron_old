@@ -3,8 +3,10 @@
     import CreditCounter from '$lib/comp/wallet/CreditCounter.svelte';
     import DetectionProfile from '$lib/comp/detector/DetectorProfile.svelte';
     import Steps from '$lib/comp/steps/Steps.svelte';
-	import { toastError } from '$lib/utils/toast.js';
+	import { toastError } from '$lib/utils/toastHelper.js';
     import LoadingButton from '$lib/comp/tools/LoadingButton.svelte';
+	import { getToastStore } from '@skeletonlabs/skeleton';
+	let toastStore = getToastStore()
 
     export let data;
     const {detectors, wallet, session} = data;
@@ -60,7 +62,7 @@
             {#if session}
             <textarea class="textarea" name="text" bind:value={text} rows="4" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit."  autocomplete="off" />
             {:else}
-            <textarea class="textarea" name="text" bind:value={text} rows="4" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit."  autocomplete="off" on:focus={()=>toastError("Please Sign in")} />
+            <textarea class="textarea" name="text" bind:value={text} rows="4" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit."  autocomplete="off" on:focus={()=>toastError("Please Sign in", toastStore)} />
             {/if}
     </div>
     <br>

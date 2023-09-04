@@ -1,3 +1,3 @@
 
 
-export const deletePrompt:string = "I want to delete my account"
+export const deletePromptConst:string = "I want to delete my account"

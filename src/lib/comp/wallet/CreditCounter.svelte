@@ -1,6 +1,6 @@
 
 <script lang="ts">
-    export let wallet:Wallet
+    export let wallet:Wallet|null
 
 </script>
 
@@ -11,7 +11,9 @@
         Credits:
     </h1>
 
-    {#if wallet.credits>3}
+    {#if wallet==null}
+        <a href="/profile/wallet" class="btn-icon btn-icon-xl variant-ringed">0</a>
+    {:else if wallet.credits>3}
         <a href="/profile/wallet" class="btn-icon btn-icon-xl variant-filled">{wallet.credits}</a>
     {:else if wallet.credits<=3 && wallet.credits>0}
         <a href="/profile/wallet" class="btn-icon btn-icon-xl variant-filled-warning">{wallet.credits}</a>

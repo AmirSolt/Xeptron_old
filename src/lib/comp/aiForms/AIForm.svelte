@@ -1,8 +1,10 @@
 <script lang="ts">
     import { useCompletion } from 'ai/svelte';
-    import {toastError} from '$lib/utils/toast'
+    import {toastError} from '$lib/utils/toastHelper'
 	import type { Session } from '@supabase/supabase-js'
     import LoadingButton from '$lib/comp/tools/LoadingButton.svelte';
+	import { getToastStore } from '@skeletonlabs/skeleton';
+	let toastStore = getToastStore()
 
     export let session:Session|null
     export let aiTextForm:AITextForm
@@ -18,7 +20,7 @@
         }
     }
     function errorCallback(error:Error){
-        toastError(error.message, false)
+        toastError(error.message, toastStore)
         // throw error(400, "Something went wrong!")
     }
     const { input, handleSubmit, completion } = useCompletion({
@@ -47,9 +49,9 @@
             {aiTextForm.explanation}
         </small>
         {#if session}
-            <textarea class="textarea" rows="{aiTextForm.formRows}" placeholder="{aiTextForm.placeholder}" autocomplete="off" bind:value={$input}/>
+            <textarea class="textarea" rows="{aiTextForm.formRows}" placeholder="{aiTextForm.placeholder}" autocomplete="off" bind:value={$input} required/>
         {:else}
-            <textarea class="textarea" rows="{aiTextForm.formRows}" placeholder="{aiTextForm.placeholder}" autocomplete="off" bind:value={$input}  on:focus={()=>toastError("Please Sign in")} />
+            <textarea class="textarea" rows="{aiTextForm.formRows}" placeholder="{aiTextForm.placeholder}" autocomplete="off" bind:value={$input}  on:focus={()=>toastError("Please Sign in", toastStore)}  required/>
         {/if}
 
 

@@ -34,7 +34,7 @@
     <br>
     
 
-    {#if personality!=null && (personality.sampleText==null || personality.useCase==null)}
+    {#if personality!=null && Object.values(personality).includes(null)}
         <div>
             <aside class="alert variant-ghost-warning">
                 <i class="fa-solid fa-triangle-exclamation text-4xl" />

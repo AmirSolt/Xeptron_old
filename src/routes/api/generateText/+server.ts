@@ -36,5 +36,7 @@ export const POST = async ({request, locals:{getSession}}) => {
     if(stream == null){
         return json({success:false, errorMessage:"Generation has failed"})
     }
+
+
     return new StreamingTextResponse(stream);
 }

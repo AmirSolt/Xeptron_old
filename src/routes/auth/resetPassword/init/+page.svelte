@@ -2,13 +2,14 @@
 	import { superForm } from 'sveltekit-superforms/client'
     import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte'
     import { initResetPassSchema } from '$lib/utils/schema'
-    import {toastError} from '$lib/utils/toast'
-
+    import {toastError} from '$lib/utils/toastHelper.js'
+	import { getToastStore } from '@skeletonlabs/skeleton';
+	let toastStore = getToastStore()
 
 	export let data
 	const { form, errors, constraints, enhance, message } = superForm(data.form, {
 		validators:initResetPassSchema,
-		onError: (result)=>{toastError(result.result.error.message, false)},
+		onError: (result)=>{toastError(result.result.error.message, toastStore)},
 		taintedMessage:null
 	})
 </script>

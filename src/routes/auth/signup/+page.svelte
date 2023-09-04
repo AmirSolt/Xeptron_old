@@ -2,16 +2,21 @@
 	import { superForm } from 'sveltekit-superforms/client'
     import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte'
     import { signupSchema } from '$lib/utils/schema'
-    import {toastError} from '$lib/utils/toast'
+    import {toastError} from '$lib/utils/toastHelper.js'
+	import { getToastStore } from '@skeletonlabs/skeleton';
+	let toastStore = getToastStore()
 
 	export let data
-
-	const { form, errors, constraints, enhance, message } = superForm(data.form, {
+	const { form, errors, constraints, enhance } = superForm(data.form, {
 		validators:signupSchema,
-		onError: (result)=>{toastError(result.result.error.message, false)},
+		onError: (result)=>{toastError(result.result.error.message, toastStore)},
 		taintedMessage:null
 	})
+
+
 </script>
+
+
 
 
 <SuperDebug data={$form}/>
@@ -33,6 +38,7 @@
 				data-invalid={$errors.name}
 				bind:value={$form.name}
 				{...$constraints.name}
+				autocomplete="given-name"
 			/>
 		</label>
 		{#if $errors.name}
@@ -54,6 +60,7 @@
 				data-invalid={$errors.email}
 				bind:value={$form.email}
 				{...$constraints.email}
+				autocomplete="email"
 			/>
 		</label>
 		{#if $errors.email}
@@ -73,6 +80,7 @@
 				data-invalid={$errors.password}
 				bind:value={$form.password}
 				{...$constraints.password}
+				autocomplete="new-password" 
 			/>
 		</label>
 		{#if $errors.password}

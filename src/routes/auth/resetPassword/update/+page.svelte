@@ -2,13 +2,14 @@
 	import { superForm } from 'sveltekit-superforms/client'
     import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte'
     import { resetPassSchema } from '$lib/utils/schema'
-    import {toastError} from '$lib/utils/toast'
-
+    import {toastError} from '$lib/utils/toastHelper.js'
+	import { getToastStore } from '@skeletonlabs/skeleton';
+	let toastStore = getToastStore()
 
 	export let data
 	const { form, errors, constraints, enhance, message } = superForm(data.form, {
 		validators:resetPassSchema,
-		onError: (result)=>{toastError(result.result.error.message, false)},
+		onError: (result)=>{toastError(result.result.error.message, toastStore)},
 		taintedMessage:null
 	})
 </script>
@@ -33,6 +34,7 @@
 				data-invalid={$errors.newPassword}
 				bind:value={$form.newPassword}
 				{...$constraints.newPassword}
+				autocomplete="new-password" 
 			/>
 		</label>
 		{#if $errors.newPassword}
@@ -53,6 +55,7 @@
 				data-invalid={$errors.confirmPassword}
 				bind:value={$form.confirmPassword}
 				{...$constraints.confirmPassword}
+				autocomplete="new-password" 
 			/>
 		</label>
 		{#if $errors.confirmPassword}

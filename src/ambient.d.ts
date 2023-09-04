@@ -1,6 +1,7 @@
 
 
 interface Personality{
+    name:string|null
     writingStyle:string|null
     useCase:string|null
 }

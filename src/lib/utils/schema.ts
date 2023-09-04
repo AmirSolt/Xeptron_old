@@ -1,5 +1,5 @@
 import { z } from 'zod'
-
+import {deletePromptConst} from '$lib/utils/config'
 
 
 
@@ -47,10 +47,18 @@ export const generatorSchema = z.object({
 })
 
 export const personalizationSchema = z.object({
-	writingStyle: z.string().min(4),
-	useCase: z.string().min(4),
+	name: z.string().min(1).optional(),
+	writingStyle: z.string().min(4).optional(),
+	useCase: z.string().min(4).optional(),
 })
 
 export const deleteUserSchema = z.object({
-	deletePrompt: z.string(),
-})
+	deletePrompt: z.string().min(1),
+}).superRefine(({ deletePrompt }, ctx) => {
+	if (deletePrompt !== deletePromptConst) {
+	  ctx.addIssue({
+		code: "custom",
+		message: "The prompts did not match"
+	  });
+	}
+});
