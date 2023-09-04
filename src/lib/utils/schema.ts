@@ -20,6 +20,18 @@ export const signupSchema = z.object({
 })
 
 
+export const resetPassSchema = z.object({
+	email: z.string().email(),
+})
+
+
+export const verifyOTPSchema = z.object({
+	email: z.string().email(),
+	token: z.string().min(1),
+})
+
+
+
 export const generatorSchema = z.object({
 	name: z.string().optional(),
 	email: z.string().email(),

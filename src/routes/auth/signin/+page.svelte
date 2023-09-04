@@ -20,7 +20,7 @@
 	<h1>Sign in</h1>
 
 	<form method="POST" class="mt-8 space-y-8" use:enhance>
-		<label class="label" for="username">
+		<label class="label" for="email">
 			<span class="block">Email</span>
 			<input
 				class="input"
@@ -58,10 +58,17 @@
             <span></span>
 		{/if}
 
+		<button class="btn variant-filled" type="submit">Sign in</button>
 
 		<div class="flex justify-between items-center">
+			<p class="text-center">
+				Forgot password?
+				<a href="/auth/resetPassword/init" class="underline ">Reset Password</a>
+			</p>
 
-			<button class="btn variant-filled" type="submit">Sign in</button>
+			<p class="text-center">
+				Or
+			</p>
 	
 			<p class="text-center">
 				Don't have an account?

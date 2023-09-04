@@ -1,59 +1,79 @@
-
-<script lang='ts'>
-    import { toastStore } from '@skeletonlabs/skeleton';
-    import type { ToastSettings } from '@skeletonlabs/skeleton';
-
-    import {page} from '$app/stores';
-	import { goto } from '$app/navigation';
+<script lang="ts">
+	import { superForm } from 'sveltekit-superforms/client'
+    import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte'
+    import { signinSchema } from '$lib/utils/schema'
+    import {toastError} from '$lib/utils/toast'
 
 
-    async function updatePasswordForm(e){
-        const form = e.target
-        let formData = new FormData(form)
-
-        
-
-        let response = await fetch('/api/user/update-password', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                newPassowrd: formData.get("new_password"),
-                confirmNewPassowrd: formData.get("confirm_new_password"),
-            })
-        });
-
-        if(response.ok){
-            goto("/api/user/logout")
-        }else{
-            let err = await response.json()
-            const t: ToastSettings = {
-            message: err.message,
-            };
-            toastStore.trigger(t);
-        }
-  
-    }
-
+	export let data
+	const { form, errors, constraints, enhance, message } = superForm(data.form, {
+		validators:signinSchema,
+		onError: (result)=>{toastError(result.result.error.message, false)},
+		taintedMessage:null
+	})
 </script>
 
 
+<SuperDebug data={$form}/>
 
-<div class="flex justify-center w-full">
-    <div class="max-w-2xl p-2 w-full">
-        <form on:submit|preventDefault={updatePasswordForm}>
-        
-            <div>
-                <label for="new_password">New Password</label>
-                <input class="input w-full" type="password" name="new_password" id="new_password" autocomplete="new-password" required>
-                <br>
-                <label for="confirm_new_password">Confirm New Password</label>
-                <input class="input w-full" type="password" name="confirm_new_password" id="confirm_new_password" autocomplete="new-password" required>
-            </div>
-          
-            <br>
-            <button class="btn variant-filled w-full" type="submit">Update Password</button>
-        </form>
-    </div>
+<div class="card m-auto mt-16 max-w-md p-8">
+	<h1>Sign in</h1>
+
+	<form method="POST" class="mt-8 space-y-8" use:enhance>
+		<label class="label" for="email">
+			<span class="block">Email</span>
+			<input
+				class="input"
+				type="email"
+				name="email"
+				id="email"
+				class:input-error={$errors.email}
+				data-invalid={$errors.email}
+				bind:value={$form.email}
+				{...$constraints.email}
+			/>
+		</label>
+		{#if $errors.email}
+			<span class="text-red-400">{$errors.email}</span>
+        {:else}
+            <span></span>
+		{/if}
+
+		<label class="label" for="password">
+			<span class="block">Password</span>
+			<input
+				class="input"
+				type="password"
+				name="password"
+				id="password"
+				class:input-error={$errors.password}
+				data-invalid={$errors.password}
+				bind:value={$form.password}
+				{...$constraints.password}
+			/>
+		</label>
+		{#if $errors.password}
+			<span class="text-red-400">{$errors.password}</span>
+        {:else}
+            <span></span>
+		{/if}
+
+		<button class="btn variant-filled" type="submit">Sign in</button>
+
+		<div class="flex justify-between items-center">
+			<p class="text-center">
+				Forgot password?
+				<a href="/auth/resetPassword/init" class="underline ">Reset Password</a>
+			</p>
+
+			<p class="text-center">
+				Or
+			</p>
+	
+			<p class="text-center">
+				Don't have an account?
+				<a href="/auth/signup" class="underline ">Sign up</a>
+			</p>
+		</div>
+	</form>
 </div>

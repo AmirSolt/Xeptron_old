@@ -1,73 +1,52 @@
-
-<script lang='ts'>
-
-    import { resetPasswordRequest } from '$lib/components/auth/data/authFuncs'
-    import HCaptcha from '$lib/components/auth/ui/HCaptcha.svelte';
-    import { toastStore } from '@skeletonlabs/skeleton';
-    import type { ToastSettings } from '@skeletonlabs/skeleton';
-    import {page} from '$app/stores';
-    $: ({supabaseAuthClient} = $page.data)
+<script lang="ts">
+	import { superForm } from 'sveltekit-superforms/client'
+    import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte'
+    import { resetPassSchema } from '$lib/utils/schema'
+    import {toastError} from '$lib/utils/toast'
 
 
-    let showResetGuide = false
-
-    async function resetForm(e){
-        const form = e.target
-        let formData = new FormData(form)
-        
-        try{
-            let response = await resetPasswordRequest(supabaseAuthClient, formData)
-            showResetGuide=true
-        }catch(err){
-            const t: ToastSettings = {
-                message: err.body.message,
-            };
-            toastStore.trigger(t);
-        }
-    }
-
+	export let data
+	const { form, errors, constraints, enhance, message } = superForm(data.form, {
+		validators:resetPassSchema,
+		onError: (result)=>{toastError(result.result.error.message, false)},
+		taintedMessage:null
+	})
 </script>
 
 
-<div class="flex justify-center w-full">
-    <div class="max-w-2xl p-2 w-full">
-        {#if showResetGuide}
+<SuperDebug data={$form}/>
 
-            <div class="card p-4">
+<div class="card m-auto mt-16 max-w-md p-8">
+	<h1>Reset Password</h1>
 
-                <img class="w-20 h-20" src="/email.svg" alt="Email Icon">
+	<form method="POST" class="mt-8 space-y-8" use:enhance>
 
-                <br>
 
-                <h1 class="text-2xl">
-                    Check your inbox
-                </h1>
-
-                <br>
-
-                <p>
-                    You will receive an email with a link to reset your password.
-                </p>
-                <p>
-                    If you do not receive an email, please check your spam folder.
-                </p>
-            </div>
-        
+		<label class="label" for="email">
+			<span class="block">Email</span>
+			<input
+				class="input"
+				type="email"
+				name="email"
+				id="email"
+				class:input-error={$errors.email}
+				data-invalid={$errors.email}
+				bind:value={$form.email}
+				{...$constraints.email}
+			/>
+		</label>
+		{#if $errors.email}
+			<span class="text-red-400">{$errors.email}</span>
         {:else}
-        
-            <form on:submit|preventDefault={resetForm}>
-                <div>
-                    <label for="email">Email</label>
-                    <input class="input w-full" type="email" name="email" id="email" autocomplete="username" required>
-                </div>
-                <br>
-                <button class="btn variant-filled w-full" type="submit">Reset Password</button>
-                <br>
-                <br>
-                <HCaptcha />
-            </form>
+            <span></span>
+		{/if}
+
+	
+
+        <button class="btn variant-filled" type="submit">Submit</button>
 
 
-        {/if}
-    </div>
+	
+			
+	</form>
 </div>
