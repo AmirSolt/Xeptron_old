@@ -7,13 +7,15 @@
     export let session:Session|null
     export let aiTextForm:AITextForm
     export let personality:Personality
-
-    let detectorsComponent:any;
+    export let detectorsComponent:any;
+    
     // =====================================
 
     function overCallback(){
         aiTextForm.isStreamingOver = true
-        detectorsComponent.callDetectors()
+        if(detectorsComponent!=null){
+            detectorsComponent.callDetectors()
+        }
     }
     function errorCallback(error:Error){
         toastError(error.message, false)

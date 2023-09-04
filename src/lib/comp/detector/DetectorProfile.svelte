@@ -59,7 +59,7 @@
 		{:else if hasDetectorFinished && isDetectorResponseValid && detectorResult}
 			<p>%{detectorResult}</p>
 		{:else}
-			<p>Error</p>
+			<span class="text-yellow-400">Error</span>
 		{/if}
 	</div>
 </div>

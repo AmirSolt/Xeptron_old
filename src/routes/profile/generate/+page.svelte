@@ -9,6 +9,7 @@
 
     export let data;
     const {detectors, personality, wallet, session} = data;
+    let detectorsComponent:any;
 
     let aiTextForm:AITextForm = {
         url:"/api/generateText",
@@ -42,14 +43,14 @@
 
 
 <!-- =================================================================== -->
-<AiForm bind:aiTextForm={aiTextForm} {personality} {session} />
+<AiForm bind:aiTextForm={aiTextForm} {personality} {session} {detectorsComponent} />
 
 
 
 <!-- =================================================================== -->
 <br>
 <br>
-<Detectors  {detectors} text={aiTextForm.response}/>
+<Detectors  {detectors} text={aiTextForm.response} bind:this={detectorsComponent}/>
 
 
 <!-- =================================================================== -->
