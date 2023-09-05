@@ -2,12 +2,13 @@
 
 interface Personality{
     name:string|null
-    writingStyle:string|null
-    useCase:string|null
+    writing_style:string|null
+    use_case:string|null
 }
 
 interface Wallet{
-    credits:number
+    pos_credit:number
+    neg_credit:number
 }
 
 interface Detector{

@@ -73,7 +73,7 @@
         <span></span>
     {/if}
 
-    <label class="label" for="useCase">
+    <label class="label" for="use_case">
         <h1>
             Use Case
         </h1>
@@ -85,34 +85,34 @@
             <input
                 class="input"
                 type="text"
-                name="useCase"
+                name="use_case"
                 placeholder="e.g. Blog about food"
-                id="useCase"
-                class:input-error={$errors.useCase}
-                data-invalid={$errors.useCase}
-                bind:value={$form.useCase}
-                {...$constraints.useCase}
+                id="use_case"
+                class:input-error={$errors.use_case}
+                data-invalid={$errors.use_case}
+                bind:value={$form.use_case}
+                {...$constraints.use_case}
                 autocomplete="off"
             />
         {:else}
             <input
                 class="input"
                 type="text"
-                name="useCase"
+                name="use_case"
                 placeholder="e.g. Blog about food"
-                id="useCase"
-                class:input-error={$errors.useCase}
-                data-invalid={$errors.useCase}
-                bind:value={$form.useCase}
-                {...$constraints.useCase}
+                id="use_case"
+                class:input-error={$errors.use_case}
+                data-invalid={$errors.use_case}
+                bind:value={$form.use_case}
+                {...$constraints.use_case}
                 autocomplete="off"
                 on:focus={()=>toastError("Please Sign in", toastStore)} 
                 />
         {/if}
 
     </label>
-    {#if $errors.useCase}
-        <span class="text-red-400">{$errors.useCase}</span>
+    {#if $errors.use_case}
+        <span class="text-red-400">{$errors.use_case}</span>
     {:else}
         <span></span>
     {/if}
@@ -120,7 +120,7 @@
     <br>
 
 
-    <label class="label" for="writingStyle">
+    <label class="label" for="writing_style">
         <h1>
             writing Style
         </h1>
@@ -132,26 +132,26 @@
             <textarea
                 class="textarea"
                 rows="6" 
-                name="writingStyle"
+                name="writing_style"
                 placeholder="e.g. Write a paragraph about your favourite movie"
-                id="writingStyle"
-                class:input-error={$errors.writingStyle}
-                data-invalid={$errors.writingStyle}
-                bind:value={$form.writingStyle}
-                {...$constraints.writingStyle}
+                id="writing_style"
+                class:input-error={$errors.writing_style}
+                data-invalid={$errors.writing_style}
+                bind:value={$form.writing_style}
+                {...$constraints.writing_style}
                 autocomplete="off"
             />
         {:else}
             <textarea
             class="textarea"
             rows="6" 
-            name="writingStyle"
+            name="writing_style"
             placeholder="e.g. Write a paragraph about your favourite movie"
-            id="writingStyle"
-            class:input-error={$errors.writingStyle}
-            data-invalid={$errors.writingStyle}
-            bind:value={$form.writingStyle}
-            {...$constraints.writingStyle}
+            id="writing_style"
+            class:input-error={$errors.writing_style}
+            data-invalid={$errors.writing_style}
+            bind:value={$form.writing_style}
+            {...$constraints.writing_style}
             autocomplete="off"
             on:focus={()=>toastError("Please Sign in", toastStore)} 
             />
@@ -159,8 +159,8 @@
 
 
     </label>
-    {#if $errors.writingStyle}
-        <span class="text-red-400">{$errors.writingStyle}</span>
+    {#if $errors.writing_style}
+        <span class="text-red-400">{$errors.writing_style}</span>
     {:else}
         <span></span>
     {/if}

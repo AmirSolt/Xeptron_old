@@ -14,19 +14,19 @@ export interface Database {
           created_at: string
           id: string
           sampleText: string | null
-          useCase: string | null
+          use_case: string | null
         }
         Insert: {
           created_at?: string
           id: string
           sampleText?: string | null
-          useCase?: string | null
+          use_case?: string | null
         }
         Update: {
           created_at?: string
           id?: string
           sampleText?: string | null
-          useCase?: string | null
+          use_case?: string | null
         }
         Relationships: [
           {

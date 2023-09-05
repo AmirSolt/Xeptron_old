@@ -10,7 +10,7 @@ export async function load(event) {
 	const session = await event.locals.getSession()
     const profileData = await fetchProfileData(session,
         `
-        personalities(writingStyle, useCase, name)
+        personalities(writing_style, use_case, name)
         `
    )
    let personality:Personality|null=profileData["personalities"]
@@ -42,8 +42,8 @@ export const actions = {
 
 		const personality:Personality = {
 			name:form.data.name??null,
-			useCase:form.data.useCase??null,
-			writingStyle:form.data.writingStyle??null,
+			use_case:form.data.use_case??null,
+			writing_style:form.data.writing_style??null,
 		}
 		await updatePersonality(session, personality)
 

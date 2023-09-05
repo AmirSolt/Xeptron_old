@@ -4,7 +4,6 @@
 import {detectText} from '$lib/funcs/server/detectors/index.js'
 import { json, error } from '@sveltejs/kit';
 
-
 export const POST = async ({request, locals:{getSession}}) => {
 
     const session = await getSession()
@@ -18,6 +17,5 @@ export const POST = async ({request, locals:{getSession}}) => {
     const text:string = input.text
     const detector:Detector = input.detector
     const response:DetectorResponse = detectText(detector.id, text)
-    // throw error(400)
     return json(response)
 };

@@ -13,7 +13,8 @@ export const supabaseAdmin = createClient(
     PRIVATE_SERVICE_ROLE_KEY_SUPABASE,
     {
         auth: { persistSession: false },
-    })
+    }
+)
 
 
 
@@ -41,13 +42,12 @@ export async function fetchProfileData(session:Session|null, query:string){
 
 export async function updatePersonality(session:Session, personality:Personality){
     if (session) {
-        // DB fetch
         const { data, error: err } = await supabaseAdmin
             .from('personalities')
             .update({
                 name:personality.name,
-                writingStyle:personality.writingStyle,
-                useCase:personality.useCase,
+                writing_style:personality.writing_style,
+                use_case:personality.use_case,
             })
             .eq('id', session?.user.id)
             .single()
@@ -60,23 +60,49 @@ export async function updatePersonality(session:Session, personality:Personality
     }
 }
 
-export async function costCredit(session:Session, amount:number){
+
+export async function hasCredit(session:Session):Promise<boolean|null>{
+    let hasCredit:boolean|null=null
     if (session) {
         // DB fetch
-        // const { data, error: err } = await supabaseAdmin
-        //     .from('wallets')
-        //     .update({
-        //         name:personality.name,
-        //         writingStyle:personality.writingStyle,
-        //         useCase:personality.useCase,
-        //     })
-        //     .eq('id', session?.user.id)
-        //     .single()
+        const { data, error: err } = await supabaseAdmin
+            .from('profiles')
+            .select("wallets(posCredit,negCredit)")
+            .eq('id', session?.user.id)
+            .single()
+            
+        if (err != null) {
+            throw error(400, {
+                message: err.message,
+            })
+        }
+        const wallet:Wallet|null=data["wallets"]
+        if(wallet!=null){
+            hasCredit = (wallet?.pos_credit - wallet?.neg_credit) > 0
+        }
+    }
 
+    return hasCredit
+}
+ 
+
+export async function incrementCredit(session:Session, amount:number){
+    if (session) {
         const { data, error:err } = await supabaseAdmin
-            .rpc('costCredit', { x: amount, row_id: session?.user.id })
-    
-        
+            .rpc('increment_credit', { cost: amount, row_id: session?.user.id })
+
+        if (err != null) {
+            throw error(400, {
+                message: err.message,
+            })
+        }
+    }
+}
+
+export async function decrementCredit(session:Session, amount:number){
+    if (session) {
+        const { data, error:err } = await supabaseAdmin
+            .rpc('decrement_credit', { cost: amount, row_id: session?.user.id })
 
         if (err != null) {
             throw error(400, {

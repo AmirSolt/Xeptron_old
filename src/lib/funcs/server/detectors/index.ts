@@ -1,4 +1,7 @@
 
+import {originalityMultiPerChar, saplingMultiPerChar, zerogptMultiPerChar} from '$lib/utils/config.server.js'
+
+
 
 class DetectorModule{
     detector:Detector={
