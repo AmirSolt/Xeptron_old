@@ -1,19 +1,28 @@
 import OpenAI from 'openai';
 import { PRIVATE_OPENAI_KEY } from '$env/static/private';
+import { OpenAIStream } from 'ai';
 
 const openai = new OpenAI({
   apiKey: PRIVATE_OPENAI_KEY,
 });
 
 
+const defaultModel = "gpt-3.5-turbo"
+const defaultTemp = 0.6
+const maxTokens = 300
 
 
 
 
+export async function getChatStream(systemPrompt: string, userPrompt: string) {
+  let response = await createChat(systemPrompt, userPrompt)
+  if (response == null) return null
+  return OpenAIStream(response)
+}
 
 
 
-export async function createChat(systemPrompt: string, userPrompt: string, model: string = "gpt-3.5-turbo", temperature: number = 0.6, max_tokens: number = 300){
+export async function createChat(systemPrompt: string, userPrompt: string, model: string = defaultModel, temperature: number = defaultTemp, max_tokens: number = maxTokens) {
   let messages: OpenAI.Chat.Completions.CreateChatCompletionRequestMessage[] = []
   messages.push({ role: "system", content: systemPrompt })
   messages.push({ role: "user", content: userPrompt })
@@ -63,3 +72,6 @@ async function getOpenAIModeration(messages: OpenAI.Chat.Completions.CreateChatC
   return true
 
 }
+
+
+

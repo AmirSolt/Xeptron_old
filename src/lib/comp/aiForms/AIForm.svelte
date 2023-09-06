@@ -12,7 +12,13 @@
     export let detectorsComponent:any;
     
     // =====================================
-
+    async function onResponseCallback(res:Response){
+        if (!res.ok) {
+            const data = await res.json()
+            toastError(data.message, toastStore)
+        }
+    }
+    
     function overCallback(){
         aiTextForm.isStreamingOver = true
         if(detectorsComponent!=null){
@@ -21,14 +27,14 @@
     }
     function errorCallback(error:Error){
         toastError(error.message, toastStore)
-        // throw error(400, "Something went wrong!")
     }
     const { input, handleSubmit, completion } = useCompletion({
         api: aiTextForm.url,
         onFinish: overCallback,
         onError: errorCallback,
+        onResponse: onResponseCallback,
         body: {
-            personality:personality
+            personality
         }
     });
 

@@ -1,9 +1,7 @@
-import { OpenAIStream} from 'ai';
-import {createChat} from '../openai/index.js'
-import {gpt4MultiPerChar} from '$lib/utils/config.server.js'
+import {getChatStream} from '../openai/index.js'
 
 
-export async function getConvertorStream(personality:Personality, prompt:string){
+export async function getConvertorChatStream(personality:Personality, prompt:string){
 
     let systemPrompt = ""
     if(personality.name!=null)
@@ -19,7 +17,10 @@ export async function getConvertorStream(personality:Personality, prompt:string)
     let userPrompt = "Convert this text to my style of writing: "+prompt
 
 
-    let response = await createChat(systemPrompt, userPrompt)
-    if(response==null) return null
-    return OpenAIStream(response);
+    return await getChatStream(systemPrompt, userPrompt)
+
 }
+
+
+
+    

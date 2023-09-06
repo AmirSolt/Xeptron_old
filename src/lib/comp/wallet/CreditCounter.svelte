@@ -1,6 +1,6 @@
 
 <script lang="ts">
-    export let wallet:Wallet|null
+    export let wallet:Wallet
 
     let credits:number|null=null
     if(wallet!=null){

@@ -9,53 +9,99 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      Personality: {
+      personalities: {
         Row: {
           created_at: string
           id: string
-          sampleText: string | null
+          name: string | null
           use_case: string | null
+          writing_style: string | null
         }
         Insert: {
           created_at?: string
           id: string
-          sampleText?: string | null
+          name?: string | null
           use_case?: string | null
+          writing_style?: string | null
         }
         Update: {
           created_at?: string
           id?: string
-          sampleText?: string | null
+          name?: string | null
           use_case?: string | null
+          writing_style?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "Personality_id_fkey"
+            foreignKeyName: "personalities_id_fkey"
             columns: ["id"]
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
         ]
       }
-      Wallet: {
+      profiles: {
         Row: {
           created_at: string
-          credits: number | null
           id: string
+          personality: string
+          wallet: string
         }
         Insert: {
           created_at?: string
-          credits?: number | null
           id: string
+          personality: string
+          wallet: string
         }
         Update: {
           created_at?: string
-          credits?: number | null
           id?: string
+          personality?: string
+          wallet?: string
         }
         Relationships: [
           {
-            foreignKeyName: "Wallet_id_fkey"
+            foreignKeyName: "profiles_id_fkey"
+            columns: ["id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "profiles_personality_fkey"
+            columns: ["personality"]
+            referencedRelation: "personalities"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "profiles_wallet_fkey"
+            columns: ["wallet"]
+            referencedRelation: "wallets"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      wallets: {
+        Row: {
+          created_at: string
+          id: string
+          neg_credit: number
+          pos_credit: number
+        }
+        Insert: {
+          created_at?: string
+          id: string
+          neg_credit?: number
+          pos_credit?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          neg_credit?: number
+          pos_credit?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "wallets_id_fkey"
             columns: ["id"]
             referencedRelation: "users"
             referencedColumns: ["id"]
@@ -67,7 +113,20 @@ export interface Database {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      decrement_credit: {
+        Args: {
+          amount: number
+          row_id: string
+        }
+        Returns: undefined
+      }
+      increment_credit: {
+        Args: {
+          amount: number
+          row_id: string
+        }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never

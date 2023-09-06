@@ -67,19 +67,19 @@ export async function hasCredit(session:Session):Promise<boolean|null>{
         // DB fetch
         const { data, error: err } = await supabaseAdmin
             .from('profiles')
-            .select("wallets(posCredit,negCredit)")
+            .select("wallets(pos_credit,neg_credit)")
             .eq('id', session?.user.id)
             .single()
-            
         if (err != null) {
             throw error(400, {
                 message: err.message,
             })
         }
-        const wallet:Wallet|null=data["wallets"]
+        const wallet:Wallet|null= data["wallets"]
         if(wallet!=null){
             hasCredit = (wallet?.pos_credit - wallet?.neg_credit) > 0
         }
+     
     }
 
     return hasCredit
@@ -89,7 +89,7 @@ export async function hasCredit(session:Session):Promise<boolean|null>{
 export async function incrementCredit(session:Session, amount:number){
     if (session) {
         const { data, error:err } = await supabaseAdmin
-            .rpc('increment_credit', { cost: amount, row_id: session?.user.id })
+            .rpc('increment_credit', { amount: amount, row_id: session?.user.id })
 
         if (err != null) {
             throw error(400, {
@@ -102,9 +102,10 @@ export async function incrementCredit(session:Session, amount:number){
 export async function decrementCredit(session:Session, amount:number){
     if (session) {
         const { data, error:err } = await supabaseAdmin
-            .rpc('decrement_credit', { cost: amount, row_id: session?.user.id })
+            .rpc('decrement_credit', { amount: amount, row_id: session?.user.id })
 
         if (err != null) {
+            console.log("===========",err.message)
             throw error(400, {
                 message: err.message,
             })

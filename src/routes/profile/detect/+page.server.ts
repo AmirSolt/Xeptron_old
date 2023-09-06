@@ -1,6 +1,6 @@
 import { fetchProfileData } from '$lib/funcs/server/database/index.js';
 import { detectors } from '$lib/funcs/server/detectors/index.js';
-
+import { error } from '@sveltejs/kit';
 
 export async function load({ locals: { getSession } }) {
     const session = await getSession()
@@ -10,7 +10,12 @@ export async function load({ locals: { getSession } }) {
          wallets(pos_credit,neg_credit)
          `
     )
-    let wallet:Wallet|null=profileData["wallets"]
+    let wallet:Wallet=profileData["wallets"]
+    if (wallet == null) {
+		throw error(400, {
+            message: "Sorry, there was a problem loading your profile",
+        })
+    }
 
     return {
         detectors,
