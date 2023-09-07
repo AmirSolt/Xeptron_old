@@ -6,12 +6,14 @@
 	import { toastError, toastSuccess } from '$lib/utils/toastHelper.js';
 	import SuperTextInput from '$lib/comp/superForms/SuperTextInput.svelte';
     import SuperTextarea from '$lib/comp/superForms/SuperTextarea.svelte';
+	import { onMount } from 'svelte';
+    import {profile} from '$lib/funcs/userData/index'
 
 	import { getToastStore } from '@skeletonlabs/skeleton';
 	let toastStore = getToastStore();
 
 	export let data;
-	const { personality, session } = data;
+	const { session } = data;
 
 	const { form, errors, constraints, enhance, message } = superForm(data.form, {
 		taintedMessage: 'Make sure to save your progress!!!',
@@ -23,11 +25,19 @@
 			toastSuccess('Saved', toastStore);
 		}
 	});
+
+	onMount(() => {
+		$form.first_name = $profile?.personality.first_name
+		$form.last_name = $profile?.personality.last_name
+		$form.use_case = $profile?.personality.use_case
+		$form.writing_style = $profile?.personality.writing_style
+	})
+
 </script>
 
 <SuperDebug data={$form} />
 
-<Steps {personality} session={data.session} />
+<Steps session={session} />
 
 <br />
 

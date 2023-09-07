@@ -1,33 +1,15 @@
 import { superValidate } from 'sveltekit-superforms/server'
 import { personalizationSchema } from '$lib/utils/schema'
 import { fail, error } from '@sveltejs/kit';
-import { fetchProfileData, updatePersonality } from '$lib/funcs/server/database/index.js';
+import { updatePersonality } from '$lib/funcs/server/database/index.js';
 
 
 
     
 export async function load(event) {
-	const session = await event.locals.getSession()
-    const profileData = await fetchProfileData(session,
-        `
-        personalities(writing_style, use_case, first_name, last_name)
-        `
-   )
-   if (profileData == null) {
-		throw error(400, {
-			message: "Sorry, there was a problem loading your profile",
-		})
-	}
-   let personality:Personality|null=profileData["personalities"]
-   if (personality == null) {
-		throw error(400, {
-			message: "Sorry, there was a problem loading your profile",
-		})
-	}
 	const form = await superValidate(event, personalizationSchema)
     return {
         form,
-        personality
     }
 }
 
@@ -50,7 +32,8 @@ export const actions = {
 		}
 
 		const personality:Personality = {
-			name:form.data.name??null,
+			first_name:form.data.first_name??null,
+			last_name:form.data.last_name??null,
 			use_case:form.data.use_case??null,
 			writing_style:form.data.writing_style??null,
 		}

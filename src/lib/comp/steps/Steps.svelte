@@ -1,14 +1,10 @@
 
 <script lang="ts">
 	import type { Session } from "@supabase/supabase-js";
+    import {profile} from '$lib/funcs/userData/index'
 
-
-    // user
-    // get $20
     export let session:Session|null
-    export let personality:Personality|null;
-
-    
+    export let needsPersonality:boolean=true
 
 
 </script>
@@ -34,22 +30,26 @@
     <br>
     
 
-    {#if personality!=null && Object.values(personality).includes(null)}
-        <div>
-            <aside class="alert variant-ghost-warning">
-                <i class="fa-solid fa-triangle-exclamation text-4xl" />
-                <div class="alert-message" data-toc-ignore>
-                    <h2 class="h3" data-toc-ignore>Personalization is incomplete</h2>
-                    <p>Please, complete personalization questions, for best results.</p>
-                </div>
-                <div class="alert-actions">
-                    <a href="/profile/personalize" class="btn variant-filled">Personalize</a>
-                </div>
-            </aside>
-        </div>
-    
-    {:else if personality!=null}
-        <p>✅ Personalization has been completed</p>
+    {#if needsPersonality}
+        {#if 
+            $profile?.personality==null ||  
+            ($profile?.personality!=null && Object.values($profile.personality).includes(null))}
+            <div>
+                <aside class="alert variant-ghost-warning">
+                    <i class="fa-solid fa-triangle-exclamation text-4xl" />
+                    <div class="alert-message" data-toc-ignore>
+                        <h2 class="h3" data-toc-ignore>Personalization is incomplete</h2>
+                        <p>Please, complete personalization questions, for best results.</p>
+                    </div>
+                    <div class="alert-actions">
+                        <a href="/profile/personalize" class="btn variant-filled">Personalize</a>
+                    </div>
+                </aside>
+            </div>
+        
+        {:else}
+            <p>✅ Personalization has been completed</p>
+        {/if}
     {/if}
     
 

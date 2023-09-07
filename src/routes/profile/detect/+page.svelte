@@ -22,7 +22,7 @@
 </script>
 
 
-<CreditCounter {wallet} />
+<CreditCounter />
 
 <br>
 
@@ -34,7 +34,7 @@
 
 
 
-<Steps personality={null} session={data.session} />
+<Steps needsPersonality={false} session={data.session} />
 
 <!-- =================================================================== -->
 

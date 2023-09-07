@@ -19,13 +19,15 @@ export const supabaseAdmin = createClient(
 
 
 
-export async function fetchProfileData(session:Session|null, query:string){
-    let profileData:any|null=null
+export async function fetchProfile(session:Session|null):Promise<Profile|null>{
+    let profile:Profile|null = null
     if (session) {
-        // DB fetch
         const { data, error: err } = await supabaseAdmin
             .from('profiles')
-            .select(query)
+            .select(`
+                wallets(pos_credit,neg_credit),
+                personalities(writing_style, use_case, first_name, last_name)
+            `)
             .eq('id', session?.user.id)
             .single()
             
@@ -33,23 +35,53 @@ export async function fetchProfileData(session:Session|null, query:string){
             throw error(400, {
                 message: err.message,
             })
+        }else{
+            const wallet:Wallet=data["wallets"]
+            const personality:Personality=data["personalities"]
+            profile = {
+                wallet,
+                personality
+            }
         }
-        profileData = data
     }
 
-    return profileData
+    return profile
 }
+
+
+
+// export async function fetchProfileData(session:Session|null, query:string){
+//     let profileData:any|null=null
+//     if (session) {
+//         // DB fetch
+//         const { data, error: err } = await supabaseAdmin
+//             .from('profiles')
+//             .select(query)
+//             .eq('id', session?.user.id)
+//             .single()
+            
+//         if (err != null) {
+//             throw error(400, {
+//                 message: err.message,
+//             })
+//         }
+//         profileData = data
+//     }
+
+//     return profileData
+// }
 
 export async function updatePersonality(session:Session, personality:Personality){
     if (session) {
         const { data, error: err } = await supabaseAdmin
             .from('personalities')
-            .update({
-                first_name:personality.first_name,
-                last_name:personality.last_name,
-                writing_style:personality.writing_style,
-                use_case:personality.use_case,
-            })
+            // .update({
+            //     first_name:personality.first_name,
+            //     last_name:personality.last_name,
+            //     writing_style:personality.writing_style,
+            //     use_case:personality.use_case,
+            // })
+            .update(personality)
             .eq('id', session?.user.id)
             .single()
             

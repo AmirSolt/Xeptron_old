@@ -12,22 +12,25 @@ export interface Database {
       personalities: {
         Row: {
           created_at: string
+          first_name: string | null
           id: string
-          name: string | null
+          last_name: string | null
           use_case: string | null
           writing_style: string | null
         }
         Insert: {
           created_at?: string
+          first_name?: string | null
           id: string
-          name?: string | null
+          last_name?: string | null
           use_case?: string | null
           writing_style?: string | null
         }
         Update: {
           created_at?: string
+          first_name?: string | null
           id?: string
-          name?: string | null
+          last_name?: string | null
           use_case?: string | null
           writing_style?: string | null
         }

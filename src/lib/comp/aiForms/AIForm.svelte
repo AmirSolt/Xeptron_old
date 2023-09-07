@@ -2,13 +2,13 @@
     import { useCompletion } from 'ai/svelte';
     import {toastError} from '$lib/utils/toastHelper'
 	import type { Session } from '@supabase/supabase-js'
+    import {profile} from '$lib/funcs/userData/index'
     import LoadingButton from '$lib/comp/tools/LoadingButton.svelte';
 	import { getToastStore } from '@skeletonlabs/skeleton';
 	let toastStore = getToastStore()
 
     export let session:Session|null
     export let aiTextForm:AITextForm
-    export let personality:Personality
     export let detectorsComponent:any;
     
     // =====================================
@@ -34,7 +34,7 @@
         onError: errorCallback,
         onResponse: onResponseCallback,
         body: {
-            personality
+            personality:$profile?.personality??null
         }
     });
 

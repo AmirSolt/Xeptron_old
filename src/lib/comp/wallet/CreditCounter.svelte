@@ -1,12 +1,15 @@
 
 <script lang="ts">
-    export let wallet:Wallet
+    import {profile} from '$lib/funcs/userData/index'
 
     let credits:number|null=null
-    if(wallet!=null){
-        credits = wallet?.pos_credit - wallet?.neg_credit
+    $:if($profile!=null){
+        credits = $profile.wallet.pos_credit - $profile.wallet.neg_credit
         credits = parseFloat(credits.toFixed(2))
+    }else{
+        credits = null
     }
+
 
 </script>
 

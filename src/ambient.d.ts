@@ -1,5 +1,10 @@
 
 
+interface Profile{
+    wallet:Wallet
+    personality:Personality
+}
+
 interface Personality{
     first_name:string|null
     last_name:string|null
