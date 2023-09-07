@@ -30,7 +30,8 @@ export const actions = {
 			password: form.data.password,
 			options: {
 				data: {
-					name: form.data.name??null
+					first_name: form.data.first_name??null,
+					last_name: form.data.last_name??null,
 				}
 			}
 		})

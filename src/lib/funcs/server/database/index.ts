@@ -45,7 +45,8 @@ export async function updatePersonality(session:Session, personality:Personality
         const { data, error: err } = await supabaseAdmin
             .from('personalities')
             .update({
-                name:personality.name,
+                first_name:personality.first_name,
+                last_name:personality.last_name,
                 writing_style:personality.writing_style,
                 use_case:personality.use_case,
             })

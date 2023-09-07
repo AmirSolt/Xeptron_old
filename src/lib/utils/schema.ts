@@ -14,7 +14,8 @@ export const signinSchema = z.object({
 
 
 export const signupSchema = z.object({
-	name: z.string().optional(),
+	first_name: z.string().min(1).optional(),
+	last_name: z.string().min(1).optional(),
 	email: z.string().email(),
 	password: z.string().min(4),
 })
@@ -40,14 +41,10 @@ export const resetPassSchema = z.object({
 });
 
 
-export const generatorSchema = z.object({
-	name: z.string().optional(),
-	email: z.string().email(),
-	password: z.string().min(4),
-})
 
 export const personalizationSchema = z.object({
-	name: z.string().min(1).optional(),
+	first_name: z.string().min(1).optional(),
+	last_name: z.string().min(1).optional(),
 	writing_style: z.string().min(4).optional(),
 	use_case: z.string().min(4).optional(),
 })
