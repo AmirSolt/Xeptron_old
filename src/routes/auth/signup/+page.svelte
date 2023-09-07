@@ -26,47 +26,57 @@
 
 	<form method="POST" class="mt-8 space-y-8" use:enhance>
 
-        <label class="label" for="first_name">
-			<span class="block">First Name</span>
-			<input
-				class="input"
-				type="text"
-				name="first_name"
-                placeholder="(optional)"
-				id="first_name"
-				class:input-error={$errors.first_name}
-				data-invalid={$errors.first_name}
-				bind:value={$form.first_name}
-				{...$constraints.first_name}
-				autocomplete="given-name"
-			/>
-		</label>
-		{#if $errors.first_name}
-			<span class="text-red-400">{$errors.first_name}</span>
-        {:else}
-            <span></span>
-		{/if}
 
-		<label class="label" for="last_name">
-			<span class="block">Last Name</span>
-			<input
-				class="input"
-				type="text"
-				name="last_name"
-                placeholder="(optional)"
-				id="last_name"
-				class:input-error={$errors.last_name}
-				data-invalid={$errors.last_name}
-				bind:value={$form.last_name}
-				{...$constraints.last_name}
-				autocomplete="family-name"
-			/>
-		</label>
-		{#if $errors.last_name}
-			<span class="text-red-400">{$errors.last_name}</span>
-        {:else}
-            <span></span>
-		{/if}
+		<div class="flex justify-evenly items-center">
+			<div>
+				<label class="label" for="first_name">
+					<span class="block">First Name</span>
+					<input
+						class="input"
+						type="text"
+						name="first_name"
+						placeholder="(optional)"
+						id="first_name"
+						class:input-error={$errors.first_name}
+						data-invalid={$errors.first_name}
+						bind:value={$form.first_name}
+						{...$constraints.first_name}
+						autocomplete="given-name"
+					/>
+				</label>
+				{#if $errors.first_name}
+					<span class="text-red-400">{$errors.first_name}</span>
+				{:else}
+					<span></span>
+				{/if}
+			</div>
+			<div>
+				<label class="label" for="last_name">
+					<span class="block">Last Name</span>
+					<input
+						class="input"
+						type="text"
+						name="last_name"
+						placeholder="(optional)"
+						id="last_name"
+						class:input-error={$errors.last_name}
+						data-invalid={$errors.last_name}
+						bind:value={$form.last_name}
+						{...$constraints.last_name}
+						autocomplete="family-name"
+					/>
+				</label>
+				{#if $errors.last_name}
+					<span class="text-red-400">{$errors.last_name}</span>
+				{:else}
+					<span></span>
+				{/if}
+			</div>
+		</div>
+	
+        
+
+
 
 
 		<label class="label" for="email">

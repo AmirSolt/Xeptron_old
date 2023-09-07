@@ -8,7 +8,7 @@ export async function load({ locals: { getSession } }) {
     const profileData = await fetchProfileData(session,
         `
         wallets(pos_credit,neg_credit),
-        personalities(writing_style, use_case, name)
+        personalities(writing_style, use_case, first_name, last_name)
         `
     )
     let wallet: Wallet = profileData["wallets"]

@@ -29,79 +29,87 @@
 <br />
 
 <form method="POST" use:enhance>
-	<label class="label" for="first_name">
-		<span class="block">First Name</span>
-		{#if session}
-			<input
-				class="input"
-				type="text"
-				name="first_name"
-				placeholder="(optional)"
-				id="first_name"
-				class:input-error={$errors.first_name}
-				data-invalid={$errors.first_name}
-				bind:value={$form.first_name}
-				{...$constraints.first_name}
-				autocomplete="given-name"
-			/>
-		{:else}
-			<input
-				class="input"
-				type="text"
-				name="first_name"
-				placeholder="(optional)"
-				id="first_name"
-				class:input-error={$errors.first_name}
-				data-invalid={$errors.first_name}
-				bind:value={$form.first_name}
-				{...$constraints.first_name}
-				autocomplete="given-name"
-				on:focus={() => toastError('Please Sign in', toastStore)}
-			/>
-		{/if}
-	</label>
-	{#if $errors.first_name}
-		<span class="text-red-400">{$errors.first_name}</span>
-	{:else}
-		<span />
-	{/if}
 
-	<label class="label" for="last_name">
-		<span class="block">Last Name</span>
-		{#if session}
-			<input
-				class="input"
-				type="text"
-				name="last_name"
-				placeholder="(optional)"
-				id="last_name"
-				class:input-error={$errors.last_name}
-				data-invalid={$errors.last_name}
-				bind:value={$form.last_name}
-				{...$constraints.last_name}
-				autocomplete="family-name"
-			/>
-		{:else}
-			<input
-				class="input"
-				type="text"
-				name="last_name"
-				placeholder="(optional)"
-				id="last_name"
-				class:input-error={$errors.last_name}
-				data-invalid={$errors.last_name}
-				bind:value={$form.last_name}
-				{...$constraints.last_name}
-				autocomplete="family-name"
-				on:focus={() => toastError('Please Sign in', toastStore)}
-			/>
-		{/if}
-	</label>
-	{#if $errors.last_name}
-		<span class="text-red-400">{$errors.last_name}</span>
-	{:else}
-		<span />
-	{/if}
+
+	<div class="flex justify-evenly items-center">
+		<div>
+			<label class="label" for="first_name">
+				<span class="block">First Name</span>
+				{#if session}
+					<input
+						class="input"
+						type="text"
+						name="first_name"
+						placeholder="(optional)"
+						id="first_name"
+						class:input-error={$errors.first_name}
+						data-invalid={$errors.first_name}
+						bind:value={$form.first_name}
+						{...$constraints.first_name}
+						autocomplete="given-name"
+					/>
+				{:else}
+					<input
+						class="input"
+						type="text"
+						name="first_name"
+						placeholder="(optional)"
+						id="first_name"
+						class:input-error={$errors.first_name}
+						data-invalid={$errors.first_name}
+						bind:value={$form.first_name}
+						{...$constraints.first_name}
+						autocomplete="given-name"
+						on:focus={() => toastError('Please Sign in', toastStore)}
+					/>
+				{/if}
+			</label>
+			{#if $errors.first_name}
+				<span class="text-red-400">{$errors.first_name}</span>
+			{:else}
+				<span />
+			{/if}
+		</div>
+		<div>
+			<label class="label" for="last_name">
+				<span class="block">Last Name</span>
+				{#if session}
+					<input
+						class="input"
+						type="text"
+						name="last_name"
+						placeholder="(optional)"
+						id="last_name"
+						class:input-error={$errors.last_name}
+						data-invalid={$errors.last_name}
+						bind:value={$form.last_name}
+						{...$constraints.last_name}
+						autocomplete="family-name"
+					/>
+				{:else}
+					<input
+						class="input"
+						type="text"
+						name="last_name"
+						placeholder="(optional)"
+						id="last_name"
+						class:input-error={$errors.last_name}
+						data-invalid={$errors.last_name}
+						bind:value={$form.last_name}
+						{...$constraints.last_name}
+						autocomplete="family-name"
+						on:focus={() => toastError('Please Sign in', toastStore)}
+					/>
+				{/if}
+			</label>
+			{#if $errors.last_name}
+				<span class="text-red-400">{$errors.last_name}</span>
+			{:else}
+				<span />
+			{/if}
+		</div>
+	</div>
+
 
 	<label class="label" for="use_case">
 		<h1>Use Case</h1>
@@ -143,6 +151,9 @@
 	{:else}
 		<span />
 	{/if}
+
+
+
 
 	<br />
 

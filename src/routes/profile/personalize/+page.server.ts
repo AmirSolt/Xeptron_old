@@ -10,7 +10,7 @@ export async function load(event) {
 	const session = await event.locals.getSession()
     const profileData = await fetchProfileData(session,
         `
-        personalities(writing_style, use_case, name)
+        personalities(writing_style, use_case, first_name, last_name)
         `
    )
    let personality:Personality|null=profileData["personalities"]
