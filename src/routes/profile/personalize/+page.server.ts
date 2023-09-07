@@ -13,8 +13,17 @@ export async function load(event) {
         personalities(writing_style, use_case, first_name, last_name)
         `
    )
+   if (profileData == null) {
+		throw error(400, {
+			message: "Sorry, there was a problem loading your profile",
+		})
+	}
    let personality:Personality|null=profileData["personalities"]
-
+   if (personality == null) {
+		throw error(400, {
+			message: "Sorry, there was a problem loading your profile",
+		})
+	}
 	const form = await superValidate(event, personalizationSchema)
     return {
         form,

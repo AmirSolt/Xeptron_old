@@ -3,6 +3,7 @@
     import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte'
     import { signupSchema } from '$lib/utils/schema'
     import {toastError} from '$lib/utils/toastHelper.js'
+	import SuperTextInput from '$lib/comp/superForms/SuperTextInput.svelte';
 	import { getToastStore } from '@skeletonlabs/skeleton';
 	let toastStore = getToastStore()
 
@@ -29,96 +30,66 @@
 
 		<div class="flex justify-evenly items-center">
 			<div>
-				<label class="label" for="first_name">
-					<span class="block">First Name</span>
-					<input
-						class="input"
-						type="text"
-						name="first_name"
-						placeholder="(optional)"
-						id="first_name"
-						class:input-error={$errors.first_name}
-						data-invalid={$errors.first_name}
-						bind:value={$form.first_name}
-						{...$constraints.first_name}
-						autocomplete="given-name"
-					/>
-				</label>
-				{#if $errors.first_name}
-					<span class="text-red-400">{$errors.first_name}</span>
-				{:else}
-					<span></span>
-				{/if}
+				<SuperTextInput 
+					session={data.session} 
+					formAttrName="first_name"
+					form={form}
+					constraints={constraints}
+					errors={errors}
+					placeholder="(optional)"
+					autocomplete="given-name"
+				>
+					<div slot="head">
+						<h1>First Name</h1>
+					</div>
+				</SuperTextInput>
 			</div>
 			<div>
-				<label class="label" for="last_name">
-					<span class="block">Last Name</span>
-					<input
-						class="input"
-						type="text"
-						name="last_name"
-						placeholder="(optional)"
-						id="last_name"
-						class:input-error={$errors.last_name}
-						data-invalid={$errors.last_name}
-						bind:value={$form.last_name}
-						{...$constraints.last_name}
-						autocomplete="family-name"
-					/>
-				</label>
-				{#if $errors.last_name}
-					<span class="text-red-400">{$errors.last_name}</span>
-				{:else}
-					<span></span>
-				{/if}
+				<SuperTextInput 
+					session={data.session} 
+					formAttrName="last_name"
+					form={form}
+					constraints={constraints}
+					errors={errors}
+					placeholder="(optional)"
+					autocomplete="family-name"
+				>
+					<div slot="head">
+						<h1>Last Name</h1>
+					</div>
+				</SuperTextInput>
 			</div>
 		</div>
 	
         
 
 
+		<SuperTextInput 
+			session={data.session} 
+			formAttrName="email"
+			form={form}
+			constraints={constraints}
+			errors={errors}
+			autocomplete="email"
+		>
+			<div slot="head">
+				<span>Email</span>
+			</div>
+		</SuperTextInput>
+		<SuperTextInput 
+			session={data.session} 
+			formAttrName="password"
+			form={form}
+			constraints={constraints}
+			errors={errors}
+			autocomplete="new-password"
+		>
+			<div slot="head">
+				<span>Password</span>
+			</div>
+		</SuperTextInput>
 
 
-		<label class="label" for="email">
-			<span class="block">Email</span>
-			<input
-				class="input"
-				type="email"
-				name="email"
-				id="email"
-				class:input-error={$errors.email}
-				data-invalid={$errors.email}
-				bind:value={$form.email}
-				{...$constraints.email}
-				autocomplete="email"
-			/>
-		</label>
-		{#if $errors.email}
-			<span class="text-red-400">{$errors.email}</span>
-        {:else}
-            <span></span>
-		{/if}
-
-		<label class="label" for="password">
-			<span class="block">Password</span>
-			<input
-				class="input"
-				type="password"
-				name="password"
-				id="password"
-				class:input-error={$errors.password}
-				data-invalid={$errors.password}
-				bind:value={$form.password}
-				{...$constraints.password}
-				autocomplete="new-password" 
-			/>
-		</label>
-		{#if $errors.password}
-			<span class="text-red-400">{$errors.password}</span>
-        {:else}
-            <span></span>
-		{/if}
-		<br>
 
 		<button class="btn variant-filled" type="submit">Sign up</button>	
 			

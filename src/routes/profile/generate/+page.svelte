@@ -7,6 +7,8 @@
     import AiForm from '$lib/comp/aiForms/AIForm.svelte';
     import AiAnswer from '$lib/comp/aiForms/AIAnswer.svelte';
 
+
+
     export let data;
     const {detectors, personality, wallet, session} = data;
     let detectorsComponent:any;

@@ -1,70 +1,55 @@
 <script lang="ts">
-	import { superForm } from 'sveltekit-superforms/client'
-    import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte'
-    import { resetPassSchema } from '$lib/utils/schema'
-    import {toastError} from '$lib/utils/toastHelper.js'
+	import { superForm } from 'sveltekit-superforms/client';
+	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
+	import { resetPassSchema } from '$lib/utils/schema';
+	import { toastError } from '$lib/utils/toastHelper.js';
+	import SuperTextInput from '$lib/comp/superForms/SuperTextInput.svelte';
 	import { getToastStore } from '@skeletonlabs/skeleton';
-	let toastStore = getToastStore()
+	let toastStore = getToastStore();
 
-	export let data
+	export let data;
 	const { form, errors, constraints, enhance, message } = superForm(data.form, {
-		validators:resetPassSchema,
-		onError: (result)=>{toastError(result.result.error.message, toastStore)},
-		taintedMessage:null
-	})
+		validators: resetPassSchema,
+		onError: (result) => {
+			toastError(result.result.error.message, toastStore);
+		},
+		taintedMessage: null
+	});
 </script>
 
-
-<SuperDebug data={$form}/>
+<SuperDebug data={$form} />
 
 <div class="card m-auto mt-16 max-w-md p-8">
 	<h1>Sign in</h1>
 
 	<form method="POST" class="mt-8 space-y-8" use:enhance>
+		<SuperTextInput
+			session={data.session}
+			formAttrName="newPassword"
+			{form}
+			{constraints}
+			{errors}
+			autocomplete="new-password"
+		>
+			<div slot="head">
+				<span>New Password</span>
+			</div>
+		</SuperTextInput>
+		<SuperTextInput
+			session={data.session}
+			formAttrName="confirmPassword"
+			{form}
+			{constraints}
+			{errors}
+			autocomplete="new-password"
+		>
+			<div slot="head">
+				<span>Confirm Password</span>
+			</div>
+		</SuperTextInput>
 
 
-		<label class="label" for="newPassword">
-			<span class="block">New Password</span>
-			<input
-				class="input"
-				type="password"
-				name="newPassword"
-				id="newPassword"
-				class:input-error={$errors.newPassword}
-				data-invalid={$errors.newPassword}
-				bind:value={$form.newPassword}
-				{...$constraints.newPassword}
-				autocomplete="new-password" 
-			/>
-		</label>
-		{#if $errors.newPassword}
-			<span class="text-red-400">{$errors.newPassword}</span>
-        {:else}
-            <span></span>
-		{/if}
-
-
-		<label class="label" for="confirmPassword">
-			<span class="block">Confirm Password</span>
-			<input
-				class="input"
-				type="password"
-				name="confirmPassword"
-				id="confirmPassword"
-				class:input-error={$errors.confirmPassword}
-				data-invalid={$errors.confirmPassword}
-				bind:value={$form.confirmPassword}
-				{...$constraints.confirmPassword}
-				autocomplete="new-password" 
-			/>
-		</label>
-		{#if $errors.confirmPassword}
-			<span class="text-red-400">{$errors.confirmPassword}</span>
-        {:else}
-            <span></span>
-		{/if}
 
 		<button class="btn variant-filled" type="submit">Submit</button>
-
 	</form>
 </div>

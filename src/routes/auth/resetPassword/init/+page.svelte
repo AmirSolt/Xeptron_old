@@ -4,6 +4,7 @@
     import { initResetPassSchema } from '$lib/utils/schema'
     import {toastError} from '$lib/utils/toastHelper.js'
 	import { getToastStore } from '@skeletonlabs/skeleton';
+	import SuperTextInput from '$lib/comp/superForms/SuperTextInput.svelte';
 	let toastStore = getToastStore()
 
 	export let data
@@ -23,25 +24,18 @@
 	<form method="POST" class="mt-8 space-y-8" use:enhance>
 
 
-		<label class="label" for="email">
-			<span class="block">Email</span>
-			<input
-				class="input"
-				type="email"
-				name="email"
-				id="email"
-				class:input-error={$errors.email}
-				data-invalid={$errors.email}
-				bind:value={$form.email}
-				{...$constraints.email}
-			/>
-		</label>
-		{#if $errors.email}
-			<span class="text-red-400">{$errors.email}</span>
-        {:else}
-            <span></span>
-		{/if}
-
+		<SuperTextInput
+			session={data.session}
+			formAttrName="email"
+			{form}
+			{constraints}
+			{errors}
+			autocomplete="email"
+		>
+			<div slot="head">
+				<span>Email</span>
+			</div>
+		</SuperTextInput>
 	
 
         <button class="btn variant-filled" type="submit">Submit</button>
