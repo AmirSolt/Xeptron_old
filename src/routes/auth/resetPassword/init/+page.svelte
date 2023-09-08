@@ -4,7 +4,7 @@
     import { initResetPassSchema } from '$lib/utils/schema'
     import {toastError} from '$lib/utils/toastHelper.js'
 	import { getToastStore } from '@skeletonlabs/skeleton';
-	import SuperTextInput from '$lib/comp/superForms/SuperTextInput.svelte';
+	import SuperEmail from '$lib/comp/superForms/SuperEmail.svelte';
 	let toastStore = getToastStore()
 
 	export let data
@@ -24,7 +24,7 @@
 	<form method="POST" class="mt-8 space-y-8" use:enhance>
 
 
-		<SuperTextInput
+		<SuperEmail
 			session={data.session}
 			formAttrName="email"
 			{form}
@@ -35,7 +35,7 @@
 			<div slot="head">
 				<span>Email</span>
 			</div>
-		</SuperTextInput>
+		</SuperEmail>
 	
 
         <button class="btn variant-filled" type="submit">Submit</button>

@@ -15,6 +15,7 @@ interface Personality{
 interface Wallet{
     pos_credit:number
     neg_credit:number
+    customer_id:string|null
 }
 
 interface Detector{

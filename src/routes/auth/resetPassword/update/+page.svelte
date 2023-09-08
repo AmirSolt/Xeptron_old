@@ -3,6 +3,7 @@
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 	import { resetPassSchema } from '$lib/utils/schema';
 	import { toastError } from '$lib/utils/toastHelper.js';
+	import SuperPassword from '$lib/comp/superForms/SuperPassword.svelte';
 	import SuperTextInput from '$lib/comp/superForms/SuperTextInput.svelte';
 	import { getToastStore } from '@skeletonlabs/skeleton';
 	let toastStore = getToastStore();
@@ -23,7 +24,7 @@
 	<h1>Sign in</h1>
 
 	<form method="POST" class="mt-8 space-y-8" use:enhance>
-		<SuperTextInput
+		<SuperPassword
 			session={data.session}
 			formAttrName="newPassword"
 			{form}
@@ -34,8 +35,8 @@
 			<div slot="head">
 				<span>New Password</span>
 			</div>
-		</SuperTextInput>
-		<SuperTextInput
+		</SuperPassword>
+		<SuperPassword
 			session={data.session}
 			formAttrName="confirmPassword"
 			{form}
@@ -46,7 +47,7 @@
 			<div slot="head">
 				<span>Confirm Password</span>
 			</div>
-		</SuperTextInput>
+		</SuperPassword>
 
 
 

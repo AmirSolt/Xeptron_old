@@ -94,6 +94,30 @@ export async function updatePersonality(session:Session, personality:Personality
 }
 
 
+
+
+
+// =========================== WALLET ======================================
+
+export async function createCustomerId(session:Session, customer_id:string):Promise<boolean>{
+    if (session) {
+        const { data, error: err } = await supabaseAdmin
+            .from('wallets')
+            .update({customer_id})
+            .eq('id', session?.user.id)
+            .single()
+        if (err != null) {
+            // throw error(400, {
+            //     message: err.message,
+            // })
+            return false
+        }
+        return true
+    }
+    return false
+}
+
+
 export async function hasCredit(session:Session):Promise<boolean|null>{
     let hasCredit:boolean|null=null
     if (session) {

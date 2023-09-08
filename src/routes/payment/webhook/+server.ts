@@ -1,29 +1,25 @@
-import { error } from "@sveltejs/kit";
-import Stripe from 'stripe';
+import { fail } from "@sveltejs/kit";
+import type Stripe from 'stripe';
+import {stripe} from '$lib/utils/stripeHelper.server.js'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
-    apiVersion: "2023-08-16",
-    typescript: true,
-});
+export const post = async ({request}) => {
+    const body = await request.json();
 
-export const post = async (req) => {
-    const buf = await getRawBody(req);
-
-    let event;
+    let event:Stripe.Event;
     try {
-        event = stripe.webhooks.constructEvent(buf, req.headers["stripe-signature"], process.env.STRIPE_WEBHOOK_SECRET || '');
+        event = stripe.webhooks.constructEvent(body, request.headers["stripe-signature"], PRIVATE_WEBHOOK_SECRET);
     } catch (err) {
-        // On error, log and return the error message
-        console.log(`❌ Error message: ${err.message}`);
-        return error(400, `Webhook Error: ${err.message}`);
+        throw fail(400, {
+            message: "Could not construct stripe event",
+        })
     }
 
-    if (event.type === 'checkout.session.completed') {
-        const session = event.data.object;
+    const dataObject = event.data.object;
+    console.log(`🥳 Payment received! ${dataObject}`);
 
-        // Add your business logic here (e.g. record the purchase in your DB)
-        console.log(`🥳 Payment received! ${session}`);
-    }
+    // if (event.type === 'checkout.session.completed') {
+    //     console.log(`🥳 Payment received! ${dataObject}`);
+    // }
 
     return {
         status: 200,
@@ -31,15 +27,3 @@ export const post = async (req) => {
     };
 };
 
-// utility function to read raw request body
-async function getRawBody(req) {
-    let body = "";
-    // get request stream and decode buffer to string
-    await req.body().then(val => {
-        if(val.body) {
-            body = Buffer.from(val.body,'base64').toString()
-        }
-    });
-
-    return body;
-}

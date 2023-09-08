@@ -4,6 +4,8 @@
     import { signupSchema } from '$lib/utils/schema'
     import {toastError} from '$lib/utils/toastHelper.js'
 	import SuperTextInput from '$lib/comp/superForms/SuperTextInput.svelte';
+	import SuperEmail from '$lib/comp/superForms/SuperEmail.svelte';
+	import SuperPassword from '$lib/comp/superForms/SuperPassword.svelte';
 	import { getToastStore } from '@skeletonlabs/skeleton';
 	let toastStore = getToastStore()
 
@@ -30,7 +32,7 @@
 
 		<div class="flex justify-evenly items-center">
 			<div>
-				<SuperTextInput 
+				<SuperTextInput
 					session={data.session} 
 					formAttrName="first_name"
 					form={form}
@@ -64,7 +66,7 @@
         
 
 
-		<SuperTextInput 
+		<SuperEmail 
 			session={data.session} 
 			formAttrName="email"
 			form={form}
@@ -75,8 +77,8 @@
 			<div slot="head">
 				<span>Email</span>
 			</div>
-		</SuperTextInput>
-		<SuperTextInput 
+		</SuperEmail>
+		<SuperPassword 
 			session={data.session} 
 			formAttrName="password"
 			form={form}
@@ -87,7 +89,7 @@
 			<div slot="head">
 				<span>Password</span>
 			</div>
-		</SuperTextInput>
+		</SuperPassword>
 
 
 

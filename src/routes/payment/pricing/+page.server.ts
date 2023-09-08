@@ -2,13 +2,7 @@ import { error, redirect, fail } from "@sveltejs/kit";
 import {PUBLIC_DOMAIN} from '$env/static/public';
 import { superValidate } from 'sveltekit-superforms/server'
 import { pricingSchema } from '$lib/utils/schema'
-
-import {PRIVATE_STRIPE_KEY} from '$env/static/private';
-import Stripe from 'stripe';
-
-const stripe = new Stripe(PRIVATE_STRIPE_KEY, {
-    apiVersion: '2023-08-16',
-});
+import {stripe} from '$lib/utils/stripeHelper.server.js'
 
 
 
@@ -35,9 +29,7 @@ export const actions = {
 		if (!form.valid) {
 			return fail(400, { form })
 		}
-		
-        console.log("======== ",PUBLIC_DOMAIN)
-
+		console.log("========",session.user.user_metadata["customer_id"])
         const checkoutSession = await stripe.checkout.sessions.create({
             line_items: [
               {
@@ -48,7 +40,7 @@ export const actions = {
             mode: 'payment',
             success_url: `${PUBLIC_DOMAIN}/payment/success`,
             cancel_url: `${PUBLIC_DOMAIN}/payment/pricing`,
-            customer_email:session.user.email,
+            customer:session.user.user_metadata["customer_id"],
         });
     
         if (checkoutSession.url==null) {
