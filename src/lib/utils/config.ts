@@ -2,7 +2,7 @@
 
 export const deletePromptConst:string = "I want to delete my account"
 
-export const priceIds = {
-    price1:"price_1NnvXfJjINJkyPqoOmCdBCna",
-    price2:"price_1NnvXfJjINJkyPqoBA4nXCjg",
+export enum priceIds{
+    p1="price_1NnvXfJjINJkyPqoOmCdBCna",
+    p2="price_1NnvXfJjINJkyPqoBA4nXCjg",
 }

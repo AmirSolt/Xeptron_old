@@ -12,18 +12,17 @@
 
 	export let data;
 
-	const { form, errors, constraints, enhance, message } = superForm(data.form, {
+	const { form, errors, constraints, enhance } = superForm(data.form, {
 		validators: deleteUserSchema,
 		onError: (result) => {
 			toastError(result.result.error.message, toastStore);
 		},
-		taintedMessage: null
 	});
 </script>
 
 <SuperDebug data={$form} />
 
-<Steps personality={null} session={data.session} />
+<Steps needsPersonality={false} session={data.session} />
 
 <h1>Settings</h1>
 
@@ -34,17 +33,19 @@
 <div class="card m-auto mt-16 max-w-md p-8">
 	<h1>Delete Account</h1>
 
-	<form method="POST" class="mt-8 space-y-8" use:enhance>
-		<SuperTextInput
-			session={data.session}
-			isSessionOnly={true}
+	<form method="POST" class="mt-8 space-y-8" use:enhance >
+		
+		<SuperTextInput 
+			session={data.session} 
 			formAttrName="deletePrompt"
-			{form}
-			{constraints}
-			{errors}
-			placeholder=""
+			form={form}
+			constraints={constraints}
+			errors={errors}
+			autocomplete="off"
+			isSessionOnly={true}
 		>
 			<div slot="head">
+
 				<h1>
 					Type this text in the field:
 					<br />
@@ -52,6 +53,7 @@
 				</h1>
 			</div>
 		</SuperTextInput>
+			
 
 		<button class="btn variant-filled" type="submit">Submit</button>
 	</form>

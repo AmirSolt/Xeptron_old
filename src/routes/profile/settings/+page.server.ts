@@ -30,7 +30,6 @@ export const actions = {
             return fail(400, { form })
         }
 
-
         const { data, error:err } = await event.locals.supabaseAuthServer.auth.admin.deleteUser(
             user_id,
             true

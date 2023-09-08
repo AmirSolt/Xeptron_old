@@ -55,7 +55,12 @@
 					<strong class="text-xl uppercase"> Skeleton </strong>
 				</a>
 			</svelte:fragment>
+			
 			<svelte:fragment slot="trail">
+				<a href="/payment/pricing">
+					<strong class="text-xl"> Pricing </strong>
+				</a>
+	
 				<LightSwitch />
 
 				{#if session?.user}
