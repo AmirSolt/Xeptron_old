@@ -1,6 +1,6 @@
 import { error, fail, redirect } from '@sveltejs/kit'
 import { superValidate } from 'sveltekit-superforms/server'
-import {DOMAIN} from '$env/static/public';
+import {PUBLIC_DOMAIN} from '$env/static/public';
 import { initResetPassSchema } from '$lib/utils/schema'
 
 
@@ -24,7 +24,7 @@ export const actions = {
         const { data: resetPassData, error: resetPassError } = await event.locals.supabaseAuthServer.auth.resetPasswordForEmail(
             form.data.email,
             {
-                redirectTo: `${DOMAIN}/auth/resetPassword/update`
+                redirectTo: `${PUBLIC_DOMAIN}/auth/resetPassword/update`
         })
 
         if(resetPassError != null) {
