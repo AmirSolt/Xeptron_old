@@ -7,7 +7,7 @@ import {getGenerateChatStream} from '$lib/funcs/server/generator/index.js'
 import { json, error } from '@sveltejs/kit';
 import { StreamingTextResponse } from 'ai';
 import {hasCredit} from '$lib/funcs/server/database/index.js'
-import {controlStream} from '$lib/funcs/server/streamControler/index.js'
+import {creditControl} from '$lib/funcs/server/streamControler/index.js'
 
 export const POST = async ({request, locals:{getSession}}) => {
 
@@ -15,6 +15,8 @@ export const POST = async ({request, locals:{getSession}}) => {
     const prompt = req.prompt
     const personality:Personality|null = req.personality
     if(prompt == null || personality==null){
+        console.log("prompt",prompt)
+        console.log("personality",personality)
         throw error(400, {
             message: "Something is missing!",
         })
@@ -41,6 +43,6 @@ export const POST = async ({request, locals:{getSession}}) => {
     if(stream == null){
         return json({success:false, errorMessage:"Generation has failed"})
     }
-    stream = controlStream(session, stream)
+    stream = creditControl(session, stream, prompt)
     return new StreamingTextResponse(stream);
 }

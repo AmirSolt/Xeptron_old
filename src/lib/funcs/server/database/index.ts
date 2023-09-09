@@ -143,6 +143,14 @@ export async function hasCredit(session:Session):Promise<boolean|null>{
 }
  
 
+export async function incrementUsageCounter(session:Session){
+    if (session) {
+        const { data, error:err } = await supabaseAdmin
+            .rpc('increment_usage_counter', {row_id: session?.user.id })
+    }
+}
+
+
 export async function incrementCredit(session:Session, amount:number){
     if (session) {
         const { data, error:err } = await supabaseAdmin

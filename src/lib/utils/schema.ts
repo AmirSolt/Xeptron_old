@@ -60,7 +60,6 @@ export const deleteUserSchema = z.object({
 	}
 });
 
-import { priceIds } from '$lib/utils/config'
 export const pricingSchema = z.object({
-	priceId:z.nativeEnum(priceIds)
+	priceId:z.string().min(1)
 })

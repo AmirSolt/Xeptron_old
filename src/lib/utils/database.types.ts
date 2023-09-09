@@ -86,21 +86,27 @@ export interface Database {
       wallets: {
         Row: {
           created_at: string
+          customer_id: string | null
           id: string
           neg_credit: number
           pos_credit: number
+          usage_counter: number
         }
         Insert: {
           created_at?: string
+          customer_id?: string | null
           id: string
           neg_credit?: number
           pos_credit?: number
+          usage_counter?: number
         }
         Update: {
           created_at?: string
+          customer_id?: string | null
           id?: string
           neg_credit?: number
           pos_credit?: number
+          usage_counter?: number
         }
         Relationships: [
           {
@@ -126,6 +132,12 @@ export interface Database {
       increment_credit: {
         Args: {
           amount: number
+          row_id: string
+        }
+        Returns: undefined
+      }
+      increment_usage_counter: {
+        Args: {
           row_id: string
         }
         Returns: undefined

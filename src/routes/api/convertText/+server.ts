@@ -7,7 +7,7 @@ import {getConvertorChatStream} from '$lib/funcs/server/convertor/index.js'
 import { json, error } from '@sveltejs/kit';
 import { StreamingTextResponse } from 'ai';
 import {hasCredit} from '$lib/funcs/server/database/index.js'
-import {controlStream} from '$lib/funcs/server/streamControler/index.js'
+import {creditControl} from '$lib/funcs/server/streamControler/index.js'
 
 export const POST = async ({request, locals:{getSession}}) => {
     const req = await request.json();
@@ -33,11 +33,12 @@ export const POST = async ({request, locals:{getSession}}) => {
         })
     }
 
+    
 
     let stream = await getConvertorChatStream(personality, prompt)
     if(stream == null){
         return json({success:false, errorMessage:"Generation has failed"})
     }
-    stream = controlStream(session, stream)
+    stream = creditControl(session, stream, prompt)
     return new StreamingTextResponse(stream);
 }

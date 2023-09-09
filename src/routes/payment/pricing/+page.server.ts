@@ -15,7 +15,6 @@ export const load = async (event) => {
 export const actions = {
 	default: async (event) => {
 
-        console.log("AYYY")
 
         const session = await event.locals.getSession()
         if (!session) {

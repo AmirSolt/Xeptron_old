@@ -17,6 +17,7 @@
         detectorComps.forEach(detectorComp => {
             detectorComp.startDetection()
         });
+        fetch('/api/usageCounter/update', {method: 'GET'})
     }
 
 </script>

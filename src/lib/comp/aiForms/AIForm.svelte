@@ -10,7 +10,7 @@
     export let session:Session|null
     export let aiTextForm:AITextForm
     export let detectorsComponent:any;
-    
+    $: personality = $profile?.personality??null
     // =====================================
     async function onResponseCallback(res:Response){
         if (!res.ok) {
@@ -18,12 +18,12 @@
             toastError(data.message, toastStore)
         }
     }
-    
     function overCallback(){
         aiTextForm.isStreamingOver = true
         if(detectorsComponent!=null){
             detectorsComponent.callDetectors()
         }
+        fetch('/api/usageCounter/update', {method: 'GET'})
     }
     function errorCallback(error:Error){
         toastError(error.message, toastStore)
@@ -34,7 +34,7 @@
         onError: errorCallback,
         onResponse: onResponseCallback,
         body: {
-            personality:$profile?.personality??null
+            personality
         }
     });
 

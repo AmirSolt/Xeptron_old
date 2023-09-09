@@ -1,10 +1,11 @@
 <script lang="ts">
-    
-    import {priceIds} from '$lib/utils/config'
+    import {packages} from '$lib/utils/config'
 	import { superForm } from 'sveltekit-superforms/client'
     import { pricingSchema } from '$lib/utils/schema'
     import {toastError} from '$lib/utils/toastHelper.js'
 	import { getToastStore } from '@skeletonlabs/skeleton';
+    import PricePackage from '$lib/comp/wallet/PricePackage.svelte';
+
 	let toastStore = getToastStore()
     export let data
 	const { form } = superForm(data.form, {
@@ -15,24 +16,5 @@
 
 </script>
 
-<div class="card p-4">
-    
-    <form  method="post">
-        <input type="hidden" name="priceId" value="{priceIds.p1}">
-        <button class="btn variant-filled" type="submit">
-            Plan A
-        </button>
-    </form>
-</div>
-
-<div class="card p-4" >
-    
-    <form method="post">
-        <input type="hidden" name="priceId" value="{priceIds.p2}">
-        <button class="btn variant-filled" type="submit">
-            Plan B
-        </button>
-    </form>
-    
-
-</div>
+<PricePackage mpackage={packages[0]} />
+<PricePackage mpackage={packages[1]} />

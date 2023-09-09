@@ -39,3 +39,12 @@ interface AITextForm{
     response:string
     formRows:number
 }
+
+interface Package{
+    name:string
+    priceId:string
+    credits:number
+    price:number
+    currencySymbol:string
+    currency:string
+}
