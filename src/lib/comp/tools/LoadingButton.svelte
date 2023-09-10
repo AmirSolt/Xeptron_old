@@ -7,9 +7,13 @@
 	export let color: string = 'variant-filled';
 	export let url: string | null = null;
 	export let buttonType: 'button' | 'submit' | 'reset' | null | undefined = 'submit';
+	export let clickCallback:any|undefined=undefined
 
 
     async function clicked(){
+		if(clickCallback!=null){
+			clickCallback()
+		}
         isLoading = true
         setTimeout(()=>{isLoading = false}, 2000)
     }

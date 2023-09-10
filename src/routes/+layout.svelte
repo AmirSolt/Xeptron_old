@@ -10,14 +10,12 @@
 	let toastStore = getToastStore();
 
 
-	import { syncUserData } from '$lib/funcs/userData/index';
 	import { invalidate } from '$app/navigation';
 	import { onMount } from 'svelte';
 	export let data;
 	let { supabaseAuthClient, session } = data;
 	$: ({ supabaseAuthClient, session } = data);
 	onMount(() => {
-		syncUserData(true, toastStore)
 		const {
 			data: { subscription }
 		} = supabaseAuthClient.auth.onAuthStateChange((event, _session) => {

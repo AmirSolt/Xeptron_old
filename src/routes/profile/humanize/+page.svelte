@@ -7,7 +7,7 @@
     import AiAnswer from '$lib/comp/aiForms/AIAnswer.svelte';
 
     export let data;
-    const {detectors, session} = data;
+    let {detectors, session, profile} = data;
     let detectorsComponent:any;
 
     let aiTextForm:AITextForm = {
@@ -26,7 +26,7 @@
 </script>
 
 
-<CreditCounter />
+<CreditCounter  {profile} />
 
 
 <br>
@@ -39,11 +39,11 @@
 
 
 <!-- =================================================================== -->
-<Steps {session} />
+<Steps {profile} {session} />
 
 
 <!-- =================================================================== -->
-<AiForm bind:aiTextForm={aiTextForm} {session} {detectorsComponent} />
+<AiForm bind:profile={profile} bind:aiTextForm={aiTextForm} {session} {detectorsComponent} />
 
 
 

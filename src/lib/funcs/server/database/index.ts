@@ -19,13 +19,13 @@ export const supabaseAdmin = createClient(
 
 
 
-export async function fetchProfile(session:Session|null):Promise<Profile|null>{
-    let profile:Profile|null = null
+export async function fetchProfile(session:Session|null):Promise<Profile>{
+    let profile:Profile
     if (session) {
         const { data, error: err } = await supabaseAdmin
             .from('profiles')
             .select(`
-                wallets(pos_credit,neg_credit),
+                wallets(pos_credit,neg_credit,usage_counter),
                 personalities(writing_style, use_case, first_name, last_name)
             `)
             .eq('id', session?.user.id)
@@ -43,33 +43,40 @@ export async function fetchProfile(session:Session|null):Promise<Profile|null>{
                 personality
             }
         }
+        return profile
     }
-
-    return profile
+    throw error(400, {
+        message: "Could not load profile data!",
+    })
+}
+export async function fetchWallet(session:Session|null):Promise<Wallet>{
+    if (session) {
+        const { data, error: err } = await supabaseAdmin
+            .from('wallets')
+            .select(`pos_credit,neg_credit,usage_counter`)
+            .eq('id', session?.user.id)
+            .single()
+            
+        if (err != null) {
+            console.log(">>>>>>",err.message)
+            throw error(400, {
+                message: err.message,
+            })
+        }
+        const wallet:Wallet=data
+        if(wallet==null){
+            throw error(400, {
+                message: "Could not fetch wallet",
+            })
+        }
+        return wallet
+    }
+    throw error(400, {
+        message: "Could not load profile data!",
+    })
 }
 
 
-
-// export async function fetchProfileData(session:Session|null, query:string){
-//     let profileData:any|null=null
-//     if (session) {
-//         // DB fetch
-//         const { data, error: err } = await supabaseAdmin
-//             .from('profiles')
-//             .select(query)
-//             .eq('id', session?.user.id)
-//             .single()
-            
-//         if (err != null) {
-//             throw error(400, {
-//                 message: err.message,
-//             })
-//         }
-//         profileData = data
-//     }
-
-//     return profileData
-// }
 
 export async function updatePersonality(session:Session, personality:Personality){
     if (session) {
@@ -133,23 +140,29 @@ export async function hasCredit(session:Session):Promise<boolean|null>{
             })
         }
         const wallet:Wallet|null= data["wallets"]
-        if(wallet!=null){
-            hasCredit = (wallet?.pos_credit - wallet?.neg_credit) > 0
+        if(wallet==null){
+            throw error(400, {
+                message: "Could not fetch wallet",
+            })
         }
-     
+        
+        return wallet.pos_credit > wallet.neg_credit
+
     }
 
-    return hasCredit
+    throw error(400, {
+        message: "You are not logged in",
+    })
 }
  
 
-export async function incrementUsageCounter(session:Session){
+
+export async function incrementUsage(session:Session){
     if (session) {
         const { data, error:err } = await supabaseAdmin
-            .rpc('increment_usage_counter', {row_id: session?.user.id })
+            .rpc('increment_usage', {row_id: session?.user.id })
     }
 }
-
 
 export async function incrementCredit(session:Session, amount:number){
     if (session) {
@@ -163,6 +176,17 @@ export async function incrementCredit(session:Session, amount:number){
         }
     }
 }
+export async function incrementCustomerCredit(customerId:string, amount:number){
+    const { data, error:err } = await supabaseAdmin
+        .rpc('increment_customer_credit', { amount: amount, customer_id:customerId })
+
+    if (err != null) {
+        throw error(400, {
+            message: err.message,
+        })
+    }
+}
+
 
 export async function decrementCredit(session:Session, amount:number){
     if (session) {

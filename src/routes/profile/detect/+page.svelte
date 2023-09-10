@@ -1,72 +1,78 @@
-
 <script lang="ts">
-    import CreditCounter from '$lib/comp/wallet/CreditCounter.svelte';
-    import DetectionProfile from '$lib/comp/detector/DetectorProfile.svelte';
-    import Steps from '$lib/comp/steps/Steps.svelte';
+	import CreditCounter from '$lib/comp/wallet/CreditCounter.svelte';
+	import Detectors from '$lib/comp/detector/Detectors.svelte';
+	import Steps from '$lib/comp/steps/Steps.svelte';
 	import { toastError } from '$lib/utils/toastHelper.js';
-    import LoadingButton from '$lib/comp/tools/LoadingButton.svelte';
+	import LoadingButton from '$lib/comp/tools/LoadingButton.svelte';
 	import { getToastStore } from '@skeletonlabs/skeleton';
-	let toastStore = getToastStore()
+	import { updateOnUsage } from '$lib/funcs/updateOnUsage/index.js';
+	let toastStore = getToastStore();
 
-    export let data;
-    const {detectors, wallet, session} = data;
-    let detectorComps:any[] = []
-    let text:string;
+	export let data;
+	const { detectors, session, profile } = data;
+	export let detectorsComponent: any;
+	let text: string;
 
-    function detectAll(){
-        detectorComps.forEach(detectorComp => {
-            detectorComp.startDetection()
-        });
-        fetch('/api/usageCounter/update', {method: 'GET'})
-    }
+	function detectAll() {
+        console.log("detect all")
 
+		if (detectorsComponent != null) {
+			detectorsComponent.callDetectors().then(() => {
+				console.log("detectors were called")
+			})
+		}
+		updateOnUsage()
+			.then((wallet) => {
+				console.log("wallet was updated")
+				profile.wallet = wallet;
+			})
+			.catch((err) => {
+				console.error(err);
+			});
+	}
 </script>
 
+<CreditCounter {profile} />
 
-<CreditCounter />
+<br />
 
-<br>
+<h1 class="text-6xl">🤖🗒️ 🆚 👨🗒️</h1>
 
-<h1 class="text-6xl">
-    🤖🗒️ 🆚 👨🗒️
-</h1>
+<br />
 
-<br>
-
-
-
-<Steps needsPersonality={false} session={data.session} />
+<Steps {profile} needsPersonality={false} session={data.session} />
 
 <!-- =================================================================== -->
 
+<Detectors  {detectors} {text} bind:this={detectorsComponent}/>
 
 <div>
-    <h1>Detectors</h1>
-    <div class="flex flex-wrap justify-start items-center gap-8">
-        {#each detectors as detector, i}
-            <DetectionProfile {detector} {text} bind:this={detectorComps[i]} />
-        {/each}
-    </div>
-</div>
+	<br />
+	<div>
+		<h1>Text</h1>
+		<small> Detect AI text </small>
+		{#if session}
+			<textarea
+				class="textarea"
+				name="text"
+				bind:value={text}
+				rows="4"
+				placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+				autocomplete="off"
+			/>
+		{:else}
+			<textarea
+				class="textarea"
+				name="text"
+				bind:value={text}
+				rows="4"
+				placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+				autocomplete="off"
+				on:focus={() => toastError('Please Sign in', toastStore)}
+			/>
+		{/if}
+	</div>
+	<br />
 
-
-
-<div >
-    <br>
-    <div>
-        <h1>
-            Text
-        </h1>
-        <small>
-            Detect AI text
-        </small>
-            {#if session}
-            <textarea class="textarea" name="text" bind:value={text} rows="4" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit."  autocomplete="off" />
-            {:else}
-            <textarea class="textarea" name="text" bind:value={text} rows="4" placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit."  autocomplete="off" on:focus={()=>toastError("Please Sign in", toastStore)} />
-            {/if}
-    </div>
-    <br>
-
-    <LoadingButton text="Detect" buttonType="button" on:click={()=>detectAll}/>
+	<LoadingButton text="Detect" buttonType="button" clickCallback={detectAll} />
 </div>

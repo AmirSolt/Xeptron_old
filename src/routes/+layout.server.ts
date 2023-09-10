@@ -1,6 +1,16 @@
-// src/routes/+layout.server.ts
+import {fetchProfile} from '$lib/funcs/server/database/index.js'
+import type { Session } from "@supabase/supabase-js";
+
+
 export const load = async ({ locals: { getSession } }) => {
+
+  const session:Session|null = await getSession()
+
+  const profile:Profile = await fetchProfile(session)
+
+
   return {
-    session: await getSession(),
+    session,
+    profile
   }
 }

@@ -1,7 +1,8 @@
-import type {Stripe} from 'stripe'
+import type { Stripe } from 'stripe'
 import { stripe } from '$lib/utils/stripeHelper.server.js'
 import { PRIVATE_WEBHOOK_SECRET } from '$env/static/private';
-
+import {packages} from '$lib/utils/config'
+import {incrementCustomerCredit} from '$lib/funcs/server/database/index.js'
 
 
 function toBuffer(ab: ArrayBuffer): Buffer {
@@ -14,8 +15,8 @@ function toBuffer(ab: ArrayBuffer): Buffer {
 }
 
 export const POST = async ({ request }) => {
-    let data:Stripe.Event.Data|null=null;
-    let eventType: string|null=null;
+    let data: Stripe.Event.Data | null = null;
+    let eventType: string | null = null;
     if (PRIVATE_WEBHOOK_SECRET) {
 
         const _rawBody = await request.arrayBuffer();
@@ -26,72 +27,77 @@ export const POST = async ({ request }) => {
         // To avoid unintended SvelteKit modifications, we can use this workaround:
         // const payload = Buffer.from(req.rawBody);
 
-        const signature:string|null = request.headers.get('stripe-signature');
+        const signature: string | null = request.headers.get('stripe-signature');
         try {
-            const event = stripe.webhooks.constructEvent(payload, signature??"", PRIVATE_WEBHOOK_SECRET);
+            const event = stripe.webhooks.constructEvent(payload, signature ?? "", PRIVATE_WEBHOOK_SECRET);
             data = event.data;
             eventType = event.type;
         } catch (err) {
             return new Response(JSON.stringify({
                 error: err
-                }),
+            }),
                 {
                     status: 500,
                     headers: {},
-        
-            })
+
+                })
         }
     } else {
-        eventType = (await request.formData()).get('type')?.toString()??null;
+        eventType = (await request.formData()).get('type')?.toString() ?? null;
     }
-    if(data==null || eventType==null){
+    if (data == null || eventType == null) {
         return new Response(JSON.stringify({
             error: `No data or eventType was found. data: ${data} ||||| eventType: ${eventType}`
-            }),
+        }),
             {
                 status: 500,
                 headers: {},
-    
-        })
+
+            })
     }
 
+    switch (eventType) {
+        case 'checkout.session.completed':
+            const customerId: string = data.object.customer
+            const sessionId: string = data.object.id
+            const session = await stripe.checkout.sessions.retrieve(
+                sessionId,
+                {
+                    expand: ['line_items'],
+                }
+            );
 
+            // Count how much credit was purchased
+            let totalCredits:number = 0
+            session.line_items?.data.forEach(item=>{
+                const quantity = item.quantity
+                const priceId = item.price?.id
+                if(priceId==null || quantity == null){
+                    return;
+                }
+                const mpackage:Package|undefined = packages.find(mpackage=>{
+                    return mpackage.priceId == priceId
+                })
+                totalCredits+=mpackage?.credits??0 * quantity
+            })
 
-    // charge.succeeded
-    // checkout.session.completed
-    // payment_intent.succeeded
-    // payment_intent.created
-    console.log(eventType)
-    // switch (eventType) {
-    //     case 'checkout.session.completed':
-    //         // Payment is successful and the subscription is created.
-    //         // You should provision the subscription and save the customer ID to your database.
-    //         console.log(data.object)
-    //         break;
-    //     case 'invoice.paid':
-    //         // Continue to provision the subscription as payments continue to be made.
-    //         // Store the status in your database and check when a user accesses your service.
-    //         // This approach helps you avoid hitting rate limits.
-    //         console.log('Event: invoice.paid');
-    //         break;
-    //     case 'invoice.payment_failed':
-    //         // The payment failed or the customer does not have a valid payment method.
-    //         // The subscription becomes past_due. Notify your customer and send them to the
-    //         // customer portal to update their payment information.
-    //         console.log('Event: invoice.payment_failed');
-    //         break;
-    //     default:
-    //     // Unhandled event type
-    // }
+            // Update customer with credits
+            if(totalCredits>0){
+                await incrementCustomerCredit(customerId, totalCredits)
+            }
+
+            break;
+        default:
+    }
 
 
     return new Response(JSON.stringify({
         message: 'Success'
-        }),
+    }),
         {
             status: 200,
             headers: {},
 
-    })
+        })
 };
 

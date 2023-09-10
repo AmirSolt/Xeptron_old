@@ -1,14 +1,10 @@
 
 <script lang="ts">
-    import {profile} from '$lib/funcs/userData/index'
+    export let profile:Profile
 
     let credits:number|null=null
-    $:if($profile!=null){
-        credits = $profile.wallet.pos_credit - $profile.wallet.neg_credit
-        credits = parseFloat(credits.toFixed(2))
-    }else{
-        credits = null
-    }
+    $: {credits = profile.wallet.pos_credit - profile.wallet.neg_credit;
+        credits = parseFloat(credits.toFixed(2)) }
 
 
 </script>

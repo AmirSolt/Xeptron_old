@@ -37,8 +37,8 @@
 		hasDetectorFinished = true
     }
 
-	export function startDetection(){
-		updateState(detector, text)
+	export async function startDetection(){
+		await updateState(detector, text)
 	}
 
  

@@ -1,8 +1,8 @@
 
 <script lang="ts">
 	import type { Session } from "@supabase/supabase-js";
-    import {profile} from '$lib/funcs/userData/index'
 
+    export let profile:Profile
     export let session:Session|null
     export let needsPersonality:boolean=true
 
@@ -31,9 +31,7 @@
     
 
     {#if needsPersonality}
-        {#if 
-            $profile?.personality==null ||  
-            ($profile?.personality!=null && Object.values($profile.personality).includes(null))}
+        {#if Object.values(profile.personality).includes(null)}
             <div>
                 <aside class="alert variant-ghost-warning">
                     <i class="fa-solid fa-triangle-exclamation text-4xl" />

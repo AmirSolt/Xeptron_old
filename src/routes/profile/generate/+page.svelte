@@ -9,8 +9,9 @@
 
 
     export let data;
-    const {detectors, session} = data;
+    let {detectors, session, profile} = data;
     let detectorsComponent:any;
+
 
     let aiTextForm:AITextForm = {
         url:"/api/generateText",
@@ -28,7 +29,7 @@
 </script>
 
 
-<CreditCounter/>
+<CreditCounter {profile} />
 
 <br>
 
@@ -39,12 +40,12 @@
 <br>
 
 <!-- =================================================================== -->
-<Steps {session} />
+<Steps {session} {profile} />
 
 
 
 <!-- =================================================================== -->
-<AiForm bind:aiTextForm={aiTextForm} {session} {detectorsComponent} />
+<AiForm bind:aiTextForm={aiTextForm} {session} {detectorsComponent} bind:profile={profile} />
 
 
 

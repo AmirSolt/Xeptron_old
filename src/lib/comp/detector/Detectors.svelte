@@ -7,9 +7,9 @@
     export let text:string;
     let detectorComps:any[] = []
 
-    export function callDetectors(){
-        detectorComps.forEach(detectorComp => {
-            detectorComp.startDetection()
+    export async function callDetectors(){
+        detectorComps.forEach(async detectorComp => {
+            await detectorComp.startDetection()
         });
     }
 

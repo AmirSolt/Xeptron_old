@@ -15,10 +15,11 @@ export const load = async ({ fetch, data, depends }) => {
     const {
         data: { session }
     } = await supabaseAuthClient.auth.getSession();
-    // // ===============================
 
+    
     return { 
         supabaseAuthClient,
         session,
+        profile:data.profile,
     };
 };

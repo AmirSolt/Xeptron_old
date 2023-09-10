@@ -1,5 +1,5 @@
 import { json, error } from '@sveltejs/kit';
-import {incrementUsageCounter} from '$lib/funcs/server/database/index.js'
+import {fetchWallet, incrementUsage} from '$lib/funcs/server/database/index.js'
 
 export const GET = async ({locals:{getSession}}) => {
 	const session = await getSession()
@@ -8,7 +8,10 @@ export const GET = async ({locals:{getSession}}) => {
             message: "You are not logged in!",
         })
 	}
-    await incrementUsageCounter(session)
+    incrementUsage(session)
+    const wallet:Wallet = await fetchWallet(session)
     
-    return json({success:true})
+    return json({
+        wallet
+    })
 }
