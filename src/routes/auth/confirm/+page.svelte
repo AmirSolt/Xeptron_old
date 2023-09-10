@@ -1,19 +1,22 @@
 <script lang="ts">
-
-	export let data
+    import {MailCheck} from 'lucide-svelte'
 
 
 </script>
 
 
-<div class="card m-auto mt-16 max-w-md p-8">
-	<h1>Confirm Email</h1>
-    <br>
+
+<div class="card flex flex-col justify-center items-center gap-6 m-auto mt-16 max-w-md p-8 text-center">
+
+  
+    <MailCheck color="#15CE48" size={150} />
+
+
+	<h1 class="text-4xl">Check Your Inbox</h1>
     <h2>
-        Sign up was successful, please check your inbox for a confirmation url.
+        Please check your inbox for a confirmation link.
     </h2>
-    <br>
     <p>
-        Please, check spam if you did not find the email after 5 minutes.
+        Please, check your spam if you did not find the email after 5 minutes.
     </p>
 </div>

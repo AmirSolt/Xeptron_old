@@ -26,7 +26,8 @@
 				console.log("detectors were called")
 			})
 		}
-		updateOnUsage()
+		setTimeout(function(){
+			updateOnUsage()
 			.then((wallet) => {
 				console.log("wallet was updated")
 				profile.wallet = wallet;
@@ -34,6 +35,8 @@
 			.catch((err) => {
 				console.error(err);
 			});
+		}, 1000);
+		
 	}
 	function errorCallback(error: Error) {
 		toastError(error.message, toastStore);

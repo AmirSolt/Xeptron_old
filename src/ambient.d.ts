@@ -44,7 +44,8 @@ interface Package{
     name:string
     priceId:string
     credits:number
-    price:number
+    pricePerCredit:number
     currencySymbol:string
     currency:string
+    bullets:string[]
 }

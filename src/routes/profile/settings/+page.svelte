@@ -12,6 +12,8 @@
 
 	export let data;
 
+	const {profile} = data
+
 	const { form, errors, constraints, enhance } = superForm(data.form, {
 		validators: deleteUserSchema,
 		onError: (result) => {
@@ -22,7 +24,7 @@
 
 <SuperDebug data={$form} />
 
-<Steps needsPersonality={false} session={data.session} />
+<Steps {profile} needsPersonality={false} session={data.session} />
 
 <h1>Settings</h1>
 

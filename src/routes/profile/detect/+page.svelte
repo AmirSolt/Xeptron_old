@@ -14,14 +14,14 @@
 	let text: string;
 
 	function detectAll() {
-        console.log("detect all")
-
 		if (detectorsComponent != null) {
 			detectorsComponent.callDetectors().then(() => {
 				console.log("detectors were called")
 			})
 		}
-		updateOnUsage()
+
+		setTimeout(function(){
+			updateOnUsage()
 			.then((wallet) => {
 				console.log("wallet was updated")
 				profile.wallet = wallet;
@@ -29,6 +29,7 @@
 			.catch((err) => {
 				console.error(err);
 			});
+		}, 1000);
 	}
 </script>
 

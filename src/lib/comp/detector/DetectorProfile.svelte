@@ -27,6 +27,7 @@
 				isDetectorResponseValid=false
         }else{
 			isDetectorResponseValid=true
+			console.log("Detector Perc updated")
 		}
         return detectorResponse.humanPerc
 	}
