@@ -3,6 +3,8 @@ import {getChatStream} from '../openai/index.js'
 
 export async function getConvertorChatStream(personality:Personality, prompt:string){
 
+    
+
     let systemPrompt = ""
     if(personality.first_name!=null)
         systemPrompt += "My first name is: "+personality.first_name
