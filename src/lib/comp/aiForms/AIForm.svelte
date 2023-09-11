@@ -55,36 +55,37 @@
 </script>
 
 <form on:submit={handleSubmit}>
-	<br />
-	<label>
-		<h1>
-			{aiTextForm.title}
-		</h1>
-		<small>
-			{aiTextForm.explanation}
-		</small>
-		{#if session}
-			<textarea
-				class="textarea"
-				rows={aiTextForm.formRows}
-				placeholder={aiTextForm.placeholder}
-				autocomplete="off"
-				bind:value={$input}
-				required
-			/>
-		{:else}
-			<textarea
-				class="textarea"
-				rows={aiTextForm.formRows}
-				placeholder={aiTextForm.placeholder}
-				autocomplete="off"
-				bind:value={$input}
-				on:focus={() => toastError('Please Sign in', toastStore)}
-				required
-			/>
-		{/if}
-	</label>
-	<br />
 
-	<LoadingButton text="Submit" />
+	<div class="flex flex-col justify-center items-start gap-4">
+		<label>
+			<h1>
+				{aiTextForm.title}
+			</h1>
+			<small>
+				{aiTextForm.explanation}
+			</small>
+			{#if session}
+				<textarea
+					class="textarea"
+					rows={aiTextForm.formRows}
+					placeholder={aiTextForm.placeholder}
+					autocomplete="off"
+					bind:value={$input}
+					required
+				/>
+			{:else}
+				<textarea
+					class="textarea"
+					rows={aiTextForm.formRows}
+					placeholder={aiTextForm.placeholder}
+					autocomplete="off"
+					bind:value={$input}
+					on:focus={() => toastError('Please Sign in', toastStore)}
+					required
+				/>
+			{/if}
+		</label>
+	
+		<LoadingButton text="Submit" />
+	</div>
 </form>

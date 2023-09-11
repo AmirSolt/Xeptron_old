@@ -20,7 +20,7 @@
 
 <SuperDebug data={$form} />
 
-<div class="card m-auto mt-16 max-w-md p-8">
+<div class="card m-auto mt-16  p-8">
 	<h1>Sign in</h1>
 
 	<form method="POST" class="mt-8 space-y-8" use:enhance>

@@ -47,33 +47,36 @@
 
 <Detectors  {detectors} {text} bind:this={detectorsComponent}/>
 
-<div>
-	<br />
-	<div>
-		<h1>Text</h1>
-		<small> Detect AI text </small>
-		{#if session}
-			<textarea
-				class="textarea"
-				name="text"
-				bind:value={text}
-				rows="4"
-				placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit."
-				autocomplete="off"
-			/>
-		{:else}
-			<textarea
-				class="textarea"
-				name="text"
-				bind:value={text}
-				rows="4"
-				placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit."
-				autocomplete="off"
-				on:focus={() => toastError('Please Sign in', toastStore)}
-			/>
-		{/if}
-	</div>
-	<br />
 
-	<LoadingButton text="Detect" buttonType="button" clickCallback={detectAll} />
+<div>
+	<div class="flex flex-col justify-center items-start gap-4 w-full">
+		<label>
+			<h1>Text</h1>
+			<small> Detect AI text </small>
+			{#if session}
+				<textarea
+					class="textarea"
+					name="text"
+					bind:value={text}
+					rows="4"
+					placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+					autocomplete="off"
+					required
+				/>
+			{:else}
+				<textarea
+					class="textarea"
+					name="text"
+					bind:value={text}
+					rows="4"
+					placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+					autocomplete="off"
+					on:focus={() => toastError('Please Sign in', toastStore)}
+					required
+				/>
+			{/if}
+		</label>
+	
+		<LoadingButton text="Detect" buttonType="button" clickCallback={detectAll} />
+	</div>
 </div>

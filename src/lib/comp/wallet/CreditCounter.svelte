@@ -19,7 +19,7 @@
     {#if credits==null}
         <a href="/profile/wallet" class="btn-icon btn-icon-xl variant-ringed">N/A</a>
     {:else if credits>3}
-        <a href="/profile/wallet" class="btn-icon btn-icon-xl variant-filled">{credits}</a>
+        <a href="/profile/wallet" class="btn-icon btn-icon-xl variant-filled-secondary">{credits}</a>
     {:else if credits<=3 && credits>0}
         <a href="/profile/wallet" class="btn-icon btn-icon-xl variant-filled-warning">{credits}</a>
     {:else if credits==0}

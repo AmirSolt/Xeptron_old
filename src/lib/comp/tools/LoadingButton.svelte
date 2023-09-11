@@ -22,7 +22,7 @@
 
 {#if url}
 	{#if !isLoading}
-		<a on:click={clicked} href={url} class="btn {color}">
+		<a on:click={clicked} href={url} class="btn {color} w-24">
 			{text}
 		</a>
 	{:else}
@@ -31,7 +31,7 @@
 		</div>
 	{/if}
 {:else}
-	<button on:click={clicked} type={buttonType} class="btn {color}">
+	<button on:click={clicked} type={buttonType} class="btn {color} w-24">
 		{#if !isLoading}
 			{text}
 		{:else}

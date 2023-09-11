@@ -8,14 +8,19 @@
 
 </script>
 
+    
+<div class="flex flex-col justify-center items-start gap-4" >
 
-<div >
-    <h1>
-        Answer
-    </h1>
+    <div class="flex justify-center items-center gap-8">
+        <h1>
+            Answer
+        </h1>
+    
+        <CopyClipboard text={response} extraStyle={isStreamingOver? 'variant-filled-primary':'variant-ringed pointer-events-none opacity-50'} />
+    </div>
 
-    <CopyClipboard text={response} extraStyle={isStreamingOver? '':'pointer-events-none opacity-50'} />
-    <p class="card p-4 h-80">
+
+    <p class="card p-4 h-80 w-full">
         {response}
     </p>
 </div>

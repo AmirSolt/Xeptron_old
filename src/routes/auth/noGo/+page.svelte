@@ -1,4 +1,4 @@
-<div class="m-auto mt-16 max-w-4xl p-8">
+<div class="m-auto mt-16 p-8">
     <div>
         <aside class="alert variant-filled-primary">
             <i class="fa-solid fa-triangle-exclamation text-4xl" />

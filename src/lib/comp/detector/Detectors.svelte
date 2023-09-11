@@ -16,7 +16,7 @@
 </script>
 
 
-<div>
+<div class="flex flex-col justify-center items-start gap-4">
     <h1>Detectors</h1>
     <div class="flex flex-wrap justify-start items-center gap-8">
         {#each detectors as detector, i}

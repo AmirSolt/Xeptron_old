@@ -6,7 +6,7 @@
 
 
 
-<div class="card flex flex-col justify-center items-center gap-6 m-auto mt-16 max-w-md p-8 text-center">
+<div class="card flex flex-col justify-center items-center gap-6 m-auto mt-16  p-8 text-center">
 
   
     <MailCheck color="#15CE48" size={150} />
