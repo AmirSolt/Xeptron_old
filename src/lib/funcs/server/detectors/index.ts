@@ -165,7 +165,7 @@ export async function detectText(session: Session, id: string, text: string): Pr
 
     let humanPerc:number|null = null
     try{
-        humanPerc = detectorModule.getHumanPerc(text)
+        humanPerc = await detectorModule.getHumanPerc(text)
     }catch (err) {
         console.log(">> Detector Processing Error:",err);
     }
