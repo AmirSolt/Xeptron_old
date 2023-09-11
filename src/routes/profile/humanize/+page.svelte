@@ -16,6 +16,7 @@
         explanation:"Paste your text and AI will make it like you wrote it.",
         placeholder:"*paste*",
         isStreamingOver:false,
+        input:"",
         response:"",
         formRows:6
     }
@@ -56,4 +57,4 @@
 <!-- =================================================================== -->
 <br>
 <br>
-<AiAnswer response={aiTextForm.response} isStreamingOver={aiTextForm.isStreamingOver} />
+<AiAnswer input={aiTextForm.input} response={aiTextForm.response} isStreamingOver={aiTextForm.isStreamingOver} />

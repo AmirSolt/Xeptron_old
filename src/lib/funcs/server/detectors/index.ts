@@ -127,16 +127,16 @@ class ZeroGPT extends DetectorModule {
         // };
 
 
-        let response = await fetch('https://api.zerogpt.com/api/detect/detectText', requestOptions)
-        let data = await response.json()
-        if(!response.ok){
-            return null
-        }else{
-            console.log("======== ZEROGPT ==============")
-            console.log(data)
-            console.log("======== ZEROGPT ==============")
-            return data.score
-        }
+        // let response = await fetch('https://api.zerogpt.com/api/detect/detectText', requestOptions)
+        // let data = await response.json()
+        // if(!response.ok){
+        //     return null
+        // }else{
+        //     console.log("======== ZEROGPT ==============")
+        //     console.log(data)
+        //     console.log("======== ZEROGPT ==============")
+        //     return data.score
+        // }
 
         return 90
     }

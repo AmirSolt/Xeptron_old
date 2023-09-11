@@ -11,7 +11,7 @@
 	export let data;
 	const { detectors, session, profile } = data;
 	export let detectorsComponent: any;
-	let text: string;
+	let text: string="";
 
 	function detectAll() {
 		if (detectorsComponent != null) {
@@ -50,9 +50,22 @@
 
 <div>
 	<div class="flex flex-col justify-center items-start gap-4 w-full">
+
+
+		
+
 		<label>
-			<h1>Text</h1>
-			<small> Detect AI text </small>
+			<h1 class="text-3xl">Text</h1>
+
+			<div class="flex justify-center items-center gap-48 m-2">
+
+				<small> Detect AI text </small>
+	
+				<span class="text-xl badge p-3 variant-soft">
+					{text.length} char
+				</span>
+			</div>
+
 			{#if session}
 				<textarea
 					class="textarea"
@@ -75,7 +88,11 @@
 					required
 				/>
 			{/if}
+
+			
 		</label>
+
+		
 	
 		<LoadingButton text="Detect" buttonType="button" clickCallback={detectAll} />
 	</div>

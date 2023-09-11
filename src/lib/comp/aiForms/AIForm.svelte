@@ -51,8 +51,10 @@
 		}
 	});
 
+	$: aiTextForm.input = $input;
 	$: aiTextForm.response = $completion;
 </script>
+
 
 <form on:submit={handleSubmit}>
 
@@ -64,6 +66,7 @@
 			<small>
 				{aiTextForm.explanation}
 			</small>
+
 			{#if session}
 				<textarea
 					class="textarea"
@@ -89,3 +92,5 @@
 		<LoadingButton text="Submit" />
 	</div>
 </form>
+
+

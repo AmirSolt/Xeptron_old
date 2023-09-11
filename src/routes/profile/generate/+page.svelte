@@ -19,6 +19,7 @@
         explanation:"Tell AI what you want it to do. Try to be detailed and descreptive.",
         placeholder:"e.g. Write an essay about air polution...",
         isStreamingOver:false,
+        input:"",
         response:"",
         formRows:4
     }
@@ -58,4 +59,4 @@
 <!-- =================================================================== -->
 <br>
 <br>
-<AiAnswer response={aiTextForm.response} isStreamingOver={aiTextForm.isStreamingOver} />
+<AiAnswer input={aiTextForm.input} response={aiTextForm.response} isStreamingOver={aiTextForm.isStreamingOver} />

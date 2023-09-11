@@ -36,6 +36,7 @@ interface AITextForm{
     explanation:string
     placeholder:string
     isStreamingOver:boolean
+    input:string
     response:string
     formRows:number
 }

@@ -12,4 +12,4 @@
 </script>
 
 
-<button class="btn {extraStyle}" on:click={copy}>copy</button>
+<button class="btn {extraStyle} text-xl" on:click={copy}>copy</button>
