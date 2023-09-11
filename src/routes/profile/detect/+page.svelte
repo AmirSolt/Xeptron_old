@@ -54,12 +54,12 @@
 
 		
 
-		<label>
+		<label class="w-full">
 			<h1 class="text-3xl">Text</h1>
+			<small> Detect AI text </small>
 
-			<div class="flex justify-center items-center gap-48 m-2">
-
-				<small> Detect AI text </small>
+			<div class="flex justify-between items-center w-full p-2">
+				<div></div>
 	
 				<span class="text-xl badge p-3 variant-soft">
 					{text.length} char

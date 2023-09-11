@@ -108,7 +108,7 @@
 	</svelte:fragment>
 
 	<Toast position="t" />
-	<div class="px-4 py-4 md:mx-96">
-		<slot />
+	<div class="flex justify-center w-full">
+			<slot />
 	</div>
 </AppShell>

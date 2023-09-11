@@ -29,7 +29,7 @@
 
 
 
-<div class="card flex flex-col justify-center items-start gap-6 m-auto mt-16  p-8 text-center">
+<div class="card flex flex-col justify-center items-start gap-6 p-4 text-center">
 	<h1 class="text-3xl mb-4">Settings</h1>
 
 	<LoadingButton url="/auth/signout" color="variant-filled-error" text="Sign Out" />
@@ -41,9 +41,9 @@
 </div>
 
 
+<br>
 
-
-<div class="card m-auto mt-16  p-8">
+<div class="card p-4">
 	<h1 class="text-3xl">Delete Account</h1>
 
 	<form method="POST" class="mt-8 space-y-8" use:enhance >

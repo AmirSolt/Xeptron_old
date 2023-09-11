@@ -16,11 +16,12 @@
         Answer
     </h1>
     
-    <div class="flex justify-center items-center gap-4">
+    <div class="flex justify-between items-center w-full">
+        <CopyClipboard text={response} extraStyle={isStreamingOver? 'variant-filled-primary':'variant-ringed pointer-events-none opacity-50'} />
+        
         <span class="text-xl badge p-3 variant-soft">
             {input.length+response.length}/10000 char
         </span>
-        <CopyClipboard text={response} extraStyle={isStreamingOver? 'variant-filled-primary':'variant-ringed pointer-events-none opacity-50'} />
     
     </div>
     

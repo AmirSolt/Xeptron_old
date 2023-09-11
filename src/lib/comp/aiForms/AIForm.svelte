@@ -59,7 +59,7 @@
 <form on:submit={handleSubmit}>
 
 	<div class="flex flex-col justify-center items-start gap-4">
-		<label>
+		<label class="w-full">
 			<h1>
 				{aiTextForm.title}
 			</h1>

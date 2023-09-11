@@ -20,7 +20,7 @@
 <Steps {profile} needsPersonality={false} session={data.session} />
 
 
-<div class="card flex flex-col justify-center items-center gap-8 m-auto mt-16 p-8 text-center">
+<div class="card flex flex-col justify-center items-center gap-8 p-4 text-center w-full">
 
 
     <div class="flex flex-col justify-center items-center gap-4 w-full">

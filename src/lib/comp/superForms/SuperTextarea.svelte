@@ -17,8 +17,8 @@
 
 
 
-<div>
-    <label class="label" for="{formAttrName}">
+<div class="w-full">
+    <label class="label w-full" for="{formAttrName}">
 
         <slot name="head" />
 
