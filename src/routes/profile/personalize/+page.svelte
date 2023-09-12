@@ -12,7 +12,8 @@
 	let toastStore = getToastStore();
 
 	export let data;
-	const { session, profile } = data;
+	let { session, profile } = data;
+	$: ({ profile } = data);
 
 	const { form, errors, constraints, enhance, tainted } = superForm(data.form, {
 		taintedMessage: 'Make sure to save your progress!!!',

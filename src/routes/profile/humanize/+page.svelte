@@ -8,6 +8,7 @@
 
     export let data;
     let {detectors, session, profile} = data;
+	$: ({ profile } = data);
     let detectorsComponent:any;
 
     let aiTextForm:AITextForm = {

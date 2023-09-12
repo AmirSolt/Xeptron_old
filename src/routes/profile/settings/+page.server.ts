@@ -5,10 +5,6 @@ import { superValidate } from 'sveltekit-superforms/server'
 
 
 export const load = async (event) => {
-    const session = await event.locals.getSession()
-	if (!session) {
-		throw redirect(302, '/auth/noGo')
-	}
     const form = await superValidate(event, deleteUserSchema)
     return { form }
 }

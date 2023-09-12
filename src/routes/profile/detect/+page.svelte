@@ -4,12 +4,13 @@
 	import Steps from '$lib/comp/steps/Steps.svelte';
 	import { toastError } from '$lib/utils/toastHelper.js';
 	import LoadingButton from '$lib/comp/tools/LoadingButton.svelte';
+	import { invalidate } from '$app/navigation';
 	import { getToastStore } from '@skeletonlabs/skeleton';
-	import { updateOnUsage } from '$lib/funcs/updateOnUsage/index.js';
 	let toastStore = getToastStore();
 
 	export let data;
-	const { detectors, session, profile } = data;
+	let { detectors, session, profile } = data;
+	$: ({ profile } = data);
 	export let detectorsComponent: any;
 	let text: string="";
 
@@ -17,21 +18,23 @@
 		if (detectorsComponent != null) {
 			detectorsComponent.callDetectors().then(() => {
 				console.log("detectors were called")
+				invalidate("data:profile")
+				console.log("data:profile invalidated")
 			})
 		}
 
-		setTimeout(function(){
-			updateOnUsage()
-			.then((wallet) => {
-				if(profile!=null){
-					console.log("wallet was updated")
-					profile.wallet = wallet;
-				}
-			})
-			.catch((err) => {
-				console.error(err);
-			});
-		}, 1000);
+		// setTimeout(function(){
+		// 	updateOnUsage()
+		// 	.then((wallet) => {
+		// 		if(profile!=null){
+		// 			console.log("wallet was updated")
+		// 			profile.wallet = wallet;
+		// 		}
+		// 	})
+		// 	.catch((err) => {
+		// 		console.error(err);
+		// 	});
+		// }, 1000);
 	}
 </script>
 

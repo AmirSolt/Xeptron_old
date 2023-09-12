@@ -5,7 +5,10 @@ import { resetPassSchema } from '$lib/utils/schema'
 
 
 export const load = async (event) => {
+	console.log(">>> Attempt")
+	
 	const session = await event.locals.getSession()
+	console.log(session)
 	if (!session) {
 		throw redirect(302, '/')
 	}

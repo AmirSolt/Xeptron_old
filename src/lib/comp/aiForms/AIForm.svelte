@@ -5,12 +5,15 @@
 	import LoadingButton from '$lib/comp/tools/LoadingButton.svelte';
 	import { updateOnUsage } from '$lib/funcs/updateOnUsage/index.js';
 	import { getToastStore } from '@skeletonlabs/skeleton';
+	import { invalidate } from '$app/navigation';
 	let toastStore = getToastStore();
 
 	export let profile: Profile|null;
 	export let session: Session | null;
 	export let aiTextForm: AITextForm;
 	export let detectorsComponent: any;
+	
+	$: console.log("AIforms", profile?.wallet)
 
 	// =====================================
 	async function onResponseCallback(res: Response) {
@@ -26,20 +29,22 @@
 		if (detectorsComponent != null) {
 			detectorsComponent.callDetectors().then(() => {
 				console.log("detectors were called")
+				invalidate("data:profile")
+				console.log("data:profile invalidated")
 			})
 		}
-		setTimeout(function(){
-			updateOnUsage()
-			.then((wallet) => {
-				if(profile!=null){
-					console.log("wallet was updated")
-					profile.wallet = wallet;
-				}
-			})
-			.catch((err) => {
-				console.error(err);
-			});
-		}, 1000);
+		// setTimeout(function(){
+		// 	updateOnUsage()
+		// 	.then((wallet) => {
+		// 		if(profile!=null){
+		// 			console.log("wallet was updated")
+		// 			profile.wallet = wallet;
+		// 		}
+		// 	})
+		// 	.catch((err) => {
+		// 		console.error(err);
+		// 	});
+		// }, 1000);
 		
 	}
 	function errorCallback(error: Error) {

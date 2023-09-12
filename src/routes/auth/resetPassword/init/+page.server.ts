@@ -21,17 +21,17 @@ export const actions = {
             return fail(400, { form })
         }
 
-        const { data: resetPassData, error: resetPassError } = await event.locals.supabaseAuthServer.auth.resetPasswordForEmail(
-            form.data.email,
-            {
-                redirectTo: `${PUBLIC_DOMAIN}/auth/resetPassword/update`
-        })
+        // const { data: resetPassData, error: resetPassError } = await event.locals.supabaseAuthServer.auth.resetPasswordForEmail(
+        //     form.data.email,
+        //     {
+        //         redirectTo: `${PUBLIC_DOMAIN}/auth/resetPassword/update`
+        // })
 
-        if(resetPassError != null) {
-            throw error(resetPassError.status ?? 500, {
-                message: resetPassError.message,
-            })
-		}
+        // if(resetPassError != null) {
+        //     throw error(resetPassError.status ?? 500, {
+        //         message: resetPassError.message,
+        //     })
+		// }
 
         throw redirect(302, '/auth/confirm')
 

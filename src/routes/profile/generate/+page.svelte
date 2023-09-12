@@ -10,6 +10,7 @@
 
     export let data;
     let {detectors, session, profile} = data;
+	$: ({ profile } = data);
     let detectorsComponent:any;
 
 
@@ -24,9 +25,6 @@
         formRows:4
     }
     // =====================================
-
-
-
 </script>
 
 

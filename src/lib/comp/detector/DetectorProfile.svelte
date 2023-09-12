@@ -27,7 +27,6 @@
 				isDetectorResponseValid=false
         }else{
 			isDetectorResponseValid=true
-			console.log("Detector Perc updated")
 		}
         return detectorResponse.humanPerc
 	}
@@ -35,6 +34,7 @@
 		hasDetectorFinished = false
 		hasDetectorStarted = true
         detectorResult = await detectText(detector, text)
+		console.log("End Detector", detector.name)
 		hasDetectorFinished = true
     }
 

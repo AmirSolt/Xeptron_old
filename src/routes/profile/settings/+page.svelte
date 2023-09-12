@@ -1,4 +1,5 @@
 <script lang="ts">
+    import NoGo from "$lib/comp/tools/NoGo.svelte";
 	import Steps from '$lib/comp/steps/Steps.svelte';
 	import { superForm } from 'sveltekit-superforms/client';
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
@@ -12,7 +13,8 @@
 
 	export let data;
 
-	const {profile} = data
+	let {profile} = data
+	$: ({ profile } = data);
 
 	const { form, errors, constraints, enhance } = superForm(data.form, {
 		validators: deleteUserSchema,
@@ -21,6 +23,13 @@
 		},
 	});
 </script>
+
+
+{#if profile==null}
+
+<NoGo />
+
+{:else}
 
 <SuperDebug data={$form} />
 
@@ -73,3 +82,6 @@
 		<button class="btn variant-filled" type="submit">Submit</button>
 	</form>
 </div>
+
+
+{/if}

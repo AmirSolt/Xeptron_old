@@ -1,9 +1,11 @@
 <script lang="ts">
+        import NoGo from "$lib/comp/tools/NoGo.svelte";
     import {Wallet} from 'lucide-svelte'
     import Steps from '$lib/comp/steps/Steps.svelte';
+    
     export let data;
-
-    const {profile} = data
+    let {profile} = data
+    $: ({ profile } = data);
 
     let credits:number|null=null
     credits = profile!=null? profile.wallet.pos_credit - profile.wallet.neg_credit : null
@@ -14,8 +16,9 @@
 
 
 
-
-
+{#if profile==null}
+<NoGo />
+{:else}
 
 
 <Steps {profile} needsPersonality={false} session={data.session} />
@@ -61,3 +64,7 @@
     </p>
     
 </div>
+
+
+
+{/if}
