@@ -28,33 +28,16 @@
 </script>
 
 
-<CreditCounter {profile} />
+<div class="space-y-8">
 
-<br>
+    <CreditCounter {profile} />
 
-<h1 class="text-6xl">
-    👨 ➡️ 🗒️
-</h1>
+    <Steps {session} {profile} />
+    
+    <AiForm bind:aiTextForm={aiTextForm} {session} {detectorsComponent} bind:profile={profile} />
+    
+    <Detectors  {detectors} text={aiTextForm.response} bind:this={detectorsComponent}/>
+    
+    <AiAnswer input={aiTextForm.input} response={aiTextForm.response} isStreamingOver={aiTextForm.isStreamingOver} />
+</div>
 
-<br>
-
-<!-- =================================================================== -->
-<Steps {session} {profile} />
-
-
-
-<!-- =================================================================== -->
-<AiForm bind:aiTextForm={aiTextForm} {session} {detectorsComponent} bind:profile={profile} />
-
-
-
-<!-- =================================================================== -->
-<br>
-<br>
-<Detectors  {detectors} text={aiTextForm.response} bind:this={detectorsComponent}/>
-
-
-<!-- =================================================================== -->
-<br>
-<br>
-<AiAnswer input={aiTextForm.input} response={aiTextForm.response} isStreamingOver={aiTextForm.isStreamingOver} />

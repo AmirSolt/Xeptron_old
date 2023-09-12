@@ -11,7 +11,7 @@
 
 <div class="flex flex-col justify-center gap-8">
     
-    <div class="flex flex-col justify-center gap-4">
+    <div class="flex flex-col justify-center text-center gap-4">
         <h2 class="text-4xl md:text-5xl font-extrabold ">
             Designed for business teams like yours
         </h2>

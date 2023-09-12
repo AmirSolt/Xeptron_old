@@ -18,12 +18,11 @@
 	});
 </script>
 
-<SuperDebug data={$form} />
 
-<div class="card m-auto mt-16  p-8">
-	<h1>Sign in</h1>
+<div class="card">
+	<h1>Update Password</h1>
 
-	<form method="POST" class="mt-8 space-y-8" use:enhance>
+	<form method="POST" class="flex flex-col justify-center items-start gap-4 w-full" use:enhance>
 		<SuperPassword
 			session={data.session}
 			formAttrName="newPassword"
@@ -33,7 +32,7 @@
 			autocomplete="new-password"
 		>
 			<div slot="head">
-				<span>New Password</span>
+				<h3>New Password</h3>
 			</div>
 		</SuperPassword>
 		<SuperPassword
@@ -45,7 +44,7 @@
 			autocomplete="new-password"
 		>
 			<div slot="head">
-				<span>Confirm Password</span>
+				<h3>Confirm Password</h3>
 			</div>
 		</SuperPassword>
 

@@ -75,10 +75,6 @@
 
 	<svelte:fragment slot="sidebarLeft">
 		<AppRail>
-			<AppRailAnchor href="/" selected={$page.url.pathname === '/'}>
-				<svelte:fragment slot="lead">(icon)</svelte:fragment>
-				<span>Home</span>
-			</AppRailAnchor>
 			<AppRailAnchor href="/profile/generate" selected={$page.url.pathname === '/profile/generate'}>
 				<svelte:fragment slot="lead">(icon)</svelte:fragment>
 				<span>Generate</span>
@@ -110,7 +106,7 @@
 	</svelte:fragment>
 
 	<Toast position="t" />
-	<div class="flex justify-center w-full">
+	<div class="flex justify-center w-full p-4 pt-8">
 			<slot />
 	</div>
 </AppShell>

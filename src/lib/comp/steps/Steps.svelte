@@ -9,7 +9,7 @@
 
 </script>
 
-<div>
+<div class="space-y-4">
 
     {#if session?.user==null}
         <div>
@@ -27,7 +27,6 @@
     {/if}
     
     
-    <br>
     
 
     {#if needsPersonality && profile!=null}

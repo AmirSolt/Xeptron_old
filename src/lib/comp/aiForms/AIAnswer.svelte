@@ -10,9 +10,9 @@
 </script>
 
     
-<div class="flex flex-col justify-center items-start gap-4" >
+<div class="flex flex-col justify-center items-start gap-2" >
 
-    <h1 class="text-3xl">
+    <h1>
         Answer
     </h1>
     
@@ -27,7 +27,7 @@
     
     
 
-    <p class="card p-4 h-80 w-full">
+    <p class="card h-96 w-full">
         {response}
     </p>
 </div>

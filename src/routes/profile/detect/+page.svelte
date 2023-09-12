@@ -22,83 +22,70 @@
 				console.log("data:profile invalidated")
 			})
 		}
-
-		// setTimeout(function(){
-		// 	updateOnUsage()
-		// 	.then((wallet) => {
-		// 		if(profile!=null){
-		// 			console.log("wallet was updated")
-		// 			profile.wallet = wallet;
-		// 		}
-		// 	})
-		// 	.catch((err) => {
-		// 		console.error(err);
-		// 	});
-		// }, 1000);
 	}
 </script>
 
-<CreditCounter {profile} />
-
-<br />
-
-<h1 class="text-6xl">🤖🗒️ 🆚 👨🗒️</h1>
-
-<br />
-
-<Steps {profile} needsPersonality={false} session={data.session} />
-
-<!-- =================================================================== -->
-
-<Detectors  {detectors} {text} bind:this={detectorsComponent}/>
 
 
-<div>
-	<div class="flex flex-col justify-center items-start gap-4 w-full">
 
+<div class="space-y-8">
 
-		
-
-		<label class="w-full">
-			<h1 class="text-3xl">Text</h1>
-			<small> Detect AI text </small>
-
-			<div class="flex justify-between items-center w-full p-2">
-				<div></div>
+	<CreditCounter {profile} />
+	<Steps {profile} needsPersonality={false} session={data.session} />
 	
-				<span class="text-xl badge p-3 variant-soft">
-					{text.length} char
-				</span>
-			</div>
-
-			{#if session}
-				<textarea
-					class="textarea"
-					name="text"
-					bind:value={text}
-					rows="4"
-					placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit."
-					autocomplete="off"
-					required
-				/>
-			{:else}
-				<textarea
-					class="textarea"
-					name="text"
-					bind:value={text}
-					rows="4"
-					placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit."
-					autocomplete="off"
-					on:focus={() => toastError('Please Sign in', toastStore)}
-					required
-				/>
-			{/if}
-
-			
-		</label>
-
-		
+	<div>
+		<div class="flex flex-col justify-center items-start gap-2 w-full">
 	
-		<LoadingButton text="Detect" buttonType="button" clickCallback={detectAll} />
+	
+			<label class="w-full">
+				
+				<div class="flex justify-between items-end w-full p-2">
+					<div>
+						<h1>Text</h1>
+						<small> Detect AI text </small>
+					</div>
+		
+					<span class="text-xl badge p-3 variant-soft">
+						{text.length} char
+					</span>
+				</div>
+	
+				{#if session}
+					<textarea
+						class="textarea"
+						name="text"
+						bind:value={text}
+						rows="4"
+						placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+						autocomplete="off"
+						required
+					/>
+				{:else}
+					<textarea
+						class="textarea"
+						name="text"
+						bind:value={text}
+						rows="4"
+						placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+						autocomplete="off"
+						on:focus={() => toastError('Please Sign in', toastStore)}
+						required
+					/>
+				{/if}
+	
+			</label>
+		
+			<LoadingButton text="Detect" buttonType="button" clickCallback={detectAll} />
+		</div>
 	</div>
+	
+	
+	<Detectors  {detectors} {text} bind:this={detectorsComponent}/>
 </div>
+
+
+
+
+
+
+

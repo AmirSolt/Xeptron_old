@@ -1,3 +1,3 @@
-<div class="md:max-w-7xl p-4 w-full">
+<div class="md:max-w-4xl w-full">
     <slot />
 </div>

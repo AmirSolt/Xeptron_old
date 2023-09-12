@@ -24,30 +24,29 @@
 <Steps {profile} needsPersonality={false} session={data.session} />
 
 
-<div class="card flex flex-col justify-center items-center gap-8 p-4 text-center w-full">
+<div class="card flex flex-col justify-center items-center gap-4 p-4 text-center w-full">
 
 
     <div class="flex flex-col justify-center items-center gap-4 w-full">
         <Wallet color="#15CE48" size={150} />
     
-    
         <div >
-            <h1 class="text-2xl">
+            <h1>
                 Credits: <span class="text-4xl text-secondary-500">{credits}</span>
             </h1>
         </div>
         
     
-        <a class="btn variant-filled-primary w-full" href="/payment/pricing">
-            <h1>
+        <a class="btn variant-filled-primary w-full md:w-1/2" href="/payment/pricing">
+            <h2>
                 Add Credit
-            </h1>
+            </h2>
         </a>
         
     </div>
 
 
-    <a class="btn variant-ghost-warning" href="/payment/pricing">
+    <a class="btn variant-ringed" href="/payment/pricing">
         <p>
             Ask for a refund
         </p>

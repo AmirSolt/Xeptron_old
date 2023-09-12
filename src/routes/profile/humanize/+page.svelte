@@ -27,35 +27,14 @@
 
 </script>
 
-
+<div class="space-y-8">
 <CreditCounter  {profile} />
 
-
-<br>
-
-<h1 class="text-6xl">
-    🤖🗒️ ➡️ 👨🗒️
-</h1>
-
-<br>
-
-
-<!-- =================================================================== -->
 <Steps {profile} {session} />
 
-
-<!-- =================================================================== -->
 <AiForm bind:profile={profile} bind:aiTextForm={aiTextForm} {session} {detectorsComponent} />
 
-
-
-<!-- =================================================================== -->
-<br>
-<br>
 <Detectors  {detectors} text={aiTextForm.response} bind:this={detectorsComponent}/>
 
-
-<!-- =================================================================== -->
-<br>
-<br>
 <AiAnswer input={aiTextForm.input} response={aiTextForm.response} isStreamingOver={aiTextForm.isStreamingOver} />
+</div>

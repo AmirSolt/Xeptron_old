@@ -16,9 +16,9 @@
 </script>
 
 
-<div class="flex flex-col justify-center items-start gap-4">
+<div class="flex flex-col justify-center items-start gap-2">
     <h1>Detectors</h1>
-    <div class="flex flex-wrap justify-start items-center gap-8">
+    <div class="flex flex-wrap justify-center md:justify-start items-center gap-4 md:gap-8">
         {#each detectors as detector, i}
             <DetectionProfile {detector} text={text} bind:this={detectorComps[i]} />
         {/each}

@@ -17,7 +17,6 @@
 
 </script>
 
-<SuperDebug data={$form}/>
 
 
 <PricingTable {enhance} {form}/>

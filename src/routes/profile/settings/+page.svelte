@@ -31,57 +31,53 @@
 
 {:else}
 
-<SuperDebug data={$form} />
 
-<Steps {profile} needsPersonality={false} session={data.session} />
+<div class="space-y-8">
 
-
-
-
-<div class="card flex flex-col justify-center items-start gap-6 p-4 text-center">
-	<h1 class="text-3xl mb-4">Settings</h1>
-
-	<LoadingButton url="/auth/signout" color="variant-filled-error" text="Sign Out" />
-
-	<a href="/auth/resetPassword/update" class="btn variant-filled-warning"> Reset Password </a>
-
+	<Steps {profile} needsPersonality={false} session={data.session} />
 	
-    
-</div>
+	
+	<div class="card flex flex-col justify-center items-start gap-4 text-center">
+		<h1>Settings</h1>
 
-
-<br>
-
-<div class="card p-4">
-	<h1 class="text-3xl">Delete Account</h1>
-
-	<form method="POST" class="mt-8 space-y-8" use:enhance >
-		
-		<SuperTextInput 
-			session={data.session} 
-			formAttrName="deletePrompt"
-			form={form}
-			constraints={constraints}
-			errors={errors}
-			autocomplete="off"
-			isSessionOnly={true}
-		>
-			<div slot="head">
-				<p>
-					<b class="text-error-500 text-lg" >Warrning:</b> This action is not reversible.
-				</p>
-				<p>
-					If you want to delete your account, type the bold text into the field.
-				</p>
-				<br />
-				<b class="text-lg">{deletePromptConst}</b>
-			</div>
-		</SuperTextInput>
+		<div class="flex flex-col justify-center items-start gap-4 text-center">
+			<LoadingButton url="/auth/signout" color="variant-filled-error" text="Sign Out" />
+			<a href="/auth/resetPassword/update" class="btn variant-filled-warning"> Reset Password </a>
+		</div>	
+	</div>
+	
+	
+	<div class="card">
+		<h1 >Delete Account</h1>
+	
+		<form method="POST" class="flex flex-col justify-center items-start gap-4 w-full" use:enhance >
 			
-
-		<button class="btn variant-filled" type="submit">Submit</button>
-	</form>
+			<SuperTextInput 
+				session={data.session} 
+				formAttrName="deletePrompt"
+				form={form}
+				constraints={constraints}
+				errors={errors}
+				autocomplete="off"
+				isSessionOnly={true}
+			>
+				<div slot="head">
+					<p>
+						<b class="text-error-500 text-lg" >Warrning:</b> This action is not reversible.
+					</p>
+					<p>
+						If you want to delete your account, type the bold text into the field.
+					</p>
+					<b class="text-lg">{deletePromptConst}</b>
+				</div>
+			</SuperTextInput>
+				
+	
+			<button class="btn variant-filled" type="submit">Submit</button>
+		</form>
+	</div>
 </div>
+
 
 
 {/if}

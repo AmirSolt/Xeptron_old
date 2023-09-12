@@ -46,10 +46,10 @@
 </script>
 
 <div class="flex flex-col justify-center items-center">
-	<Avatar src={detector.pfpSrc} width="w-24" rounded="rounded-full" />
+	<Avatar src={detector.pfpSrc} width="w-20 md:w-24" rounded="rounded-full" />
 
 	<div class="text-center">
-		<h2>{detector.name}</h2>
+		<h3>{detector.name}</h3>
 
 		{#if !hasDetectorStarted && !hasDetectorFinished}
 			<p>Waiting to Start</p>

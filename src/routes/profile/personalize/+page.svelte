@@ -46,78 +46,81 @@
 	});
 </script>
 
-<SuperDebug data={$form} />
-
-<Steps {profile} needsPersonality={false} {session} />
-
-<br />
-
-<form method="POST" use:enhance>
-	<div class="flex flex-col justify-center items-start gap-4 w-full">
-		<SuperTextInput
-			session={data.session}
-			isSessionOnly={true}
-			formAttrName="first_name"
-			{form}
-			{constraints}
-			{errors}
-			placeholder="(optional)"
-			autocomplete="given-name"
-		>
-			<div slot="head">
-				<h1>First Name</h1>
-			</div>
-		</SuperTextInput>
-		<SuperTextInput
-			session={data.session}
-			isSessionOnly={true}
-			formAttrName="last_name"
-			{form}
-			{constraints}
-			{errors}
-			placeholder="(optional)"
-			autocomplete="family-name"
-		>
-			<div slot="head">
-				<h1>Last Name</h1>
-			</div>
-		</SuperTextInput>
-
-		<SuperTextInput
-			session={data.session}
-			isSessionOnly={true}
-			formAttrName="use_case"
-			{form}
-			{constraints}
-			{errors}
-			placeholder="e.g. Blog about food"
-		>
-			<div slot="head">
-				<h1>Use Case</h1>
-				<small
-					>What is your usecase and what level of sophistication are you expecting. e.g. Blog about
-					food, Student grade 12, Marketing, better SEO</small
+<div class="space-y-8">
+	<Steps {profile} needsPersonality={false} {session} />
+	
+	
+	<form method="POST" use:enhance>
+		<div class="flex flex-col justify-center items-start gap-4 w-full">
+			<div class="flex flex-col justify-center items-start gap-6 w-full">
+				<SuperTextInput
+					session={data.session}
+					isSessionOnly={true}
+					formAttrName="first_name"
+					{form}
+					{constraints}
+					{errors}
+					placeholder="(optional)"
+					autocomplete="given-name"
 				>
-			</div>
-		</SuperTextInput>
-
-		<SuperTextarea
-			session={data.session}
-			isSessionOnly={true}
-			formAttrName="writing_style"
-			{form}
-			{constraints}
-			{errors}
-		>
-			<div slot="head">
-				<h1>Writing Style</h1>
-				<small
-					>Write a short paragraph. The purpose of this is for the AI to understand and follow your
-					writing style.</small
+					<div slot="head">
+						<h2>First Name</h2>
+					</div>
+				</SuperTextInput>
+				<SuperTextInput
+					session={data.session}
+					isSessionOnly={true}
+					formAttrName="last_name"
+					{form}
+					{constraints}
+					{errors}
+					placeholder="(optional)"
+					autocomplete="family-name"
 				>
+					<div slot="head">
+						<h2>Last Name</h2>
+					</div>
+				</SuperTextInput>
+		
+				<SuperTextInput
+					session={data.session}
+					isSessionOnly={true}
+					formAttrName="use_case"
+					{form}
+					{constraints}
+					{errors}
+					placeholder="e.g. Blog about food"
+				>
+					<div slot="head">
+						<h2>Use Case</h2>
+						<small
+							>What is your usecase and what level of sophistication are you expecting. e.g. Blog about
+							food, Student grade 12, Marketing, better SEO</small
+						>
+					</div>
+				</SuperTextInput>
+		
+				<SuperTextarea
+					session={data.session}
+					isSessionOnly={true}
+					formAttrName="writing_style"
+					{form}
+					{constraints}
+					{errors}
+				>
+					<div slot="head">
+						<h2>Writing Style</h2>
+						<small
+							>Write a short paragraph. The purpose of this is for the AI to understand and follow your
+							writing style.</small
+						>
+					</div>
+				</SuperTextarea>
 			</div>
-		</SuperTextarea>
+	
+			<button type="submit" class="btn variant-filled-primary w-full"> Save </button>
+		</div>
+	</form>
 
-		<button type="submit" class="btn variant-filled w-48"> Save </button>
-	</div>
-</form>
+</div>
+

@@ -67,14 +67,21 @@
 
 <form on:submit={handleSubmit}>
 
-	<div class="flex flex-col justify-center items-start gap-4">
+	<div class="flex flex-col justify-center items-start gap-2">
 		<label class="w-full">
-			<h1>
-				{aiTextForm.title}
-			</h1>
-			<small>
-				{aiTextForm.explanation}
-			</small>
+			
+			<div class="flex justify-between items-end w-full p-2">
+				<div>
+					<h1>
+						{aiTextForm.title}
+					</h1>
+					<small>
+						{aiTextForm.explanation}
+					</small>
+				</div>
+	
+				<span></span>
+			</div>
 
 			{#if session}
 				<textarea

@@ -16,14 +16,11 @@
 </script>
 
 
-<SuperDebug data={$form}/>
 
-<div class="card m-auto mt-16  p-8">
+<div class="card">
 	<h1>Reset Password</h1>
 
-	<form method="POST" class="mt-8 space-y-8" use:enhance>
-
-
+	<form method="POST" class="flex flex-col justify-center items-start gap-4 w-full" use:enhance>
 		<SuperEmail
 			session={data.session}
 			formAttrName="email"
@@ -33,15 +30,12 @@
 			autocomplete="email"
 		>
 			<div slot="head">
-				<span>Email</span>
+				<h3>Email</h3>
 			</div>
 		</SuperEmail>
 	
 
         <button class="btn variant-filled" type="submit">Submit</button>
 
-
-	
-			
 	</form>
 </div>

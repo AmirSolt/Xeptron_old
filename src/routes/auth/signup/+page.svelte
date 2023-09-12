@@ -22,12 +22,12 @@
 
 
 
-<SuperDebug data={$form}/>
 
-<div class="card m-auto mt-16  p-8">
+<div class="card">
 	<h1>Sign up</h1>
 
-	<form method="POST" class="mt-8 space-y-8" use:enhance>
+
+	<form method="POST" class="flex flex-col justify-center items-start gap-4 w-full" use:enhance>
 
 
 		<div class="flex flex-col justify-center items-start gap-4 w-full">
@@ -42,7 +42,7 @@
 					autocomplete="given-name"
 				>
 					<div slot="head">
-						<h1>First Name</h1>
+						<h3>First Name</h3>
 					</div>
 				</SuperTextInput>
 			</div>
@@ -57,7 +57,7 @@
 					autocomplete="family-name"
 				>
 					<div slot="head">
-						<h1>Last Name</h1>
+						<h3>Last Name</h3>
 					</div>
 				</SuperTextInput>
 			</div>
@@ -75,7 +75,7 @@
 			autocomplete="email"
 		>
 			<div slot="head">
-				<span>Email</span>
+				<h3>Email</h3>
 			</div>
 		</SuperEmail>
 		<SuperPassword 
@@ -87,7 +87,7 @@
 			autocomplete="new-password"
 		>
 			<div slot="head">
-				<span>Password</span>
+				<h3>Password</h3>
 			</div>
 		</SuperPassword>
 
