@@ -30,7 +30,7 @@
 	<form method="POST" class="mt-8 space-y-8" use:enhance>
 
 
-		<div class="flex justify-evenly items-center">
+		<div class="flex flex-col justify-center items-start gap-4 w-full">
 			<div>
 				<SuperTextInput
 					session={data.session} 

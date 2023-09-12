@@ -2,7 +2,7 @@
 <script lang="ts">
 	import type { Session } from "@supabase/supabase-js";
 
-    export let profile:Profile
+    export let profile:Profile|null
     export let session:Session|null
     export let needsPersonality:boolean=true
 
@@ -30,7 +30,7 @@
     <br>
     
 
-    {#if needsPersonality}
+    {#if needsPersonality && profile!=null}
         {#if Object.values(profile.personality).includes(null)}
             <div>
                 <aside class="alert variant-ghost-warning">

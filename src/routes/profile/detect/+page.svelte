@@ -23,8 +23,10 @@
 		setTimeout(function(){
 			updateOnUsage()
 			.then((wallet) => {
-				console.log("wallet was updated")
-				profile.wallet = wallet;
+				if(profile!=null){
+					console.log("wallet was updated")
+					profile.wallet = wallet;
+				}
 			})
 			.catch((err) => {
 				console.error(err);

@@ -1,10 +1,12 @@
 
 <script lang="ts">
-    export let profile:Profile
+    export let profile:Profile|null
 
     let credits:number|null=null
-    $: {credits = profile.wallet.pos_credit - profile.wallet.neg_credit;
-        credits = parseFloat(credits.toFixed(2)) }
+    $: if(profile!=null) {
+        credits = profile.wallet.pos_credit - profile.wallet.neg_credit;
+        credits = parseFloat(credits.toFixed(2)) 
+    }
 
 
 </script>

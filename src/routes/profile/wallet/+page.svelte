@@ -6,8 +6,9 @@
     const {profile} = data
 
     let credits:number|null=null
-    credits = profile.wallet.pos_credit - profile.wallet.neg_credit
-    credits = parseFloat(credits.toFixed(2))
+    credits = profile!=null? profile.wallet.pos_credit - profile.wallet.neg_credit : null
+    if(credits!=null)
+        credits = parseFloat(credits.toFixed(2))
 </script>
 
 

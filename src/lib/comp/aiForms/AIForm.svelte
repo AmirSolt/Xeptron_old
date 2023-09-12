@@ -7,7 +7,7 @@
 	import { getToastStore } from '@skeletonlabs/skeleton';
 	let toastStore = getToastStore();
 
-	export let profile: Profile;
+	export let profile: Profile|null;
 	export let session: Session | null;
 	export let aiTextForm: AITextForm;
 	export let detectorsComponent: any;
@@ -20,6 +20,8 @@
 		}
 	}
 	function overCallback() {
+		
+
 		aiTextForm.isStreamingOver = true;
 		if (detectorsComponent != null) {
 			detectorsComponent.callDetectors().then(() => {
@@ -29,8 +31,10 @@
 		setTimeout(function(){
 			updateOnUsage()
 			.then((wallet) => {
-				console.log("wallet was updated")
-				profile.wallet = wallet;
+				if(profile!=null){
+					console.log("wallet was updated")
+					profile.wallet = wallet;
+				}
 			})
 			.catch((err) => {
 				console.error(err);
@@ -47,7 +51,7 @@
 		onError: errorCallback,
 		onResponse: onResponseCallback,
 		body: {
-			personality: profile.personality
+			personality: profile?.personality??undefined
 		}
 	});
 

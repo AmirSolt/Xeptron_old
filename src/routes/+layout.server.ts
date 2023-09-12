@@ -6,7 +6,7 @@ export const load = async ({ locals: { getSession } }) => {
 
   const session:Session|null = await getSession()
 
-  const profile:Profile = await fetchProfile(session)
+  const profile:Profile|null = await fetchProfile(session)
 
 
   return {

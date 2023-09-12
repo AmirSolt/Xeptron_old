@@ -30,16 +30,17 @@
 		Setting the initial values of the form and removing the tainted fields
 
 		*/
-
-		$form.first_name = profile.personality.first_name ?? undefined;
-		$form.last_name = profile.personality.last_name ?? undefined;
-		$form.use_case = profile.personality.use_case ?? undefined;
-		$form.writing_style = profile.personality.writing_style ?? undefined;
-		if ($tainted != null) {
-			$tainted.first_name = false;
-			$tainted.last_name = false;
-			$tainted.use_case = false;
-			$tainted.writing_style = false;
+		if(profile!=null){
+			$form.first_name = profile.personality.first_name ?? undefined;
+			$form.last_name = profile.personality.last_name ?? undefined;
+			$form.use_case = profile.personality.use_case ?? undefined;
+			$form.writing_style = profile.personality.writing_style ?? undefined;
+			if ($tainted != null) {
+				$tainted.first_name = false;
+				$tainted.last_name = false;
+				$tainted.use_case = false;
+				$tainted.writing_style = false;
+			}
 		}
 	});
 </script>

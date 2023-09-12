@@ -19,7 +19,7 @@ export const supabaseAdmin = createClient(
 
 
 
-export async function fetchProfile(session:Session|null):Promise<Profile>{
+export async function fetchProfile(session:Session|null):Promise<Profile|null>{
     let profile:Profile
     if (session) {
         const { data, error: err } = await supabaseAdmin
@@ -45,9 +45,7 @@ export async function fetchProfile(session:Session|null):Promise<Profile>{
         }
         return profile
     }
-    throw error(400, {
-        message: "Could not load profile data!",
-    })
+    return null
 }
 export async function fetchWallet(session:Session|null):Promise<Wallet>{
     if (session) {
