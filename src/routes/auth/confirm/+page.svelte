@@ -6,7 +6,7 @@
 
 
 
-<div class="card flex flex-col justify-center items-center text-center">
+<div class="card flex flex-col justify-center items-center text-center ">
 
   
     <MailCheck color="#15CE48" size={150} />
@@ -19,4 +19,5 @@
     <p>
         Please, check your spam if you did not find the email after 5 minutes.
     </p>
+
 </div>
