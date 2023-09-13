@@ -32,7 +32,7 @@
     
         <div >
             <h1>
-                Credits: <span class="text-4xl text-secondary-500">{credits}</span>
+                Credits: <span class="text-4xl text-surface-500">{credits}</span>
             </h1>
         </div>
         

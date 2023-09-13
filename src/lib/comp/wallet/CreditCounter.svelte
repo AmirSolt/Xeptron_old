@@ -11,23 +11,29 @@
 
 </script>
 
+{#if credits!=null}
 
 
 <div class="flex justify-start text-center items-center gap-4">
-    <h1>
+    <h2>
         Credits:
-    </h1>
+    </h2>
 
-    {#if credits==null}
-        <a href="/profile/wallet" class="btn-icon btn-icon-xl variant-ringed">?</a>
-    {:else if credits>3}
-        <a href="/profile/wallet" class="btn-icon btn-icon-xl variant-filled-secondary">{credits}</a>
+    {#if credits>3}
+        <a href="/profile/wallet" class="btn-icon btn-icon-xl variant-ringed">{credits}</a>
     {:else if credits<=3 && credits>0}
-        <a href="/profile/wallet" class="btn-icon btn-icon-xl variant-filled-warning">{credits}</a>
+        <a href="/profile/wallet" class="btn-icon btn-icon-xl variant-ringed-warning">{credits}</a>
     {:else if credits==0}
-        <a href="/profile/wallet" class="btn-icon btn-icon-xl variant-filled-error">{credits}</a>
+        <a href="/profile/wallet" class="btn-icon btn-icon-xl variant-ringed-error">{credits}</a>
     {:else}
         <a href="/profile/wallet" class="btn-icon btn-icon-xl variant-ringed">{credits}</a>
     {/if}
 
 </div>
+
+{:else}
+
+<div></div>
+
+
+{/if}

@@ -17,7 +17,7 @@
         Please check your inbox for a confirmation link.
     </h2>
     <p>
-        Please, check your spam if you did not find the email after 5 minutes.
+        Please, check your spam if you did not find the email after <strong>5 minutes</strong>.
     </p>
-
+ 
 </div>

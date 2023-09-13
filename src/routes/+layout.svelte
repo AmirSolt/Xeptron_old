@@ -4,6 +4,8 @@
 	import { LightSwitch } from '@skeletonlabs/skeleton';
 	import { AppRail, AppRailTile, AppRailAnchor } from '@skeletonlabs/skeleton';
 	import { page } from '$app/stores';
+	import {User} from 'lucide-svelte'
+
 	import { Toast, initializeStores } from '@skeletonlabs/skeleton';
 	initializeStores();
 	import { getToastStore } from '@skeletonlabs/skeleton';
@@ -42,36 +44,43 @@
 </script>
 
 <svelte:head>
-	<title>Enterprise</title>
+	<title>Xeptron</title>
 	<link rel="icon" href="https://fav.farm/🔥" />
 </svelte:head>
-
 <!-- App Shell -->
 <AppShell>
 	<svelte:fragment slot="header">
-		<AppBar>
+		<AppBar >
 			<svelte:fragment slot="lead">
 				<a href="/">
-					<strong class="text-xl uppercase"> Skeleton </strong>
+					<strong class="text-xl uppercase"> Xeptron </strong>
 				</a>
 			</svelte:fragment>
 			
-			<svelte:fragment slot="trail">
-				<a href="/payment/pricing">
-					<strong class="text-xl"> Pricing </strong>
+			<svelte:fragment  slot="trail">
+				<a class="btn btn-sm md:btn-md variant-ringed" href="/payment/pricing">
+					 Pricing 
 				</a>
-	
-				<LightSwitch />
+				
 
 				{#if session?.user}
-					<a class="btn btn-sm variant-ghost-surface" href="/profile/settings"> Profile </a>
+					<a class="btn-icon variant-ringed" href="/profile/settings"> <User/> </a>
 				{:else}
-					<a class="btn btn-sm variant-filled" href="/auth/signin"> Log in </a>
-					<a class="btn btn-sm variant-filled-primary" href="/auth/signup"> Sign up </a>
+					<a class="btn btn-sm md:btn-md variant-filled" href="/auth/signin"> Log in </a>
+					<a class="btn btn-sm md:btn-md variant-filled-primary" href="/auth/signup"> Sign up </a>
 				{/if}
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
+
+	<svelte:fragment slot="pageHeader">
+		
+		<div class="flex justify-end items-start p-2">
+				<LightSwitch />
+		</div>
+	</svelte:fragment>
+
+
 
 	<svelte:fragment slot="sidebarLeft">
 		<AppRail>
@@ -106,7 +115,7 @@
 	</svelte:fragment>
 
 	<Toast position="t" />
-	<div class="flex justify-center w-full p-4 pt-8">
+	<div class="flex justify-center w-full p-4 pt-2">
 			<slot />
 	</div>
 </AppShell>
