@@ -1,79 +1,147 @@
 <script lang="ts">
 
+    import DataList from "$lib/comp/tools/DataList.svelte";
+    import {PenLine, PersonStanding, Search, UserSquare, Link} from 'lucide-svelte'
+	import { Avatar } from '@skeletonlabs/skeleton';
+
+    export let data;
+    let {detectors} = data;
+
     const offerList:string[]=[
         "Xeptron is designed to mimic your unique writing style.",
         "It can generate text that appears as if you wrote it yourself.",
         "We verify your text using the most advanced AI text detectors available.",
         "If it fails the detection, you will get a refund.",
-        "Credit card is not required.",
+        "No credit card required.",
     ]
 
 </script>
 
 
-<div class="md:max-w-3xl w-full space-y-8">
-    
-    <div class="flex flex-col justify-center items-start gap-6">
-        <div class="flex flex-col justify-center items-start gap-2">
-            <h1 class="text-4xl">
-                <strong class="text-5xl md:text-6xl  font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 from-10% via-purple-500 via-30% to-pink-500 to-90%">Xeptron</strong> can mimic your handwritting
-            </h1>
-            <div>
-                <p class="text-2xl">
-                    Your competetion is using AI, don't fall behind.
-                </p>
+<div class="md:max-w-4xl w-full">
+
+
+    <div class="space-y-28">
+
+        <div class="flex flex-col justify-center items-start gap-6">
+            <div class="flex flex-col justify-center items-start gap-2">
+                <h1 class="text-4xl">
+                    <strong class="text-5xl md:text-6xl  font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 from-10% via-purple-500 via-30% to-pink-500 to-90%">Xeptron</strong> can mimic your handwritting
+                </h1>
+                <div>
+                    <p class="text-2xl">
+                        Your competetion is using AI, don't fall behind.
+                    </p>
+                </div>
             </div>
-        </div>
+            
+            <div class="flex flex-col justify-center items-start gap-4">
+                <div class="space-y-2">
+                    <h3 class="text-secondary-500">Here's what we offer:</h3>
         
-        <div class="space-y-4">
-            <div class="space-y-2">
-                <h3>Here's what we offer:</h3>
+                    <DataList list={offerList} />
+                </div>
     
-                <ul role="list" class="mb-8 space-y-2 text-left">
-                    {#each offerList as offer}
-                        <li class="flex items-center space-x-3">
-                            <!-- Icon -->
-                            <svg
-                                class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg"
-                                ><path
-                                    fill-rule="evenodd"
-                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                    clip-rule="evenodd"
-                                /></svg
-                            >
-                            <span>{offer}</span>
-                        </li>
-                    {/each}
-                </ul>
+                <a href="/auth/signup" class="btn variant-filled-primary">
+                    Get $20 worth of credit Now
+                </a>
             </div>
-
-            <a href="/auth/signup" class="btn variant-filled-primary">
-                Get $20 worth of credit Now
-            </a>
-        </div>
-    </div>
-
-    <br>
-
-    <div class="flex flex-col md:flex-row justify-center items-center gap-6">
-        <div class="w-full md:w-1/2">
-            <p>
-                Web Publisher - You Now Decide When AI-Generated Text is Published
-                Do you need a reliable tool to make sure your content is Original, meaning: plagiarism free and written by a human writer and not AI generated?
     
-                Protect Your Site - Future proof your site from the potential for Google penalizing AI content and only publish content you know the true Originality of.
-                Detect if content was AI generated and/or plagiarized with all data housed and saved in one place. You will no longer need to rely on anyone's promise that it is plagiarism-free or waste time scanning it yourself.
-                Bulk Site Scan - Scan your entire site to understand the risk of your site being included in future potential AI updates from Google.
-                Rank better on Google and other Search Engines using our best-in-class Readability feature to ensure you produce high quality content.
-            </p>
+        </div>
+    
+
+
+        <div class="flex flex-col  gap-8">
+            <h1>Detectors</h1>
+            <div class="flex flex-wrap justify-center md:justify-start items-center gap-4 md:gap-8">
+                {#each detectors as detector}
+                    <div class="flex flex-col justify-center items-center gap-2">
+                        <Avatar src={detector.pfpSrc} width="w-20 md:w-24" rounded="rounded-full" />
+                        <h3>{detector.name}</h3>
+                    </div>
+                {/each}
+            </div>
         </div>
 
-        <div class="w-full md:w-1/2 use-case-image-1"></div>
+        
+        <div class="flex flex-col  gap-8">
+            <h1>Functions</h1>
+
+            <div class="flex flex-wrap justify-center items-center gap-4 md:gap-8">
+        
+                <div class="flex justify-center items-start gap-4 bg-primar-500  w-full md:w-2/5 rounded-lg px-2 py-4">
+                    <PenLine size={80} />
+                    <div class="w-full space-y-4 text-start">
+                        <a  href="/profile/generate">
+                            <h3 class="flex just-start items-center text-secondary-500 gap-2 ">
+                                Generate 
+                                <Link />
+                            </h3>
+                        </a>
+                        <p>
+                            asdjqwokjd jqowjdj iqowjdjiqjwiodj ioqjwdioj oiqjwdiojq iojwdoijqiow dj
+                        </p>
+                    </div>
+                </div>
+            
+                <div class="flex justify-center items-start gap-4 bg-primar-500  w-full md:w-2/5 rounded-lg px-2 py-4">
+                    <PersonStanding size={80} />
+                    <div class="w-full space-y-4 text-start">
+                        <a  href="/profile/humanize">
+                            <h3 class="flex just-start items-center text-secondary-500 gap-2 ">
+                                Humanize 
+                                <Link />
+                            </h3>
+                        </a>
+                        <p>
+                            asdjqwokjd jqowjdj iqowjdjiqjwiodj ioqjwdioj oiqjwdiojq iojwdoijqiow dj
+                        </p>
+                    </div>
+                </div>
+            
+                <div class="flex justify-center items-start gap-4 bg-primar-500  w-full md:w-2/5 rounded-lg px-2 py-4">
+                    <Search size={80} />
+                    <div class="w-full space-y-4 text-start">
+                        <a  href="/profile/detect">
+                            <h3 class="flex just-start items-center text-secondary-500 gap-2 ">
+                                Detect AI 
+                                <Link />
+                            </h3>
+                        </a>
+                        <p>
+                            asdjqwokjd jqowjdj iqowjdjiqjwiodj ioqjwdioj oiqjwdiojq iojwdoijqiow dj
+                        </p>
+                    </div>
+                </div>
+    
+    
+    
+                <div class="flex justify-center items-start gap-4 bg-primar-500  w-full md:w-2/5 rounded-lg px-2 py-4">
+                    <UserSquare size={80} />
+                    <div class="w-full space-y-4 text-start">
+                        <a  href="/profile/personalize">
+                            <h3 class="flex just-start items-center text-secondary-500 gap-2 ">
+                                Personalize 
+                                <Link />
+                            </h3>
+                        </a>
+                        <p>
+                            asdjqwokjd jqowjdj iqowjdjiqjwiodj ioqjwdioj oiqjwdiojq iojwdoijqiow dj
+                        </p>
+                        <a href="/profile/personalize" class="btn ">
+                            
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
 
     </div>
+    
 
 
     

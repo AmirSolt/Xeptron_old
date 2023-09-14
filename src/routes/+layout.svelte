@@ -120,4 +120,10 @@
 	<div class="flex justify-center w-full p-4 pt-2">
 			<slot />
 	</div>
+
+	<svelte:fragment slot="pageFooter">
+		asdjoqjwd 
+	</svelte:fragment>
+
+
 </AppShell>

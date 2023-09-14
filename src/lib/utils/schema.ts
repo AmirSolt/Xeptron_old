@@ -43,8 +43,8 @@ export const resetPassSchema = z.object({
 
 
 export const personalizationSchema = z.object({
-	first_name: z.string().min(1).optional(),
-	last_name: z.string().min(1).optional(),
+	first_name: z.string().optional(),
+	last_name: z.string().optional(),
 	writing_style: z.string().min(4).optional(),
 	use_case: z.string().min(4).optional(),
 })
