@@ -58,7 +58,11 @@
 		{:else if hasDetectorFinished && !isDetectorResponseValid}
 			<span class="text-yellow-400">Error</span>
 		{:else if hasDetectorFinished && isDetectorResponseValid && detectorResult}
-			<p>%{detectorResult}</p>
+			{#if detectorResult>50}
+				<p class="text-green-500">%{detectorResult}</p>
+			{:else}
+				<p class="text-red-500">%{detectorResult}</p>
+			{/if}
 		{:else}
 			<span class="text-yellow-400">Error</span>
 		{/if}

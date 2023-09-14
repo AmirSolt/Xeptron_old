@@ -22,7 +22,7 @@ class DetectorModule {
 
 class Originality extends DetectorModule {
     detector: Detector = {
-        pfpSrc: "",
+        pfpSrc: "/originality.png",
         name: "Originality",
         url: "",
         id: "Originality",
@@ -65,7 +65,7 @@ class Originality extends DetectorModule {
 class Sapling extends DetectorModule {
     creditMulti: number = saplingMultiPerChar
     detector: Detector = {
-        pfpSrc: "",
+        pfpSrc: "/sapling.png",
         name: "Sapling",
         url: "",
         id: "Sapling",
@@ -104,7 +104,7 @@ class Sapling extends DetectorModule {
 class ZeroGPT extends DetectorModule {
     creditMulti: number = zerogptMultiPerChar
     detector: Detector = {
-        pfpSrc: "",
+        pfpSrc: "/zerogpt.png",
         name: "ZeroGPT",
         url: "",
         id: "ZeroGPT",

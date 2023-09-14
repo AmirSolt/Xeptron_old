@@ -18,7 +18,7 @@
     {#each list as item}
         <li class="flex items-center space-x-3">
             {@html icon}
-            <span>{item}</span>
+            <span class="break-normal">{item}</span>
         </li>
     {/each}
 </ul>

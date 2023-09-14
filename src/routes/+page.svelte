@@ -30,7 +30,7 @@
                 </h1>
                 <div>
                     <p class="text-2xl">
-                        Your competetion is using AI, don't fall behind.
+                        Your competetion is using AI.
                     </p>
                 </div>
             </div>
@@ -148,14 +148,3 @@
 </div>
 
 
-<style>
-    .use-case-image-1 {
-        background-image: url("https://assets.website-files.com/63ee996e404f6475c7b177b3/64637bcfc47fcd4726574eba_AdobeStock_538311930.webp");
-        background-position: 80%;
-        background-repeat: repeat;
-        background-size: cover;
-        border-radius: 10px;
-        padding-top: 85%;
-    }
-
-</style>

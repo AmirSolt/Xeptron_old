@@ -3,7 +3,9 @@
 	export let mpackage: Package;
 	export let form: any;
 	export let enhance: any;
-    export let isPopular:boolean=false
+
+    export let specialText:string|null=null
+    export let specialColor:string|null=null
 
 	$form.priceId = mpackage.priceId;
 </script>
@@ -11,13 +13,13 @@
 <!-- Pricing Card -->
 
 
-<div class="card flex flex-col text-center p-4 min-w-fit w-1/4 {isPopular ? 'border-2 border-primary-500' : 'border-2 border-slate-400'}">
+<div class="card flex flex-col text-center p-4 md:w-1/3 {specialColor ? `border-2 border-${specialColor}-500` : 'border-2 border-slate-400'}">
 
     <div class="relative w-full">
 
-        {#if isPopular}
-            <span class="badge variant-filled-primary absolute -top-8 -right-0 z-10 text-md p-2">
-                Most popular
+        {#if specialText!=null}
+            <span class="badge absolute -top-8 -right-0 z-10 text-md p-2 {specialColor?`variant-filled-${specialColor}`:"variant-filled"}" >
+                {specialText}
             </span>
         {/if}
 
@@ -32,7 +34,7 @@
                 <span class="text-gray-500  dark:text-gray-400">/Credit</span>
             </div>
         
-            <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">description</p>
+            <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">One Time Payment</p>
     
         </div>
     
@@ -50,8 +52,8 @@
     
             <form method="post" use:enhance>
                 <input type="hidden" name="priceId" value={$form.priceId} />
-                <button class="btn text-lg md:text-2x w-24 {isPopular ? 'variant-filled-primary' : 'variant-filled'}" type="submit"> 
-                    {mpackage.currencySymbol}{mpackage.pricePerCredit * mpackage.credits}    
+                <button class="btn text-lg md:text-2x w-24 {specialColor ? `variant-filled-${specialColor}` : 'variant-filled'}" type="submit"> 
+                    {mpackage.currencySymbol}{(mpackage.pricePerCredit * mpackage.credits).toFixed(1)}
                 </button>
             </form>
     
