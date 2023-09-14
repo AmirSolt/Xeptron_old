@@ -2,7 +2,7 @@
 	import '../app.postcss';
 	import { AppShell, AppBar } from '@skeletonlabs/skeleton';
 	import { LightSwitch } from '@skeletonlabs/skeleton';
-	import { AppRail, AppRailTile, AppRailAnchor } from '@skeletonlabs/skeleton';
+	import { AppRail, AppRailAnchor } from '@skeletonlabs/skeleton';
 	import { page } from '$app/stores';
 	import {User, PenLine, PersonStanding, Search, UserSquare, Wallet, Settings} from 'lucide-svelte'
 
@@ -11,11 +11,8 @@
 	import { getToastStore } from '@skeletonlabs/skeleton';
 	let toastStore = getToastStore();
 
-
-
 	import { invalidate } from '$app/navigation';
 	import { onMount } from 'svelte';
-	import { userInfo } from 'os';
 	export let data;
 	let { supabaseAuthClient, session } = data;
 	$: ({ supabaseAuthClient, session } = data);
@@ -50,8 +47,8 @@
 </svelte:head>
 <!-- App Shell -->
 <AppShell>
-	<svelte:fragment slot="header">
-		<AppBar >
+	<svelte:fragment  slot="header">
+		<AppBar gap="gap-1" padding="p-3" slotTrail="space-x-2">
 			<svelte:fragment slot="lead">
 				<a href="/">
 					<p class="text-3xl md:text-4xl font-bold"> Xeptron</p>
@@ -59,18 +56,21 @@
 
 			</svelte:fragment>
 			
-			<svelte:fragment  slot="trail">
-				<a class="btn btn-sm md:btn-md variant-ringed" href="/payment/pricing">
-					 Pricing 
-				</a>
-				
+			<svelte:fragment  slot="trail" >
+				<div class="flex-none flex items-center space-x-2">
 
-				{#if session?.user}
-					<a class="btn-icon variant-ringed" href="/profile/settings"> <User/> </a>
-				{:else}
-					<a class="btn btn-sm md:btn-md variant-filled" href="/auth/signin"> Log in </a>
-					<a class="btn btn-sm md:btn-md variant-filled-primary" href="/auth/signup"> Sign up </a>
-				{/if}
+					<a class="btn btn-sm md:btn-md variant-ringed" href="/payment/pricing">
+						 Pricing 
+					</a>
+					
+	
+					{#if session?.user}
+						<a class="btn-icon variant-ringed" href="/profile/settings"> <User/> </a>
+					{:else}
+						<a class="btn btn-sm md:btn-md variant-filled" href="/auth/signin"> Log in </a>
+						<a class="btn btn-sm md:btn-md variant-filled-primary" href="/auth/signup"> Sign up </a>
+					{/if}
+				</div>
 			</svelte:fragment>
 		</AppBar>
 	</svelte:fragment>
