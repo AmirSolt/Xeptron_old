@@ -1,9 +1,9 @@
 <script lang="ts">
-    import {packages} from '$lib/utils/config'
     import PricePackage from '$lib/comp/wallet/PricePackage.svelte';
 
     export let form:any
     export let enhance:any
+    export let packages:Package[]
 
 </script>
 

@@ -1,6 +1,5 @@
-import { getChatStream } from '../openai/index.js'
 
-export async function getGenerateChatStream(personality: Personality, prompt: string) {
+export async function getSystemPrompt(personality: Personality) {
 
 
     let systemPrompt = ""
@@ -15,10 +14,7 @@ export async function getGenerateChatStream(personality: Personality, prompt: st
     } else {
         systemPrompt += "Make the writing style more human like."
     }
-    let userPrompt = "Use my writing style to: " + prompt
-
-
-    return await getChatStream(systemPrompt, userPrompt)
+    return systemPrompt
 }
 
 

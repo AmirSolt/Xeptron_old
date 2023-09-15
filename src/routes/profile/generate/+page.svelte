@@ -17,8 +17,8 @@
     let aiTextForm:AITextForm = {
         url:"/api/generateText",
         title:"Prompt",
-        explanation:"Tell AI what you want it to do. Try to be detailed and descreptive.",
-        placeholder:"e.g. Write an essay about air polution...",
+        explanation:"Prompt AI to generate a text. Try to be detailed.",
+        placeholder:"e.g. Write an article about air polution...",
         isStreamingOver:false,
         input:"",
         response:"",

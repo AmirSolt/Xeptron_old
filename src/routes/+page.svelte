@@ -13,6 +13,7 @@
         "We verify your text using the most advanced 'AI text detectors' available.",
         "If it doesn't pass the detection, you will get a refund.",
         "No credit card required.",
+        "For maximum privacy, Input and output texts will not be saved on our database.",
     ]
 
 </script>
@@ -84,7 +85,8 @@
                             </h3>
                         </a>
                         <p>
-                            asdjqwokjd jqowjdj iqowjdjiqjwiodj ioqjwdioj oiqjwdiojq iojwdoijqiow dj
+                            Prompt Xeptron to generate a text with your writing style <br>
+                            *Requires personalization 
                         </p>
                     </div>
                 </div>
@@ -99,7 +101,8 @@
                             </h3>
                         </a>
                         <p>
-                            asdjqwokjd jqowjdj iqowjdjiqjwiodj ioqjwdioj oiqjwdiojq iojwdoijqiow dj
+                            Xeptron will convert any text to your writing style <br>
+                            *Requires personalization 
                         </p>
                     </div>
                 </div>
@@ -114,7 +117,8 @@
                             </h3>
                         </a>
                         <p>
-                            asdjqwokjd jqowjdj iqowjdjiqjwiodj ioqjwdioj oiqjwdiojq iojwdoijqiow dj
+                            Using the best AI detectors available. Scan your text.  <br>
+                            *Does not require personalization 
                         </p>
                     </div>
                 </div>
@@ -131,7 +135,7 @@
                             </h3>
                         </a>
                         <p>
-                            asdjqwokjd jqowjdj iqowjdjiqjwiodj ioqjwdioj oiqjwdiojq iojwdoijqiow dj
+                            Tell Xeptron about you to get the best results.
                         </p>
                         <a href="/profile/personalize" class="btn ">
                             

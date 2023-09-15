@@ -105,7 +105,7 @@
 			{/if}
 		</label>
 	
-		<LoadingButton text="Submit" />
+		<LoadingButton color="variant-filled-primary" text="Submit" />
 	</div>
 </form>
 

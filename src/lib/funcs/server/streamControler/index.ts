@@ -4,21 +4,22 @@ import type { Session } from '@supabase/supabase-js';
 
 
 
-export function creditControl(session: Session, stream: ReadableStream, inputPrompt:string): ReadableStream {
+export function creditControl(session: Session, stream: ReadableStream, systemPrompt:string, userPrompt:string): ReadableStream {
     const teedOff = stream.tee();
-    creditCounter(session, teedOff[0], inputPrompt)
+    creditCounter(session, teedOff[0], systemPrompt, userPrompt)
     return teedOff[1]
 }
 
 
-function creditCounter(session: Session, stream: ReadableStream, inputPrompt:string) {
+function creditCounter(session: Session, stream: ReadableStream, systemPrompt:string, userPrompt:string) {
     const reader = stream.getReader();
     let charsReceived = 0;
     reader.read().then(
         function processText({ done, value }): any {
             if (done) {
                 let usedCredit: number = charsReceived * gpt4OutputMultiPerChar
-                usedCredit += inputPrompt.length * gpt4InputMultiPerChar
+                usedCredit += systemPrompt.length * gpt4InputMultiPerChar
+                usedCredit += userPrompt.length * gpt4InputMultiPerChar
                 decrementCredit(session, usedCredit)
                 return;
             }

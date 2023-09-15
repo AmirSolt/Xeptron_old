@@ -14,7 +14,7 @@
     let aiTextForm:AITextForm = {
         url:"/api/convertText",
         title:"Humanize",
-        explanation:"Paste your text and AI will write it in your writing style.",
+        explanation:"AI will convert any text to your unique writing style.",
         placeholder:"*paste*",
         isStreamingOver:false,
         input:"",

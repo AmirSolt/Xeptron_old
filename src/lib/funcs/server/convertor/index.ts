@@ -1,10 +1,6 @@
-import {getChatStream} from '../openai/index.js'
 
 
-export async function getConvertorChatStream(personality:Personality, prompt:string){
-
-    
-
+export async function getSystemPrompt(personality:Personality){
     let systemPrompt = ""
     if(personality.first_name!=null)
         systemPrompt += "My first name is: "+personality.first_name
@@ -17,12 +13,7 @@ export async function getConvertorChatStream(personality:Personality, prompt:str
     }else{
         systemPrompt += "Make the writing style more human like."
     }
-
-    let userPrompt = "Convert this text to my style of writing: "+prompt
-
-
-    return await getChatStream(systemPrompt, userPrompt)
-
+    return systemPrompt
 }
 
 

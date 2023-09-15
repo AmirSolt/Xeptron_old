@@ -41,8 +41,8 @@
 				
 				<div class="flex justify-between items-end w-full p-2">
 					<div>
-						<h1>Text</h1>
-						<small> Detect AI text </small>
+						<h1>Detect</h1>
+						<small>AI text detector</small>
 					</div>
 		
 					<span class="text-xl badge p-3 variant-soft">
@@ -56,7 +56,7 @@
 						name="text"
 						bind:value={text}
 						rows="4"
-						placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+						placeholder="*paste*"
 						autocomplete="off"
 						required
 					/>
@@ -66,7 +66,7 @@
 						name="text"
 						bind:value={text}
 						rows="4"
-						placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+						placeholder="*paste*"
 						autocomplete="off"
 						on:focus={() => toastError('Please Sign in', toastStore)}
 						required
@@ -75,7 +75,7 @@
 	
 			</label>
 		
-			<LoadingButton text="Detect" buttonType="button" clickCallback={detectAll} />
+			<LoadingButton color="variant-filled-primary" text="Detect" buttonType="button" clickCallback={detectAll} />
 		</div>
 	</div>
 	

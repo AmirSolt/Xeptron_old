@@ -89,14 +89,12 @@
 					{form}
 					{constraints}
 					{errors}
-					placeholder="e.g. Blog about food"
+					placeholder="e.g. I am a food blogger"
 				>
 					<div slot="head">
 						<h2>Use Case</h2>
 						<small
-							>What is your usecase and what level of sophistication are you expecting. e.g. Blog about
-							food, Student grade 12, Marketing, better SEO</small
-						>
+							>What is your usecase and what level of sophistication are you expecting.</small>
 					</div>
 				</SuperTextInput>
 		
@@ -104,16 +102,16 @@
 					session={data.session}
 					isSessionOnly={true}
 					formAttrName="writing_style"
+					placeholder="*Paste a sample of your writing*"
 					{form}
 					{constraints}
 					{errors}
 				>
 					<div slot="head">
 						<h2>Writing Style</h2>
-						<small
-							>Write a short paragraph. The purpose of this is for the AI to understand and follow your
-							writing style.</small
-						>
+						<small>Xeptron requires a writing sample from you in order to mimic your unique style of writing..</small>
+						<br>
+						<small>The sample does not need to be more than <b>300</b> charachters.</small>
 					</div>
 				</SuperTextarea>
 			</div>
