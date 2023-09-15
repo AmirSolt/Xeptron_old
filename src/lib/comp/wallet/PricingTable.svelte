@@ -21,6 +21,9 @@
         
     </div>
 
+    <p class="text-md">
+        * These are rough estimations: <span class="badge variant-ghost">1 credit ≈ 1000 char</span> and <span class="badge variant-ghost">article ≈ 5000 char</span>   
+    </p>
 
     <div class="flex flex-wrap justify-center items-center gap-8">
 
@@ -30,12 +33,9 @@
 
         <PricePackage mpackage={packages[2]} {enhance} {form}/>
 
-        <PricePackage mpackage={packages[3]} {enhance} {form} specialText="Best Value" specialColor="red"/>
+        <PricePackage mpackage={packages[3]} {enhance} {form} specialText="Best Value" specialColor="secondary"/>
 
     </div>
 
-    <p class="text-md">
-        * These are rough estimations: <span class="badge variant-ghost">1 credit ≈ 1000 char</span> and <span class="badge variant-ghost">article ≈ 5000 char</span>   
-    </p>
-
+    
 </div>

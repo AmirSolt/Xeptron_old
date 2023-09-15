@@ -28,10 +28,10 @@
             <h3 class="text-3xl font-semibold">{mpackage.name}</h3>
             
             <div class="flex justify-center items-baseline">
-                <span class="mr-2 text-5xl font-extrabold"
-                    >{mpackage.currencySymbol}{mpackage.pricePerCredit}</span
-                >
-                <span class="text-gray-500  dark:text-gray-400">/Credit</span>
+                <span class="mr-2 text-5xl font-extrabold">
+                    {mpackage.credits}
+                </span>
+                <span >Credits</span>
             </div>
         
             <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">One Time Payment</p>
@@ -45,9 +45,13 @@
 
         <div class="flex justify-between items-center ">
     
-            <p class="font-light text-lg">
-                {mpackage.credits} credits
-            </p>
+           
+            <div class="flex justify-center items-baseline">
+                <span class="text-xl mr-1">
+                    {mpackage.currencySymbol}{mpackage.pricePerCredit}
+                </span>
+                <span class="text-gray-500  dark:text-gray-400">/Credit</span>
+            </div>
             
     
             <form method="post" use:enhance>

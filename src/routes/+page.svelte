@@ -9,9 +9,9 @@
 
     const offerList:string[]=[
         "Xeptron is designed to mimic your unique writing style.",
-        "It can generate text that appears as if you wrote it yourself.",
-        "We verify your text using the most advanced AI text detectors available.",
-        "If it fails the detection, you will get a refund.",
+        "It can generate text that appears as if it was written by you.",
+        "We verify your text using the most advanced 'AI text detectors' available.",
+        "If it doesn't pass the detection, you will get a refund.",
         "No credit card required.",
     ]
 
@@ -30,21 +30,26 @@
                 </h1>
                 <div>
                     <p class="text-2xl">
-                        Your competetion is using AI.
+                        Your competetion could be using AI...
                     </p>
                 </div>
             </div>
             
             <div class="flex flex-col justify-center items-start gap-4">
                 <div class="space-y-2">
-                    <h3 class="text-secondary-500">Here's what we offer:</h3>
+                    <h3 class="text-secondary-500 dark:text-primary-500">Here's what we offer:</h3>
         
                     <DataList list={offerList} />
                 </div>
-    
-                <a href="/auth/signup" class="btn variant-filled-primary">
-                    Get $20 worth of credit Now
-                </a>
+                
+                <h2>
+                    Get $20 Worth of Credit Now:
+                </h2>
+                <div class="flex justify-center md:justify-start items-center w-full">
+                    <a href="/auth/signup" class="btn text-xl variant-filled-primary w-full md:w-1/2">
+                        Sign up
+                    </a>
+                </div>
             </div>
     
         </div>
