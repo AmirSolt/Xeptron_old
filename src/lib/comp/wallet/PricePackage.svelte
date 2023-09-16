@@ -19,7 +19,7 @@
 
     <div class="relative w-full ">
 
-        <div class="border-primary-500 border-secondary-500 border-slate-400">
+        <div class="border-primary-500 border-secondary-500 border-slate-400 hidden">
         </div>
 
         {#if specialText!=null}
