@@ -20,7 +20,7 @@
     <div class="flex flex-col justify-center items-start gap-2">
 
         <h1>Detectors</h1>
-        <p>Human Percentage</p>
+        <p>Human Percentage (Higher value means more human)</p>
 
         <div class="flex flex-wrap justify-center md:justify-start items-center gap-4 md:gap-8">
             {#each detectors as detector, i}

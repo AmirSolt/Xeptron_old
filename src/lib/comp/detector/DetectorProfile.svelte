@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Avatar } from '@skeletonlabs/skeleton';
-
+	import { ProgressRadial } from '@skeletonlabs/skeleton';
 
 	export let detector: Detector;
 	export let text: string;
@@ -54,7 +54,10 @@
 		{#if !hasDetectorStarted && !hasDetectorFinished}
 			<p>Waiting to Start</p>
 		{:else if hasDetectorStarted && !hasDetectorFinished}
-			<p>Loading</p>
+			<div class="flex justify-center items-center">
+
+				<ProgressRadial width="w-6" stroke={100} />
+			</div>
 		{:else if hasDetectorFinished && !isDetectorResponseValid}
 			<span class="text-yellow-400">Error</span>
 		{:else if hasDetectorFinished && isDetectorResponseValid && detectorResult}

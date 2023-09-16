@@ -31,34 +31,36 @@ class Originality extends DetectorModule {
     async getHumanPerc(text: string): Promise<number|null> {
 
 
-        // let myHeaders = new Headers();
-        // myHeaders.append("X-OAI-API-KEY", PRIVATE_ORIGINALITY_KEY);
-        // myHeaders.append("Accept", "application/json");
-        // myHeaders.append("Content-Type", "application/json");
+        let myHeaders = new Headers();
+        myHeaders.append("X-OAI-API-KEY", PRIVATE_ORIGINALITY_KEY);
+        myHeaders.append("Accept", "application/json");
+        myHeaders.append("Content-Type", "application/json");
 
-        // let raw = JSON.stringify({
-        //     "content": text,
-        //     "title": "",
-        //     "aiModelVersion": "1",
-        //     "storeScan": "\"false\""
-        // });
+        let raw = JSON.stringify({
+            "content": text,
+            "title": "",
+            "aiModelVersion": "1",
+            "storeScan": "\"false\""
+        });
 
-        // let requestOptions:RequestInit  = {
-        //     method: 'POST',
-        //     headers: myHeaders,
-        //     body: raw,
-        //     redirect: 'follow'
-        // };
+        let requestOptions:RequestInit  = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
 
-        // let response = await fetch("https://api.originality.ai/api/v1/scan/ai", requestOptions)
-        // let data = await response.json()
-        // if(!response.ok){
-        //     return null
-        // }else{
-        //     return data.score
-        // }
+        let response = await fetch("https://api.originality.ai/api/v1/scan/ai", requestOptions)
+        let data = await response.json()
+        if(!response.ok){
+            console.log("originality",data)
+            return null
+        }else{
+            console.log("originality",data)
+            const humanPercValue = data.score.original*100
+            return humanPercValue
+        }
  
-        return 90
     }
 }
 
@@ -72,32 +74,32 @@ class Sapling extends DetectorModule {
     }
     async getHumanPerc(text: string): Promise<number|null> {
 
-        // let myHeaders = new Headers();
-        // myHeaders.append("Accept", "application/json");
-        // myHeaders.append("Content-Type", "application/json");
+        let myHeaders = new Headers();
+        myHeaders.append("Accept", "application/json");
+        myHeaders.append("Content-Type", "application/json");
 
-        // let raw = JSON.stringify({
-        //     "text": text,
-        //     "key": PRIVATE_SAPLING_KEY,
-        // });
+        let raw = JSON.stringify({
+            "text": text,
+            "key": PRIVATE_SAPLING_KEY,
+        });
 
-        // let requestOptions:RequestInit  = {
-        //     method: 'POST',
-        //     headers: myHeaders,
-        //     body: raw,
-        //     redirect: 'follow'
-        // };
+        let requestOptions:RequestInit  = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
 
-        // let response = await fetch('https://api.sapling.ai/api/v1/aidetect', requestOptions)
-        // let data = await response.json()
-        // if(!response.ok){
-        //     return null
-        // }else{
-        //     return data.score
-        // }
- 
+        let response = await fetch('https://api.sapling.ai/api/v1/aidetect', requestOptions)
+        let data = await response.json()
+        if(!response.ok){
+            console.log("sapling",data)
+            return null
+        }else{
+            console.log("sapling",data)
+            return (1 - data.score)*100
+        }
 
-        return 90
     }
 }
 
@@ -110,35 +112,34 @@ class ZeroGPT extends DetectorModule {
         id: "ZeroGPT",
     }
     async getHumanPerc(text: string): Promise<number|null> {
-        // let myHeaders = new Headers();
-        // myHeaders.append("ApiKey", PRIVATE_ZEROGPT_KEY);
-        // myHeaders.append("Accept", "application/json");
-        // myHeaders.append("Content-Type", "application/json");
+        let myHeaders = new Headers();
+        myHeaders.append("ApiKey", PRIVATE_ZEROGPT_KEY);
+        myHeaders.append("Accept", "application/json");
+        myHeaders.append("Content-Type", "application/json");
 
-        // let raw = JSON.stringify({
-        //     "input_text": text
-        // });
+        let raw = JSON.stringify({
+            "input_text": text
+        });
 
-        // let requestOptions:RequestInit  = {
-        //     method: 'POST',
-        //     headers: myHeaders,
-        //     body: raw,
-        //     redirect: 'follow'
-        // };
+        let requestOptions:RequestInit  = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
 
 
-        // let response = await fetch('https://api.zerogpt.com/api/detect/detectText', requestOptions)
-        // let data = await response.json()
-        // if(!response.ok){
-        //     return null
-        // }else{
-        //     console.log("======== ZEROGPT ==============")
-        //     console.log(data)
-        //     console.log("======== ZEROGPT ==============")
-        //     return data.score
-        // }
-
-        return 90
+        let response = await fetch('https://api.zerogpt.com/api/detect/detectText', requestOptions)
+        let data = await response.json()
+        if(!response.ok){
+            console.log(data)
+            return null
+        }else{
+            console.log("======== ZEROGPT ==============")
+            console.log(data)
+            console.log("======== ZEROGPT ==============")
+            return data.score
+        }
     }
 }
 
