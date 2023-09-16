@@ -1,7 +1,7 @@
 import type { Stripe } from 'stripe'
 import { stripe } from '$lib/utils/stripeHelper.server.js'
 import { PRIVATE_WEBHOOK_SECRET } from '$env/static/private';
-import {packages} from '$lib/utils/config'
+import {packages} from '$lib/utils/config.server.js'
 import {incrementCustomerCredit} from '$lib/funcs/server/database/index.js'
 
 
