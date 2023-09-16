@@ -14,7 +14,7 @@ export const POST = async ({request, locals:{getSession}}) => {
     const req = await request.json();
     const userPrompt = req.prompt
     const personality:Personality|null = req.personality
-    if(prompt == null || personality==null){
+    if(userPrompt == null || personality==null){
         throw error(400, {
             message: "Something is missing",
         })

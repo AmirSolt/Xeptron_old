@@ -19,7 +19,7 @@
         </p>
     </div>
 
-    <a href="/" class="btn variant-ringed" >
-        ← Home
+    <a href="/profile/wallet" class="btn variant-ringed" >
+        ← Wallet
     </a>	
 </div>

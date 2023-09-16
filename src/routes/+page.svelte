@@ -31,7 +31,7 @@
                 </h1>
                 <div>
                     <p class="text-2xl">
-                        Your competetion could be using AI...
+                        Enhance your abilities with AI.
                     </p>
                 </div>
             </div>

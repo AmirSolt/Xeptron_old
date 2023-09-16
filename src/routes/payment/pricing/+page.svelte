@@ -10,7 +10,7 @@
 
 
 	export let data
-	const { form, enhance } = superForm(data.form, {
+	const { form } = superForm(data.form, {
 		validators:pricingSchema,
 		onError: (result)=>{toastError(result.result.error.message, toastStore)},
 		taintedMessage:null
@@ -20,7 +20,7 @@
 
 <div class="space-y-24">
 
-	<PricingTable {enhance} {form} packages={data.packages}/>
+	<PricingTable  {form} packages={data.packages}/>
 	
 	<div class="space-y-4">
 		<h1>
@@ -33,14 +33,26 @@
 				<thead>
 					<tr>
 						<th>Type</th>
-						<th>Credit Per 1000 Char</th>
+						<th>Estimated Credit Per 1000 Char</th>
 				
 					</tr>
 				</thead>
 				<tbody>
 						<tr>
-							<td>System Text</td>
-							<td>1 credit</td>
+							<td>Input Text (System)</td>
+							<td>≈{data.gpt4InputMultiPerChar*1000} credit</td>
+						</tr>
+						<tr>
+							<td>Input Text (Prompt)</td>
+							<td>≈{data.gpt4InputMultiPerChar*1000} credit</td>
+						</tr>
+						<tr>
+							<td>Output Text</td>
+							<td>≈{data.gpt4OutputMultiPerChar*1000} credit</td>
+						</tr>
+						<tr>
+							<td>Detector</td>
+							<td>≈{data.detectorMultiPerChar*1000} credit</td>
 						</tr>
 
 				</tbody>
@@ -59,15 +71,43 @@
 		<Accordion>
 			<AccordionItem open>
 				<svelte:fragment slot="lead"><HelpCircle /></svelte:fragment>
-				<svelte:fragment slot="summary">(summary)</svelte:fragment>
-				<svelte:fragment slot="content">(content)</svelte:fragment>
+				<svelte:fragment slot="summary">
+					How can I get a refund?
+				</svelte:fragment>
+				<svelte:fragment slot="content">
+					
+				</svelte:fragment>
 			</AccordionItem>
 			<AccordionItem>
 				<svelte:fragment slot="lead"><HelpCircle /></svelte:fragment>
-				<svelte:fragment slot="summary">(summary)</svelte:fragment>
-				<svelte:fragment slot="content">(content)</svelte:fragment>
+				<svelte:fragment slot="summary">
+					What is your refund policy?
+				</svelte:fragment>
+				<svelte:fragment slot="content">
+					You can get a refund within 60 days of purchase or if the generated text is detected by a credible AI text detector.
+					Email our support: support@xeptron.com
+				</svelte:fragment>
 			</AccordionItem>
-			<!-- ... -->
+			<AccordionItem>
+				<svelte:fragment slot="lead"><HelpCircle /></svelte:fragment>
+				<svelte:fragment slot="summary">
+					What is your refund policy?
+				</svelte:fragment>
+				<svelte:fragment slot="content">
+					You can get a refund within 60 days of purchase or if the generated text is detected by a credible AI text detector.
+					Email our support: support@xeptron.com
+				</svelte:fragment>
+			</AccordionItem>
+			<AccordionItem>
+				<svelte:fragment slot="lead"><HelpCircle /></svelte:fragment>
+				<svelte:fragment slot="summary">
+					What is your refund policy?
+				</svelte:fragment>
+				<svelte:fragment slot="content">
+					You can get a refund within 60 days of purchase or if the generated text is detected by a credible AI text detector.
+					Email our support: <span class="badge variant-ghost">support@xeptron.com</span>
+				</svelte:fragment>
+			</AccordionItem>
 		</Accordion>
 	</div>
 </div>

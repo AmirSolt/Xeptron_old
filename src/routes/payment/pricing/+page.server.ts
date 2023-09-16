@@ -3,13 +3,13 @@ import {PUBLIC_DOMAIN} from '$env/static/public';
 import { setError, superValidate } from 'sveltekit-superforms/server'
 import { pricingSchema } from '$lib/utils/schema'
 import {stripe} from '$lib/utils/stripeHelper.server.js'
-import {packages} from '$lib/utils/config.server.js'
+import {packages, gpt4InputMultiPerChar, gpt4OutputMultiPerChar, detectorMultiPerChar} from '$lib/utils/config.server.js'
 
 
 
 export const load = async (event) => {
     const form = await superValidate(event, pricingSchema)
-    return { form, packages}
+    return { form, packages, gpt4InputMultiPerChar, gpt4OutputMultiPerChar, detectorMultiPerChar}
 }
 
 
@@ -19,9 +19,7 @@ export const actions = {
 		console.log("====")
         const session = await event.locals.getSession()
         if (!session) {
-            throw error(400, {
-                message: "You are not logged in!",
-            })
+            throw redirect(303, "/auth/signup");
         }
 
         const form = await superValidate(event, pricingSchema)
