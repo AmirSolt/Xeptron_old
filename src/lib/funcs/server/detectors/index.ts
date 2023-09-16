@@ -87,8 +87,9 @@ class Sapling extends DetectorModule {
             method: 'POST',
             headers: myHeaders,
             body: raw,
-            redirect: 'follow'
         };
+
+        console.log(requestOptions)
 
         let response = await fetch('https://api.sapling.ai/api/v1/aidetect', requestOptions)
         let data = await response.json()
