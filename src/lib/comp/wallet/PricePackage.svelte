@@ -11,10 +11,12 @@
 
 <!-- Pricing Card -->
 
-<div class="border-primary-500 border-secondary-500 border-slate-400">
-</div>
 
-<div class="card flex flex-col text-center p-4 md:w-1/3 border-2 {specialColor ? `border-${specialColor}-500` : 'border-slate-400'}" >
+
+<div class="card flex flex-col text-center p-4  border-2 {specialColor ? `border-${specialColor}-500` : 'border-slate-400'}" >
+
+    <div class="border-primary-500 border-secondary-500 border-slate-400">
+    </div>
 
     <div class="relative w-full">
 

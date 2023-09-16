@@ -24,7 +24,7 @@
         * These are rough estimations: <span class="badge variant-ghost">1 credit ≈ 1000 char</span> and <span class="badge variant-ghost">blog post ≈ 5000 char</span>   
     </p>
 
-    <div class="flex flex-wrap justify-center items-center gap-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
         <PricePackage mpackage={packages[0]} {form}/>
         

@@ -33,26 +33,30 @@
 				<thead>
 					<tr>
 						<th>Type</th>
-						<th>Estimated Credit Per 1000 Char</th>
+						<th>Estimated Credit</th>
 				
 					</tr>
 				</thead>
 				<tbody>
 						<tr>
 							<td>Input Text (System)</td>
-							<td>≈{data.gpt4InputMultiPerChar*1000} credit</td>
+							<td>≈{data.gpt4InputMultiPerChar*1000} credit/1k char</td>
 						</tr>
 						<tr>
 							<td>Input Text (Prompt)</td>
-							<td>≈{data.gpt4InputMultiPerChar*1000} credit</td>
+							<td>≈{data.gpt4InputMultiPerChar*1000} credit/1k char</td>
 						</tr>
 						<tr>
 							<td>Output Text</td>
-							<td>≈{data.gpt4OutputMultiPerChar*1000} credit</td>
+							<td>≈{data.gpt4OutputMultiPerChar*1000} credit/1k char</td>
 						</tr>
 						<tr>
 							<td>Detector</td>
-							<td>≈{data.detectorMultiPerChar*1000} credit</td>
+							<td>≈{data.detectorMultiPerChar*1000} credit/1k char</td>
+						</tr>
+						<tr>
+							<td>Generating a blog post (5000 char)</td>
+							<td>≈{data.gpt4InputMultiPerChar*1000 + (5000*data.gpt4OutputMultiPerChar) + (5000*data.detectorMultiPerChar)} credit</td>
 						</tr>
 
 				</tbody>
