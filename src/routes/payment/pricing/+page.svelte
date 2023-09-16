@@ -73,33 +73,23 @@
 			FAQ's
 		</h1>	
 		<Accordion>
-			<AccordionItem open>
+			<AccordionItem>
 				<svelte:fragment slot="lead"><HelpCircle /></svelte:fragment>
 				<svelte:fragment slot="summary">
-					How can I get a refund?
+					Do you store my generated content?
 				</svelte:fragment>
 				<svelte:fragment slot="content">
-					
+					No, we do not store any input or output content. This is done to maximize privacy. 
 				</svelte:fragment>
 			</AccordionItem>
 			<AccordionItem>
 				<svelte:fragment slot="lead"><HelpCircle /></svelte:fragment>
 				<svelte:fragment slot="summary">
-					What is your refund policy?
+					What makes Xeptron different from other AI apps?
 				</svelte:fragment>
 				<svelte:fragment slot="content">
-					You can get a refund within 60 days of purchase or if the generated text is detected by a credible AI text detector.
-					Email our support: support@xeptron.com
-				</svelte:fragment>
-			</AccordionItem>
-			<AccordionItem>
-				<svelte:fragment slot="lead"><HelpCircle /></svelte:fragment>
-				<svelte:fragment slot="summary">
-					What is your refund policy?
-				</svelte:fragment>
-				<svelte:fragment slot="content">
-					You can get a refund within 60 days of purchase or if the generated text is detected by a credible AI text detector.
-					Email our support: support@xeptron.com
+					The primary objective of Xeptron is to create unparalleled quality content.
+					 If both AI detectors and humans perceive the generated content as indistinguishable from human work, then we would have fulfilled our goal.
 				</svelte:fragment>
 			</AccordionItem>
 			<AccordionItem>
