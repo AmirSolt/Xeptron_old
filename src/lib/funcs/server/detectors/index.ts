@@ -2,7 +2,8 @@
 import { originalityMultiPerChar, saplingMultiPerChar, zerogptMultiPerChar } from '$lib/utils/config.server.js'
 import { decrementCredit } from '$lib/funcs/server/database/index'
 import type { Session } from '@supabase/supabase-js'
-import {PRIVATE_ORIGINALITY_KEY, PRIVATE_SAPLING_KEY, PRIVATE_ZEROGPT_KEY} from '$env/static/private'
+import {PRIVATE_ORIGINALITY_KEY, PRIVATE_SAPLING_KEY, PRIVATE_ZEROGPT_KEY, PRIVATE_ZEROGPT_EMAIL, PRIVATE_ZEROGPT_PASSWORD} from '$env/static/private'
+
 
 class DetectorModule {
     creditMulti: number = 0
@@ -53,10 +54,10 @@ class Originality extends DetectorModule {
         let response = await fetch("https://api.originality.ai/api/v1/scan/ai", requestOptions)
         let data = await response.json()
         if(!response.ok){
-            console.log("originality",data)
             return null
         }else{
-            console.log("originality",data)
+            console.log("===========================")
+            console.log("Originality",data)
             const humanPercValue = data.score.original*100
             return humanPercValue
         }
@@ -75,7 +76,6 @@ class Sapling extends DetectorModule {
     async getHumanPerc(text: string): Promise<number|null> {
 
         let myHeaders = new Headers();
-        myHeaders.append("Accept", "application/json");
         myHeaders.append("Content-Type", "application/json");
 
         let raw = JSON.stringify({
@@ -94,9 +94,11 @@ class Sapling extends DetectorModule {
         let response = await fetch('https://api.sapling.ai/api/v1/aidetect', requestOptions)
         let data = await response.json()
         if(!response.ok){
+            console.log("===========================")
             console.log("sapling",data)
             return null
         }else{
+            console.log("===========================")
             console.log("sapling",data)
             return (1 - data.score)*100
         }
@@ -105,6 +107,7 @@ class Sapling extends DetectorModule {
 }
 
 class ZeroGPT extends DetectorModule {
+    token:string|null=null
     creditMulti: number = zerogptMultiPerChar
     detector: Detector = {
         pfpSrc: "/zerogpt.png",
@@ -112,10 +115,40 @@ class ZeroGPT extends DetectorModule {
         url: "",
         id: "ZeroGPT",
     }
-    async getHumanPerc(text: string): Promise<number|null> {
+    constructor(){
+        super()
+        this.login()
+    }
+
+    async login(){
         let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        let raw = JSON.stringify({
+            "email": PRIVATE_ZEROGPT_EMAIL,
+            "password": PRIVATE_ZEROGPT_PASSWORD,
+        });
+        let requestOptions:RequestInit  = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+        };
+
+        let response = await fetch('https://api.zerogpt.com/api/auth/login', requestOptions)
+        let data = await response.json()
+        if(!response.ok){
+            this.token = null
+        }else{
+            this.token = data.data.token
+        }
+    }
+    async getHumanPerc(text: string): Promise<number|null> {
+
+        if(this.token==null)
+            return null
+        let myHeaders = new Headers();
+        myHeaders.append("Authorization", `Bearer ${this.token}` );
         myHeaders.append("ApiKey", PRIVATE_ZEROGPT_KEY);
-        myHeaders.append("Accept", "application/json");
         myHeaders.append("Content-Type", "application/json");
 
         let raw = JSON.stringify({
@@ -126,20 +159,17 @@ class ZeroGPT extends DetectorModule {
             method: 'POST',
             headers: myHeaders,
             body: raw,
-            redirect: 'follow'
         };
 
 
         let response = await fetch('https://api.zerogpt.com/api/detect/detectText', requestOptions)
         let data = await response.json()
         if(!response.ok){
-            console.log(data)
             return null
         }else{
-            console.log("======== ZEROGPT ==============")
-            console.log(data)
-            console.log("======== ZEROGPT ==============")
-            return data.score
+            console.log("===========================")
+            console.log("zeroGPT",data)
+            return 100-data.data.fakePercentage
         }
     }
 }

@@ -34,7 +34,10 @@
 		hasDetectorFinished = false
 		hasDetectorStarted = true
         detectorResult = await detectText(detector, text)
+		console.log("========")
 		console.log("End Detector", detector.name)
+		console.log("results",detectorResult)
+		console.log("========")
 		hasDetectorFinished = true
     }
 
@@ -60,11 +63,11 @@
 			</div>
 		{:else if hasDetectorFinished && !isDetectorResponseValid}
 			<span class="text-yellow-400">Error</span>
-		{:else if hasDetectorFinished && isDetectorResponseValid && detectorResult}
+		{:else if hasDetectorFinished && isDetectorResponseValid && detectorResult!=null}
 			{#if detectorResult>50}
-				<p class="text-green-500">%{detectorResult}</p>
+				<p class="text-green-500">%{detectorResult.toFixed(1)} Human</p>
 			{:else}
-				<p class="text-red-500">%{detectorResult}</p>
+				<p class="text-red-500">%{detectorResult.toFixed(1)} Human</p>
 			{/if}
 		{:else}
 			<span class="text-yellow-400">Error</span>

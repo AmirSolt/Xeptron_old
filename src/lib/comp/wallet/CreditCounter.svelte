@@ -5,7 +5,7 @@
     let credits:number|null=null
     $: if(profile!=null) {
         credits = profile.wallet.pos_credit - profile.wallet.neg_credit;
-        credits = parseFloat(credits.toFixed(2)) 
+        credits = parseFloat(credits.toFixed(1)) 
     }
 
 
