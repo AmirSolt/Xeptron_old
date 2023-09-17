@@ -27,7 +27,9 @@
     
     
 
-    <p class="card h-96 w-full">
-        {response}
-    </p>
+    <div class="card h-96 w-full overflow-y-scroll">
+        <p>
+            {response}
+        </p>
+    </div>
 </div>

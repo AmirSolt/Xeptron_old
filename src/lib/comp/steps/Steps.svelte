@@ -14,7 +14,7 @@
 
 				<div class="alert-message" data-toc-ignore>
 					<h2  data-toc-ignore>Sign up and Get $20 in credit</h2>
-					<span> Only registered users can interact with the tools.</span>
+					<span> Only registered users can use the tools.</span>
 				</div>
 				<div class="alert-actions">
 					<a href="/auth/signup" class="btn variant-filled-warning">Sign up</a>
@@ -25,7 +25,7 @@
 	{/if}
 
 	{#if needsPersonality && profile != null}
-		{#if Object.values(profile.personality).includes(null)}
+		{#if profile.personality.use_case==null || profile.personality.writing_style==null}
 			<div>
 				<aside class="alert variant-ghost-warning">
                     <AlertTriangle  size="50" />

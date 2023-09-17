@@ -24,37 +24,35 @@
 <Steps {profile} needsPersonality={false} session={data.session} />
 
 
-<div class="card flex flex-col justify-center items-center gap-4 p-4 text-center w-full">
+<div class="card flex flex-col justify-center items-start gap-4 text-center">
+    <h1>Wallet</h1>
 
-
-    <div class="flex flex-col justify-center items-center gap-4 w-full">
-        <Wallet color="#15CE48" size={150} />
-    
-        <div >
-            <h1>
-                Credits: <span class="text-4xl text-surface-500">{credits}</span>
-            </h1>
+    <div class="flex flex-col justify-center items-start gap-6 text-center">
+        <div class="flex flex-col justify-center items-start gap-4 text-center">
+            <div >
+                <h3>
+                    Credits: <span class="text-3xl text-primary-500">{credits}</span>
+                </h3>
+            </div>
+            
+        
+            <a class="btn variant-filled-primary " href="/payment/pricing">
+                <p>
+                    Add Credit
+                </p>
+            </a>
         </div>
-        
-    
-        <a class="btn variant-filled-primary w-full md:w-1/2" href="/payment/pricing">
-            <h2>
-                Add Credit
-            </h2>
+
+        <a class="btn variant-ringed" href="/payment/pricing">
+            <p>
+                Ask for a refund
+            </p>
         </a>
-        
-    </div>
 
-
-    <a class="btn variant-ringed" href="/payment/pricing">
-        <p>
-            Ask for a refund
-        </p>
-    </a>
-    
+    </div>	
 </div>
 
-<br>  
+<br>
 
 <div class="flex justify-center gap-2 text-center">
     <p>
@@ -63,6 +61,9 @@
     </p>
     
 </div>
+
+
+
 
 
 

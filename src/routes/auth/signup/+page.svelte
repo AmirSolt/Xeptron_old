@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms/client'
-    import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte'
     import { signupSchema } from '$lib/utils/schema'
     import {toastError} from '$lib/utils/toastHelper.js'
 	import SuperTextInput from '$lib/comp/superForms/SuperTextInput.svelte';

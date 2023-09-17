@@ -2,7 +2,7 @@ import { error, fail, redirect } from '@sveltejs/kit'
 import { superValidate, setError } from 'sveltekit-superforms/server'
 import { signupSchema } from '$lib/utils/schema'
 import {createStripeCustomer} from '$lib/utils/stripeHelper.server.js'
-
+import {newUserBonusCredit} from '$lib/utils/config.server.js'
 
 
 
@@ -45,6 +45,7 @@ export const actions = {
 					customer_id: customer_id,
 					first_name: first_name,
 					last_name: last_name,
+					signup_credit: newUserBonusCredit,
 				}
 			}
 		})

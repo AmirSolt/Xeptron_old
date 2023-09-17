@@ -1,5 +1,6 @@
 
 
+
 const multiplier = 10
 
 export const gpt4InputMultiPerChar = multiplier*0.008/1000
@@ -64,3 +65,7 @@ export const packages:Package[]=[
         ]
     },
 ]
+
+
+
+export const newUserBonusCredit:number = 20 / packages[0].pricePerCredit;
