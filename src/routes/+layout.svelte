@@ -43,7 +43,7 @@
 
 <svelte:head>
 	<title>Xeptron</title>
-	<link rel="icon" href="/logo.png" />
+	<link rel="icon" href="/favicon.png" />
 </svelte:head>
 <!-- App Shell -->
 <AppShell>
