@@ -15,7 +15,7 @@ export interface Database {
           first_name: string | null
           id: string
           last_name: string | null
-          use_case: string | null
+          occupation: string | null
           writing_style: string | null
         }
         Insert: {
@@ -23,7 +23,7 @@ export interface Database {
           first_name?: string | null
           id: string
           last_name?: string | null
-          use_case?: string | null
+          occupation?: string | null
           writing_style?: string | null
         }
         Update: {
@@ -31,7 +31,7 @@ export interface Database {
           first_name?: string | null
           id?: string
           last_name?: string | null
-          use_case?: string | null
+          occupation?: string | null
           writing_style?: string | null
         }
         Relationships: [

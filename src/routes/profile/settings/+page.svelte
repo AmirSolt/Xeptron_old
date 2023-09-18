@@ -34,7 +34,7 @@
 
 <div class="space-y-8">
 
-	<Steps {profile} needsPersonality={false} session={data.session} />
+	<Steps {profile} session={data.session} />
 	
 	
 	<div class="card flex flex-col justify-center items-start gap-4 text-center">

@@ -1,5 +1,6 @@
 
 
+
 interface Profile{
     wallet:Wallet
     personality:Personality
@@ -8,8 +9,7 @@ interface Profile{
 interface Personality{
     first_name:string|null
     last_name:string|null
-    writing_style:string|null
-    use_case:string|null
+    occupation:Occupations|null
 }
 
 interface Wallet{

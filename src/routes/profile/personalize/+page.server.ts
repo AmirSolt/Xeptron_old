@@ -34,8 +34,7 @@ export const actions = {
 		const personality:Personality = {
 			first_name:form.data.first_name??null,
 			last_name:form.data.last_name??null,
-			use_case:form.data.use_case??null,
-			writing_style:form.data.writing_style??null,
+			occupation:form.data.occupation??null,
 		}
 		await updatePersonality(session, personality)
 

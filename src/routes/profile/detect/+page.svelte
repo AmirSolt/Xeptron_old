@@ -31,7 +31,7 @@
 <div class="space-y-8">
 
 	<CreditCounter {profile} />
-	<Steps {profile} needsPersonality={false} session={data.session} />
+	<Steps {profile} session={data.session} />
 	
 	<div>
 		<div class="flex flex-col justify-center items-start gap-2 w-full">

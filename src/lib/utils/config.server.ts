@@ -1,14 +1,15 @@
 
 
 
-const multiplier = 10
+const multiplier = 22
+const creditValue = 1.2 // in USD
 
-export const gpt4InputMultiPerChar = multiplier*0.008/1000
-export const gpt4OutputMultiPerChar = multiplier*0.015/1000
-export const saplingMultiPerChar = multiplier*0.005/1000
-export const originalityMultiPerChar = multiplier*0.025/1000
-export const zerogptMultiPerChar = multiplier*0.0085/1000
-export const detectorMultiPerChar = saplingMultiPerChar+originalityMultiPerChar+zerogptMultiPerChar
+export const gpt4InputMultiPerChar = multiplier*0.008/1000/creditValue
+export const gpt4OutputMultiPerChar = multiplier*0.015/1000/creditValue
+export const saplingMultiPerChar = multiplier*0.005/1000/creditValue
+export const originalityMultiPerChar = multiplier*0.025/1000/creditValue
+export const zerogptMultiPerChar = multiplier*0.0085/1000/creditValue
+export const detectorMultiPerChar = (saplingMultiPerChar+originalityMultiPerChar+zerogptMultiPerChar)
 
 
 export const packages:Package[]=[
@@ -20,7 +21,7 @@ export const packages:Package[]=[
         currencySymbol:"$",
         currency:"USD",
         bullets:[
-            "≈2 blog posts or 10,000 char",
+            "≈10,000 char",
             "Cheapest overall option",
             "Best for beginners",
         ]
@@ -33,7 +34,7 @@ export const packages:Package[]=[
         currencySymbol:"$",
         currency:"USD",
         bullets:[
-            "≈5 blog posts or 25,000 char",
+            "≈25,000 char",
             "Most popular with solo writer",
             "Best for new professionals",
         ]
@@ -46,7 +47,7 @@ export const packages:Package[]=[
         currencySymbol:"$",
         currency:"USD",
         bullets:[
-            "≈24 blog posts or 120,000 char",
+            "≈120,000 char",
             "Economy option",
             "Best for small businesses",
         ]
@@ -59,7 +60,7 @@ export const packages:Package[]=[
         currencySymbol:"$",
         currency:"USD",
         bullets:[
-            "≈100 blog posts or 500,000 char",
+            "≈500,000 char",
             "Best value per credit",
             "Best for enterprise",
         ]

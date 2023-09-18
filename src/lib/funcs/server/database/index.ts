@@ -26,7 +26,7 @@ export async function fetchProfile(session:Session|null):Promise<Profile|null>{
             .from('profiles')
             .select(`
                 wallets(pos_credit,neg_credit,usage_counter),
-                personalities(writing_style, use_case, first_name, last_name)
+                personalities(occupation, first_name, last_name)
             `)
             .eq('id', session?.user.id)
             .single()
@@ -80,12 +80,6 @@ export async function updatePersonality(session:Session, personality:Personality
     if (session) {
         const { data, error: err } = await supabaseAdmin
             .from('personalities')
-            // .update({
-            //     first_name:personality.first_name,
-            //     last_name:personality.last_name,
-            //     writing_style:personality.writing_style,
-            //     use_case:personality.use_case,
-            // })
             .update(personality)
             .eq('id', session?.user.id)
             .single()

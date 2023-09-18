@@ -39,24 +39,20 @@
 				</thead>
 				<tbody>
 						<tr>
-							<td>Input Text (System)</td>
-							<td>≈{data.gpt4InputMultiPerChar*1000} credit/1k char</td>
-						</tr>
-						<tr>
 							<td>Input Text (Prompt)</td>
-							<td>≈{data.gpt4InputMultiPerChar*1000} credit/1k char</td>
+							<td>≈{(data.gpt4InputMultiPerChar*1000).toFixed(2)} credit/1k char</td>
 						</tr>
 						<tr>
 							<td>Output Text</td>
-							<td>≈{data.gpt4OutputMultiPerChar*1000} credit/1k char</td>
+							<td>≈{(data.gpt4OutputMultiPerChar*1000).toFixed(2)} credit/1k char</td>
 						</tr>
 						<tr>
 							<td>Detector</td>
-							<td>≈{data.detectorMultiPerChar*1000} credit/1k char</td>
+							<td>≈{(data.detectorMultiPerChar*1000).toFixed(2)} credit/1k char</td>
 						</tr>
 						<tr>
-							<td>Generating a blog post (5000 char)</td>
-							<td>≈{data.gpt4InputMultiPerChar*1000 + (5000*data.gpt4OutputMultiPerChar) + (5000*data.detectorMultiPerChar)} credit</td>
+							<td>Generating 1000 characters + detection check </td>
+							<td>≈{(data.gpt4InputMultiPerChar*200 + (1000*data.gpt4OutputMultiPerChar) + (1000*data.detectorMultiPerChar)).toFixed(2)} credit</td>
 						</tr>
 
 				</tbody>
@@ -98,7 +94,7 @@
 					What is your refund policy?
 				</svelte:fragment>
 				<svelte:fragment slot="content">
-					You can get a refund within 60 days of purchase.
+					You can request a refund within 60 days of purchase.
 					Email our support: <span class="badge variant-ghost">support@xeptron.com</span>
 				</svelte:fragment>
 			</AccordionItem>

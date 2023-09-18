@@ -21,7 +21,7 @@
     </div>
 
     <p class="text-md">
-        * These are rough estimations: <span class="badge variant-ghost">1 credit ≈ 1000 char</span> and <span class="badge variant-ghost">blog post ≈ 5000 char</span>   
+        * These are rough estimations: <span class="badge variant-ghost">1 credit ≈ 1000 char</span>   
     </p>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">

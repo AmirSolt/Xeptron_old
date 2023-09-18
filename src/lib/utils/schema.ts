@@ -1,6 +1,5 @@
 import { z } from 'zod'
-import {deletePromptConst} from '$lib/utils/config'
-
+import {deletePromptConst, Occupations} from '$lib/utils/config'
 
 
 
@@ -45,8 +44,7 @@ export const resetPassSchema = z.object({
 export const personalizationSchema = z.object({
 	first_name: z.string().optional(),
 	last_name: z.string().optional(),
-	writing_style: z.string().min(4).optional(),
-	use_case: z.string().min(4).optional(),
+	occupation: z.nativeEnum(Occupations).optional(),
 })
 
 export const deleteUserSchema = z.object({

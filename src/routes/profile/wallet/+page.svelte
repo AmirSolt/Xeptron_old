@@ -21,7 +21,7 @@
 {:else}
 
 
-<Steps {profile} needsPersonality={false} session={data.session} />
+<Steps {profile} session={data.session} />
 
 
 <div class="card flex flex-col justify-center items-start gap-4 text-center">
@@ -43,7 +43,7 @@
             </a>
         </div>
 
-        <a class="btn variant-ringed" href="/payment/pricing">
+        <a class="btn variant-ringed" href="mailto:support@xeptron.com">
             <p>
                 Ask for a refund
             </p>
@@ -57,7 +57,7 @@
 <div class="flex justify-center gap-2 text-center">
     <p>
         Customer Service Email:
-        name@email.com
+        support@xeptron.com
     </p>
     
 </div>
