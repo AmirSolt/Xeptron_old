@@ -1,5 +1,5 @@
 import { decrementCredit } from '$lib/funcs/server/database/index'
-import { gpt4InputMultiPerChar, gpt4OutputMultiPerChar } from '$lib/utils/config.server.js'
+import { chatInputCreditPerChar, chatOutCreditPerChar } from '$lib/utils/config.server.js'
 import type { Session } from '@supabase/supabase-js';
 
 
@@ -17,9 +17,9 @@ function creditCounter(session: Session, stream: ReadableStream, systemPrompt:st
     reader.read().then(
         function processText({ done, value }): any {
             if (done) {
-                let usedCredit: number = charsReceived * gpt4OutputMultiPerChar
-                usedCredit += systemPrompt.length * gpt4InputMultiPerChar
-                usedCredit += userPrompt.length * gpt4InputMultiPerChar
+                let usedCredit: number = charsReceived * chatOutCreditPerChar
+                usedCredit += systemPrompt.length * chatInputCreditPerChar
+                usedCredit += userPrompt.length * chatInputCreditPerChar
                 decrementCredit(session, usedCredit)
                 return;
             }

@@ -33,19 +33,6 @@
 				console.log("data:profile invalidated")
 			})
 		}
-		// setTimeout(function(){
-		// 	updateOnUsage()
-		// 	.then((wallet) => {
-		// 		if(profile!=null){
-		// 			console.log("wallet was updated")
-		// 			profile.wallet = wallet;
-		// 		}
-		// 	})
-		// 	.catch((err) => {
-		// 		console.error(err);
-		// 	});
-		// }, 1000);
-		
 	}
 	function errorCallback(error: Error) {
 		toastError(error.message, toastStore);

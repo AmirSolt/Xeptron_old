@@ -1,5 +1,5 @@
 
-import { originalityMultiPerChar, saplingMultiPerChar, zerogptMultiPerChar } from '$lib/utils/config.server.js'
+import { originalityCreditPerChar, saplingCreditPerChar, zerogptCreditPerChar } from '$lib/utils/config.server.js'
 import { decrementCredit } from '$lib/funcs/server/database/index'
 import type { Session } from '@supabase/supabase-js'
 import {PRIVATE_ORIGINALITY_KEY, PRIVATE_SAPLING_KEY, PRIVATE_ZEROGPT_KEY, PRIVATE_ZEROGPT_EMAIL, PRIVATE_ZEROGPT_PASSWORD} from '$env/static/private'
@@ -28,7 +28,7 @@ class Originality extends DetectorModule {
         url: "",
         id: "Originality",
     }
-    creditMulti: number = originalityMultiPerChar
+    creditMulti: number = originalityCreditPerChar
     async getHumanPerc(text: string): Promise<number|null> {
 
 
@@ -66,7 +66,7 @@ class Originality extends DetectorModule {
 }
 
 class Sapling extends DetectorModule {
-    creditMulti: number = saplingMultiPerChar
+    creditMulti: number = saplingCreditPerChar
     detector: Detector = {
         pfpSrc: "/sapling.png",
         name: "Sapling",
@@ -108,7 +108,7 @@ class Sapling extends DetectorModule {
 
 class ZeroGPT extends DetectorModule {
     token:string|null=null
-    creditMulti: number = zerogptMultiPerChar
+    creditMulti: number = zerogptCreditPerChar
     detector: Detector = {
         pfpSrc: "/zerogpt.png",
         name: "ZeroGPT",

@@ -3,13 +3,13 @@ import {PUBLIC_DOMAIN} from '$env/static/public';
 import { setError, superValidate } from 'sveltekit-superforms/server'
 import { pricingSchema } from '$lib/utils/schema'
 import {stripe} from '$lib/utils/stripeHelper.server.js'
-import {packages, gpt4InputMultiPerChar, gpt4OutputMultiPerChar, detectorMultiPerChar} from '$lib/utils/config.server.js'
+import {packages, chatInputCreditPerChar, chatOutCreditPerChar, detectorCreditPerChar, charPerCredit} from '$lib/utils/config.server.js'
 
 
 
 export const load = async (event) => {
     const form = await superValidate(event, pricingSchema)
-    return { form, packages, gpt4InputMultiPerChar, gpt4OutputMultiPerChar, detectorMultiPerChar}
+    return { form, packages, chatInputCreditPerChar, chatOutCreditPerChar, detectorCreditPerChar, charPerCredit}
 }
 
 

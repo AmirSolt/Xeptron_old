@@ -19,8 +19,24 @@
 </script>
 
 <div class="space-y-24">
-
-	<PricingTable  {form} packages={data.packages}/>
+	<div class="flex flex-col justify-center gap-8">
+    
+		<div class="flex flex-col justify-center text-center gap-4">
+			<h2 class="text-4xl md:text-5xl font-extrabold ">
+				Xeptron is your persnal writer
+			</h2>
+			<p class="text-lg">
+				For the amount of time you save, Xeptron is worth it.
+			</p>
+			
+		</div>
+	
+		<p class="text-md">
+			* These are rough estimations: <span class="badge variant-ghost">1 credit ≈ {data.charPerCredit} char</span>   
+		</p>
+		
+		<PricingTable  {form} packages={data.packages}/>
+	</div>
 	
 	<div class="space-y-4">
 		<h1>
@@ -39,20 +55,20 @@
 				</thead>
 				<tbody>
 						<tr>
-							<td>Input Text (Prompt)</td>
-							<td>≈{(data.gpt4InputMultiPerChar*1000).toFixed(2)} credit/1k char</td>
+							<td>Input Text</td>
+							<td>≈{(data.chatInputCreditPerChar*1000).toFixed(2)} credit/1k char</td>
 						</tr>
 						<tr>
 							<td>Output Text</td>
-							<td>≈{(data.gpt4OutputMultiPerChar*1000).toFixed(2)} credit/1k char</td>
+							<td>≈{(data.chatOutCreditPerChar*1000).toFixed(2)} credit/1k char</td>
 						</tr>
 						<tr>
 							<td>Detector</td>
-							<td>≈{(data.detectorMultiPerChar*1000).toFixed(2)} credit/1k char</td>
+							<td>≈{(data.detectorCreditPerChar*1000).toFixed(2)} credit/1k char</td>
 						</tr>
 						<tr>
 							<td>Generating 1000 characters + detection check </td>
-							<td>≈{(data.gpt4InputMultiPerChar*200 + (1000*data.gpt4OutputMultiPerChar) + (1000*data.detectorMultiPerChar)).toFixed(2)} credit</td>
+							<td>≈{(data.chatInputCreditPerChar*200 + (1000*data.chatOutCreditPerChar) + (1000*data.detectorCreditPerChar)).toFixed(2)} credit</td>
 						</tr>
 
 				</tbody>

@@ -50,6 +50,7 @@ export const actions = {
 			}
 		})
 		if(signupError!=null){
+			console.log(signupError.message)
 			throw error(signupError.status??500, {
 				message: signupError.message,
 			})

@@ -1,27 +1,29 @@
 
 
+// in USD
+const multiplierProfitMargin = 22
+const creditValue = 0.12 
+const newUserBonusDollars = 20
+export const charPerCredit = 100
 
-const multiplier = 22
-const creditValue = 1.2 // in USD
-
-export const gpt4InputMultiPerChar = multiplier*0.008/1000/creditValue
-export const gpt4OutputMultiPerChar = multiplier*0.015/1000/creditValue
-export const saplingMultiPerChar = multiplier*0.005/1000/creditValue
-export const originalityMultiPerChar = multiplier*0.025/1000/creditValue
-export const zerogptMultiPerChar = multiplier*0.0085/1000/creditValue
-export const detectorMultiPerChar = (saplingMultiPerChar+originalityMultiPerChar+zerogptMultiPerChar)
+export const chatInputCreditPerChar = multiplierProfitMargin*0.008/1000/creditValue
+export const chatOutCreditPerChar = multiplierProfitMargin*0.015/1000/creditValue
+export const saplingCreditPerChar = multiplierProfitMargin*0.005/1000/creditValue
+export const originalityCreditPerChar = multiplierProfitMargin*0.025/1000/creditValue
+export const zerogptCreditPerChar = multiplierProfitMargin*0.0085/1000/creditValue
+export const detectorCreditPerChar = (saplingCreditPerChar+originalityCreditPerChar+zerogptCreditPerChar)
 
 
 export const packages:Package[]=[
     {
         priceId:"1Nod3JJjINJkyPqosxgKgB1s",
         name:"Basic",
-        credits:10,
-        pricePerCredit:1.20,
+        credits:100,
+        pricePerCredit:creditValue,
         currencySymbol:"$",
         currency:"USD",
         bullets:[
-            "≈10,000 char",
+            `Estimated 10,000 char`,
             "Cheapest overall option",
             "Best for beginners",
         ]
@@ -29,12 +31,12 @@ export const packages:Package[]=[
     {
         priceId:"213d12e12e12esdas",
         name:"Pro",
-        credits:25,
-        pricePerCredit:0.98,
+        credits:250,
+        pricePerCredit:creditValue*0.8,
         currencySymbol:"$",
         currency:"USD",
         bullets:[
-            "≈25,000 char",
+            `Estimated 25,000 char`,
             "Most popular with solo writer",
             "Best for new professionals",
         ]
@@ -42,12 +44,12 @@ export const packages:Package[]=[
     {
         priceId:"1Nod3qw1212eqw12eqwdsKgB1s",
         name:"Business",
-        credits:120,
-        pricePerCredit:0.88,
+        credits:1200,
+        pricePerCredit:creditValue*0.73,
         currencySymbol:"$",
         currency:"USD",
         bullets:[
-            "≈120,000 char",
+            `Estimated 120,000 char`,
             "Economy option",
             "Best for small businesses",
         ]
@@ -55,12 +57,12 @@ export const packages:Package[]=[
     {
         priceId:"1Nod3JJjd12ed12ePqosxgKgB1s",
         name:"Enterprise",
-        credits:500,
-        pricePerCredit:0.72,
+        credits:5000,
+        pricePerCredit:creditValue*0.6,
         currencySymbol:"$",
         currency:"USD",
         bullets:[
-            "≈500,000 char",
+            `Estimated 500,000 char`,
             "Best value per credit",
             "Best for enterprise",
         ]
@@ -69,4 +71,4 @@ export const packages:Package[]=[
 
 
 
-export const newUserBonusCredit:number = 20 / packages[0].pricePerCredit;
+export const newUserBonusCredit:number = newUserBonusDollars / packages[0].pricePerCredit;

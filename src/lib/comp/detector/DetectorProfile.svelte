@@ -62,7 +62,7 @@
 				<ProgressRadial width="w-6" stroke={100} />
 			</div>
 		{:else if hasDetectorFinished && !isDetectorResponseValid}
-			<span class="text-yellow-400">Error</span>
+			<span class="text-yellow-400">Error, try again.</span>
 		{:else if hasDetectorFinished && isDetectorResponseValid && detectorResult!=null}
 			{#if detectorResult>50}
 				<p class="text-green-500">%{detectorResult.toFixed(1)} Human</p>
