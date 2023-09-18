@@ -98,7 +98,7 @@
 					What is your refund policy?
 				</svelte:fragment>
 				<svelte:fragment slot="content">
-					You can get a refund within 60 days of purchase or if the generated text is detected by a credible AI text detector.
+					You can get a refund within 60 days of purchase.
 					Email our support: <span class="badge variant-ghost">support@xeptron.com</span>
 				</svelte:fragment>
 			</AccordionItem>

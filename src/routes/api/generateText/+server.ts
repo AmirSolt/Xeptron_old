@@ -3,7 +3,7 @@ export const config = {
 };
 
 // import * as AI from '$lib/funcs/server/AI/index'
-import {getSystemPrompt} from '$lib/funcs/server/generator/index.js'
+import {getSystemPromptGenerator} from '$lib/funcs/server/openai/systemPrompt.js'
 import {getChatStream} from '$lib/funcs/server/openai/index.js'
 import { json, error } from '@sveltejs/kit';
 import { StreamingTextResponse } from 'ai';
@@ -12,6 +12,7 @@ import {creditControl} from '$lib/funcs/server/streamControler/index.js'
 
 export const POST = async ({request, locals:{getSession}}) => {
 
+    try{
     const req = await request.json();
     const userPrompt = req.prompt
     const personality:Personality|null = req.personality
@@ -40,11 +41,14 @@ export const POST = async ({request, locals:{getSession}}) => {
 
 
 
-    const systemPrompt = await getSystemPrompt(personality)
+    const systemPrompt = await getSystemPromptGenerator(personality)
     let stream = await getChatStream(systemPrompt, userPrompt)
     if(stream == null){
         return json({success:false, errorMessage:"Generation has failed"})
     }
     stream = creditControl(session, stream, systemPrompt, userPrompt)
     return new StreamingTextResponse(stream);
+    }catch(err){
+        return json({success:false, errorMessage:"Generation has failed"})
+    }
 }

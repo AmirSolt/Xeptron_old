@@ -7,9 +7,9 @@ const openai = new OpenAI({
 });
 
 
-const defaultModel = "gpt-3.5-turbo"
-const defaultTemp = 0.6
-const maxTokens = 300
+const defaultModel = "gpt-3.5-turbo-16k"
+const defaultTemp = 1
+const maxTokens = 2000
 
 
 

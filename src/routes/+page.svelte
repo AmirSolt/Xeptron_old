@@ -11,7 +11,6 @@
         "Xeptron is designed to mimic your unique writing style.",
         "It can generate text that appears as if it was written by you.",
         "We verify your text using the most advanced 'AI text detectors' available.",
-        "If it doesn't pass the detection, you will get a refund.",
         "No credit card required.",
         "For maximum privacy, Input and output texts will not be saved on our database.",
     ]

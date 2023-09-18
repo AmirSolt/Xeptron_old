@@ -43,7 +43,7 @@
 
 <svelte:head>
 	<title>Xeptron</title>
-	<link rel="icon" href="/favicon.png" />
+	<link rel="icon" href="/logo.png" />
 </svelte:head>
 <!-- App Shell -->
 <AppShell>
@@ -130,7 +130,7 @@
 		<div class="flex flex-wrap justify-evenly items-center px-4 md:px-24 py-8 gap-4">
 
 			<div class="flex flex-col justify-center items-start">
-				<img src="/logo.png" alt="Logo" width="80" height="80">
+				<img src="/logo_with_bg.png" alt="Logo" width="80" height="80">
 				<p class="text-xl font-bold"> Xeptron</p>
 				<p>
 					Our goal is to enhance human abilities using AI
