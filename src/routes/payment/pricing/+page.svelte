@@ -48,8 +48,8 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th>Type</th>
-						<th>Estimated Credit</th>
+						<th>Action</th>
+						<th>Estimated Cost</th>
 				
 					</tr>
 				</thead>
@@ -63,12 +63,12 @@
 							<td>≈{(data.chatOutCreditPerChar*1000).toFixed(2)} credit/1k char</td>
 						</tr>
 						<tr>
-							<td>Detector</td>
+							<td>Detectors</td>
 							<td>≈{(data.detectorCreditPerChar*1000).toFixed(2)} credit/1k char</td>
 						</tr>
 						<tr>
-							<td>Generating 1000 characters + detection check </td>
-							<td>≈{(data.chatInputCreditPerChar*200 + (1000*data.chatOutCreditPerChar) + (1000*data.detectorCreditPerChar)).toFixed(2)} credit</td>
+							<td>Generating text + Detection check </td>
+							<td>≈{((data.chatInputCreditPerChar*0.2 + data.chatOutCreditPerChar + data.detectorCreditPerChar)*1000).toFixed(2)} credit/1k char</td>
 						</tr>
 
 				</tbody>

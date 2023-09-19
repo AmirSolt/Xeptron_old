@@ -1,17 +1,30 @@
 
 
 // in USD
-const multiplierProfitMargin = 22
-const creditValue = 0.12 
 const newUserBonusDollars = 20
-export const charPerCredit = 100
+const creditValue = 0.12 
+export const charPerCredit = 200
 
-export const chatInputCreditPerChar = multiplierProfitMargin*0.008/1000/creditValue
-export const chatOutCreditPerChar = multiplierProfitMargin*0.015/1000/creditValue
-export const saplingCreditPerChar = multiplierProfitMargin*0.005/1000/creditValue
-export const originalityCreditPerChar = multiplierProfitMargin*0.025/1000/creditValue
-export const zerogptCreditPerChar = multiplierProfitMargin*0.0085/1000/creditValue
+
+// per 1k char
+const chatInputCost = 0.008
+const chatOutCost = 0.015
+const saplingCost = 0.005
+const originalityCost = 0.025
+const zerogptCost = 0.0085
+const detectorCost = (saplingCost+originalityCost+zerogptCost)
+const perCharCost = (chatInputCost*0.1 + chatOutCost + detectorCost)/1000
+const costPerCredit = (perCharCost*charPerCredit)
+const profitMargin = (creditValue - costPerCredit ) /creditValue
+const profitMulti = 1/(1-profitMargin)
+
+export const chatInputCreditPerChar = ((chatInputCost/creditValue)/1000)*profitMulti
+export const chatOutCreditPerChar = ((chatOutCost/creditValue)/1000)*profitMulti
+export const saplingCreditPerChar = ((saplingCost/creditValue)/1000)*profitMulti
+export const originalityCreditPerChar = ((originalityCost/creditValue)/1000)*profitMulti
+export const zerogptCreditPerChar = ((zerogptCost/creditValue)/1000)*profitMulti
 export const detectorCreditPerChar = (saplingCreditPerChar+originalityCreditPerChar+zerogptCreditPerChar)
+
 
 
 export const packages:Package[]=[
@@ -23,7 +36,7 @@ export const packages:Package[]=[
         currencySymbol:"$",
         currency:"USD",
         bullets:[
-            `Estimated 10,000 char`,
+            `Estimated ${100*charPerCredit} char`,
             "Cheapest overall option",
             "Best for beginners",
         ]
@@ -36,7 +49,7 @@ export const packages:Package[]=[
         currencySymbol:"$",
         currency:"USD",
         bullets:[
-            `Estimated 25,000 char`,
+            `Estimated ${250*charPerCredit} char`,
             "Most popular with solo writer",
             "Best for new professionals",
         ]
@@ -49,7 +62,7 @@ export const packages:Package[]=[
         currencySymbol:"$",
         currency:"USD",
         bullets:[
-            `Estimated 120,000 char`,
+            `Estimated ${1200*charPerCredit} char`,
             "Economy option",
             "Best for small businesses",
         ]
@@ -62,7 +75,7 @@ export const packages:Package[]=[
         currencySymbol:"$",
         currency:"USD",
         bullets:[
-            `Estimated 500,000 char`,
+            `Estimated ${5000*charPerCredit} char`,
             "Best value per credit",
             "Best for enterprise",
         ]
