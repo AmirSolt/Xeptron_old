@@ -16,7 +16,7 @@ export const load = async (event) => {
 export const actions = {
 	default: async (event) => {
 		const form = await superValidate(event, tokenSchema)
-		console.log(form)
+		
 		if (!form.valid) {
 			return fail(400, { form })
 		}
@@ -24,7 +24,7 @@ export const actions = {
         
         const { data: tokenData, error: tokenError } = await event.locals.supabaseAuthServer.auth.verifyOtp({
             email: form.data.email, token: form.data.token, type: 'email'})
-        console.log(tokenError)
+        
 		if (tokenError != null) {
 			throw error(tokenError.status ?? 500, {
 				message: tokenError.message,

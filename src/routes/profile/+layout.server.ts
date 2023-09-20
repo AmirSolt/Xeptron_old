@@ -10,7 +10,7 @@ export const load = async ({ depends, locals: { getSession } }) => {
 	
 	const profile: Profile | null = await fetchProfile(session)
 	
-	console.log("Server Data profile fetched", profile?.wallet)
+	
 
 	return {
 		profile,

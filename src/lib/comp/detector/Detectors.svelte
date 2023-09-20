@@ -8,9 +8,9 @@
     let detectorComps:any[] = []
 
     export async function callDetectors(){
-        console.log("===== start detectors====")
+        
         await Promise.allSettled(detectorComps.map(detectorComp=>detectorComp.startDetection()))
-        console.log("All detectors settled")
+        
     }
 
 </script>

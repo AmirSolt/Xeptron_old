@@ -17,9 +17,9 @@
 	function detectAll() {
 		if (detectorsComponent != null) {
 			detectorsComponent.callDetectors().then(() => {
-				console.log("detectors were called")
+				
 				invalidate("data:profile")
-				console.log("data:profile invalidated")
+				
 			})
 		}
 	}

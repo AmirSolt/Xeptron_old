@@ -22,7 +22,7 @@ export const actions = {
 
 
 		const form = await superValidate(event, signupSchema)
-        console.log(form)
+        
 		if (!form.valid) {
 			return fail(400, { form })
 		}
@@ -50,7 +50,7 @@ export const actions = {
 			}
 		})
 		if(signupError!=null){
-			console.log(signupError.message)
+			
 			throw error(signupError.status??500, {
 				message: signupError.message,
 			})

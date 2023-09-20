@@ -16,7 +16,7 @@ export const load = async (event) => {
 export const actions = {
 	default: async (event) => {
 
-		console.log("====")
+		
         const session = await event.locals.getSession()
         if (!session) {
             throw redirect(303, "/auth/signup");
@@ -27,11 +27,11 @@ export const actions = {
 			return fail(400, { form })
 		}
 
-        console.log(form)
+        
 
 
         const chosenPackage:Package|undefined = packages.find(dpackage=>dpackage.priceId === form.data.priceId)
-        console.log(chosenPackage)
+        
 
         if (chosenPackage == null) {
 			return fail(400, { form })
@@ -56,7 +56,7 @@ export const actions = {
             customer:session.user.user_metadata["customer_id"],
         });
 
-        console.log(checkoutSession)
+        
 
         if (checkoutSession.url==null) {
             throw error(400, {

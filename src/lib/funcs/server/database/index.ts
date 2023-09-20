@@ -56,7 +56,7 @@ export async function fetchWallet(session:Session|null):Promise<Wallet>{
             .single()
             
         if (err != null) {
-            console.log(">>>>>>",err.message)
+            
             throw error(400, {
                 message: err.message,
             })
@@ -186,7 +186,7 @@ export async function decrementCredit(session:Session, amount:number){
             .rpc('decrement_credit', { amount: amount, row_id: session?.user.id })
 
         if (err != null) {
-            console.log("===========",err.message)
+            
             throw error(400, {
                 message: err.message,
             })

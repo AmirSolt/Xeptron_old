@@ -5,10 +5,10 @@ import { resetPassSchema } from '$lib/utils/schema'
 
 
 export const load = async (event) => {
-	console.log(">>> Attempt")
+	
 	
 	const session = await event.locals.getSession()
-	console.log(session)
+	
 	if (!session) {
 		throw redirect(302, '/')
 	}
@@ -19,7 +19,7 @@ export const load = async (event) => {
 export const actions = {
 	default: async (event) => {
 		const form = await superValidate(event, resetPassSchema)
-		console.log(form)
+		
 		if (!form.valid) {
 			return fail(400, { form })
 		}

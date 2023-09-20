@@ -20,12 +20,12 @@
 	});
 
 	onMount(() => {
-        console.log(">>>",$tokenConfirmEvent)
+        
 
 		if($tokenConfirmEvent!=null){
 			$form.email = $tokenConfirmEvent.email ?? undefined;
 			$form.redirectPath = $tokenConfirmEvent.redirectPath ?? undefined;
-            console.log(">?>>",$form)
+            
 		}
 	});
 

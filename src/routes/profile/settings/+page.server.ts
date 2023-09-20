@@ -22,7 +22,7 @@ export const actions = {
         }
 
         const form = await superValidate(event, deleteUserSchema)
-        console.log(form)
+        
         if (!form.valid) {
             return fail(400, { form })
         }

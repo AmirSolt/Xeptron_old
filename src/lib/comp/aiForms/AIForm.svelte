@@ -13,8 +13,6 @@
 	export let aiTextForm: AITextForm;
 	export let detectorsComponent: any;
 	
-	$: console.log("AIforms", profile?.wallet)
-
 	// =====================================
 	async function onResponseCallback(res: Response) {
 		if (!res.ok) {
@@ -28,9 +26,9 @@
 		aiTextForm.isStreamingOver = true;
 		if (detectorsComponent != null) {
 			detectorsComponent.callDetectors().then(() => {
-				console.log("detectors were called")
+				
 				invalidate("data:profile")
-				console.log("data:profile invalidated")
+				
 			})
 		}
 	}

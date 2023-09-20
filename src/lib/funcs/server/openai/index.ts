@@ -14,9 +14,9 @@ const defaultTemp = 1
 
 
 export async function getChatStream(systemPrompt: string, userPrompt: string) {
-  console.log("=========================")
+  
   let response = await createChat(systemPrompt, userPrompt)
-  console.log(">>>>>>>",response)
+  
   if (response == null) return null
   return OpenAIStream(response)
 }
@@ -57,7 +57,7 @@ async function getOpenAIModeration(messages: OpenAI.Chat.Completions.CreateChatC
   })
   if (!moderationRes.ok) {
     const err = await moderationRes.json()
-    console.log(`Moderation req failed ${err.error.message}`)
+    
     return false
   }
 
@@ -65,7 +65,7 @@ async function getOpenAIModeration(messages: OpenAI.Chat.Completions.CreateChatC
   const [results] = moderationData.results
 
   if (results.flagged) {
-    console.log('Query flagged by openai')
+    
     return false
   }
 

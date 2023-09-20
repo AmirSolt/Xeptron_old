@@ -34,10 +34,10 @@
 		hasDetectorFinished = false
 		hasDetectorStarted = true
         detectorResult = await detectText(detector, text)
-		console.log("========")
-		console.log("End Detector", detector.name)
-		console.log("results",detectorResult)
-		console.log("========")
+		
+		
+		
+		
 		hasDetectorFinished = true
     }
 

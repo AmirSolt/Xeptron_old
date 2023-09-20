@@ -53,11 +53,13 @@ class Originality extends DetectorModule {
 
         let response = await fetch("https://api.originality.ai/api/v1/scan/ai", requestOptions)
         let data = await response.json()
+        console.log("================")
+        console.log("Originality")
+        console.log(data)
+        console.log("================")
         if(!response.ok){
             return null
         }else{
-            console.log("===========================")
-            console.log("Originality",data)
             const humanPercValue = data.score.original*100
             return humanPercValue
         }
@@ -88,18 +90,15 @@ class Sapling extends DetectorModule {
             headers: myHeaders,
             body: raw,
         };
-
-        console.log(requestOptions)
-
         let response = await fetch('https://api.sapling.ai/api/v1/aidetect', requestOptions)
         let data = await response.json()
+        console.log("================")
+        console.log("Sapling")
+        console.log(data)
+        console.log("================")
         if(!response.ok){
-            console.log("===========================")
-            console.log("sapling",data)
             return null
         }else{
-            console.log("===========================")
-            console.log("sapling",data)
             return (1 - data.score)*100
         }
 
@@ -164,11 +163,13 @@ class ZeroGPT extends DetectorModule {
 
         let response = await fetch('https://api.zerogpt.com/api/detect/detectText', requestOptions)
         let data = await response.json()
+        console.log("================")
+        console.log("ZERO GPT")
+        console.log(data)
+        console.log("================")
         if(!response.ok){
             return null
         }else{
-            console.log("===========================")
-            console.log("zeroGPT",data)
             return 100-data.data.fakePercentage
         }
     }
@@ -199,7 +200,7 @@ export async function detectText(session: Session, id: string, text: string): Pr
     try{
         humanPerc = await detectorModule.getHumanPerc(text)
     }catch (err) {
-        console.log(">> Detector Processing Error:",err);
+        ;
     }
     if (humanPerc == null || humanPerc < 0) {
         return {
