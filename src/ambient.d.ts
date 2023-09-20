@@ -50,3 +50,8 @@ interface Package{
     currency:string
     bullets:string[]
 }
+
+interface TokenConfirmEvent{
+    email:string
+    redirectPath:string
+}

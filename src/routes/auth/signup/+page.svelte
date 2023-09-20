@@ -4,6 +4,7 @@
     import {toastError} from '$lib/utils/toastHelper.js'
 	import SuperTextInput from '$lib/comp/superForms/SuperTextInput.svelte';
 	import SuperEmail from '$lib/comp/superForms/SuperEmail.svelte';
+	import {tokenConfirmEvent} from '$lib/utils/authHelper.js'
 	import SuperPassword from '$lib/comp/superForms/SuperPassword.svelte';
 	import { getToastStore } from '@skeletonlabs/skeleton';
 	let toastStore = getToastStore()
@@ -15,6 +16,13 @@
 		taintedMessage:null
 	})
 
+
+	$:if($form.email){
+		tokenConfirmEvent.set({
+			email:$form.email,
+			redirectPath:"/",
+		})
+	}
 
 </script>
 

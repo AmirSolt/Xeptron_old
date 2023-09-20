@@ -9,20 +9,21 @@ const openai = new OpenAI({
 
 const defaultModel = "gpt-4"
 const defaultTemp = 1
-const maxTokens = 8000
 
 
 
 
 export async function getChatStream(systemPrompt: string, userPrompt: string) {
+  console.log("=========================")
   let response = await createChat(systemPrompt, userPrompt)
+  console.log(">>>>>>>",response)
   if (response == null) return null
   return OpenAIStream(response)
 }
 
 
 
-export async function createChat(systemPrompt: string, userPrompt: string, model: string = defaultModel, temperature: number = defaultTemp, max_tokens: number = maxTokens) {
+export async function createChat(systemPrompt: string, userPrompt: string, model: string = defaultModel, temperature: number = defaultTemp) {
   let messages: OpenAI.Chat.Completions.CreateChatCompletionRequestMessage[] = []
   messages.push({ role: "system", content: systemPrompt })
   messages.push({ role: "user", content: userPrompt })
@@ -33,7 +34,6 @@ export async function createChat(systemPrompt: string, userPrompt: string, model
     messages: messages,
     model: model,
     temperature: temperature,
-    max_tokens: max_tokens,
     stream: true,
   });
 

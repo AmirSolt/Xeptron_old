@@ -4,6 +4,7 @@
     import { initResetPassSchema } from '$lib/utils/schema'
     import {toastError} from '$lib/utils/toastHelper.js'
 	import { getToastStore } from '@skeletonlabs/skeleton';
+	import {tokenConfirmEvent} from '$lib/utils/authHelper.js'
 	import SuperEmail from '$lib/comp/superForms/SuperEmail.svelte';
 	let toastStore = getToastStore()
 
@@ -13,6 +14,14 @@
 		onError: (result)=>{toastError(result.result.error.message, toastStore)},
 		taintedMessage:null
 	})
+
+	$:if($form.email){
+		tokenConfirmEvent.set({
+			email:$form.email,
+			redirectPath:"/auth/resetPassword/update",
+		})
+	}
+
 </script>
 
 
@@ -35,7 +44,7 @@
 		</SuperEmail>
 	
 
-        <button class="btn variant-filled" type="submit">Submit</button>
+        <button class="btn variant-filled" type="submit" >Submit</button>
 
 	</form>
 </div>

@@ -23,9 +23,7 @@ export const actions = {
 
         const { data: resetPassData, error: resetPassError } = await event.locals.supabaseAuthServer.auth.resetPasswordForEmail(
             form.data.email,
-            {
-                redirectTo: `${PUBLIC_DOMAIN}/auth/resetPassword/update`
-        })
+        )
 
         if(resetPassError != null) {
             throw error(resetPassError.status ?? 500, {

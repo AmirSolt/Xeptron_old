@@ -7,7 +7,7 @@ import {deletePromptConst, Occupations} from '$lib/utils/config'
 
 
 export const signinSchema = z.object({
-	email: z.string().email(),
+	email: z.string().email().min(1),
 	password: z.string().min(4),
 })
 
@@ -15,16 +15,16 @@ export const signinSchema = z.object({
 export const signupSchema = z.object({
 	first_name: z.string().min(1).optional(),
 	last_name: z.string().min(1).optional(),
-	email: z.string().email(),
+	email: z.string().email().min(1),
 	password: z.string().min(4),
 })
 
 
 export const initResetPassSchema = z.object({
-	email: z.string().email(),
+	email: z.string().email().min(1),
 })
 export const verifyOTPSchema = z.object({
-	email: z.string().email(),
+	email: z.string().email().min(1),
 	token: z.string().min(1),
 })
 export const resetPassSchema = z.object({
@@ -60,4 +60,11 @@ export const deleteUserSchema = z.object({
 
 export const pricingSchema = z.object({
 	priceId:z.string().min(1)
+})
+
+
+export const tokenSchema = z.object({
+	email: z.string().email().min(1),
+	redirectPath: z.string().optional(),
+	token: z.string().min(2),
 })

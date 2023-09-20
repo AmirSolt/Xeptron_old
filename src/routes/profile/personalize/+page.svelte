@@ -1,4 +1,5 @@
 <script lang="ts">
+    import NoGo from "$lib/comp/tools/NoGo.svelte";
 	import Steps from '$lib/comp/steps/Steps.svelte';
 	import { superForm } from 'sveltekit-superforms/client';
 	import { personalizationSchema } from '$lib/utils/schema';
@@ -42,6 +43,17 @@
 		}
 	});
 </script>
+
+
+
+
+
+{#if profile==null}
+
+<NoGo />
+
+{:else}
+
 
 
 <div class="space-y-8">
@@ -107,3 +119,5 @@
 
 </div>
 
+
+{/if}
