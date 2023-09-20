@@ -85,7 +85,7 @@
 
 
 	<svelte:fragment slot="sidebarLeft">
-		<AppRail>
+		<AppRail regionTrail="md:pb-24">
 			<AppRailAnchor href="/profile/generate" selected={$page.url.pathname === '/profile/generate'}>
 				<svelte:fragment slot="lead"><PenLine/></svelte:fragment>
 				<span>Generate</span>
@@ -98,16 +98,17 @@
 				<svelte:fragment slot="lead"><Search/></svelte:fragment>
 				<span>Detect AI</span>
 			</AppRailAnchor>
-			<AppRailAnchor
-				href="/profile/personalize"
-				selected={$page.url.pathname === '/profile/personalize'}
-			>
-				<svelte:fragment slot="lead"><UserSquare/></svelte:fragment>
-				<span>Personalize</span>
-			</AppRailAnchor>
+			<hr>
 			<AppRailAnchor href="/profile/wallet" selected={$page.url.pathname === '/profile/wallet'}>
 				<svelte:fragment slot="lead"><Wallet/></svelte:fragment>
 				<span>Wallet</span>
+			</AppRailAnchor>
+			<AppRailAnchor
+				href="/profile/personalize"
+				selected={$page.url.pathname === '/profile/personalize'}
+				>
+				<svelte:fragment slot="lead"><UserSquare/></svelte:fragment>
+				<span>Personalize</span>
 			</AppRailAnchor>
 			<AppRailAnchor href="/profile/settings" selected={$page.url.pathname === '/profile/settings'}>
 				<svelte:fragment slot="lead"><Settings/></svelte:fragment>

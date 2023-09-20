@@ -14,7 +14,7 @@
     let aiTextForm:AITextForm = {
         url:"/api/convertText",
         title:"Humanize",
-        explanation:"AI will convert any text to your unique writing style.",
+        explanation:"Humanize AI generated content.",
         placeholder:"*paste*",
         isStreamingOver:false,
         input:"",
@@ -31,6 +31,15 @@
 <CreditCounter  {profile} />
 
 <Steps {profile} {session} />
+
+<div>
+    <aside class="alert variant-soft">
+        <div class="alert-message" data-toc-ignore>
+            <span><span class="badge variant-ghost text-lg">Generating</span> from scratch is the preferred method to bypass AI.</span>
+        </div>
+    </aside>
+</div>
+
 
 <AiForm bind:profile={profile} bind:aiTextForm={aiTextForm} {session} {detectorsComponent} />
 
