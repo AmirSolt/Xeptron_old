@@ -6,12 +6,13 @@
     export let specialText:string|null=null
     export let specialColor:string|null=null
 
-	$form.priceId = mpackage.priceId;
 </script>
 
 <!-- Pricing Card -->
 
-
+<h1>
+    {mpackage.priceId}
+</h1>
 
 <div class="card flex flex-col  text-center p-4  border-2 {specialColor ? `border-${specialColor}-500` : 'border-slate-400'}" >
 
@@ -60,7 +61,7 @@
             
     
             <form method="post" >
-                <input type="hidden" name="priceId" value={$form.priceId} />
+                <input type="hidden" name="priceId" value={mpackage.priceId} />
                 <button class="btn text-lg md:text-2x w-24 {specialColor ? `variant-filled-${specialColor}` : 'variant-filled'}" type="submit"> 
                     {mpackage.currencySymbol}{(mpackage.pricePerCredit * mpackage.credits).toFixed(1)}
                 </button>
