@@ -10,7 +10,7 @@ const openai = new OpenAI({
 const defaultModel = "gpt-4"
 const defaultTemp = 1
 const defaultFrequencyPenalty = 0.6
-const defaultPresencePenalty = 0.5
+const defaultPresencePenalty = 0.6
 
 
 
