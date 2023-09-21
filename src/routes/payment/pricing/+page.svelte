@@ -35,7 +35,7 @@
 			* These are rough estimations: <span class="badge variant-ghost">1 credit ≈ {data.charPerCredit} char</span>   
 		</p>
 		
-		<PricingTable  {form} packages={data.packages}/>
+		<PricingTable packages={data.packages}/>
 	</div>
 	
 	<div class="space-y-4">

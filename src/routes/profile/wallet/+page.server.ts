@@ -1,5 +1,4 @@
 
-
-export async function load(event) {
+export async function load() {
 
 }

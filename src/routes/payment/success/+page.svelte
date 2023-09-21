@@ -14,9 +14,6 @@
         <p>
             Please make sure you recieve the purchased credits.
         </p>
-        <p>
-            Also, check your inbox for the receipt.
-        </p>
     </div>
 
     <a href="/profile/wallet" class="btn variant-ringed" >

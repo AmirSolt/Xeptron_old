@@ -1,7 +1,6 @@
 <script lang="ts">
     import DataList from "$lib/comp/tools/DataList.svelte";
 	export let mpackage: Package;
-	export let form: any;
 
     export let specialText:string|null=null
     export let specialColor:string|null=null

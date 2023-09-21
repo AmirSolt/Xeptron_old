@@ -29,6 +29,19 @@ export const detectorCreditPerChar = (saplingCreditPerChar+originalityCreditPerC
 
 export const packages:Package[]=[
     {
+        priceId:"-1",
+        name:"TEST",
+        credits:100,
+        pricePerCredit:0.02,
+        currencySymbol:"$",
+        currency:"USD",
+        bullets:[
+            `Estimated ${100*charPerCredit} char`,
+            "Cheapest overall option",
+            "Best for beginners",
+        ]
+    },
+    {
         priceId:"0",
         name:"Basic",
         credits:100,

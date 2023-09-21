@@ -4,7 +4,7 @@
     import Steps from '$lib/comp/steps/Steps.svelte';
     
     export let data;
-    let {profile} = data
+    let {profile, session} = data
     $: ({ profile } = data);
 
     let credits:number|null=null
@@ -39,6 +39,12 @@
             <a class="btn variant-filled-primary " href="/payment/pricing">
                 <p>
                     Add Credit
+                </p>
+            </a>
+            
+            <a class="btn variant-filled-secondary " href="https://billing.stripe.com/p/login/4gw8A74cK3Uo1yM9AA?prefilled_email={session?.user?.email}">
+                <p>
+                    Portal
                 </p>
             </a>
         </div>
