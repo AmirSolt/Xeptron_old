@@ -45,7 +45,7 @@
 
 	<form method="POST" class="flex flex-col justify-center items-start gap-4 w-full" use:enhance>
 
-        <input type="hidden" name="email" bind:value={$form.email}>
+        <input type="email" name="email" bind:value={$form.email} class="hidden" autocomplete="email">
         <input type="hidden" name="redirectPath" bind:value={$form.redirectPath}>
 
         <SuperTextInput
