@@ -9,6 +9,8 @@ const openai = new OpenAI({
 
 const defaultModel = "gpt-4"
 const defaultTemp = 1
+const defaultFrequencyPenalty = 0.6
+const defaultPresencePenalty = 0.5
 
 
 
@@ -23,7 +25,7 @@ export async function getChatStream(systemPrompt: string, userPrompt: string) {
 
 
 
-export async function createChat(systemPrompt: string, userPrompt: string, model: string = defaultModel, temperature: number = defaultTemp) {
+export async function createChat(systemPrompt: string, userPrompt: string) {
   let messages: OpenAI.Chat.Completions.CreateChatCompletionRequestMessage[] = []
   messages.push({ role: "system", content: systemPrompt })
   messages.push({ role: "user", content: userPrompt })
@@ -32,8 +34,10 @@ export async function createChat(systemPrompt: string, userPrompt: string, model
 
   const completion = openai.chat.completions.create({
     messages: messages,
-    model: model,
-    temperature: temperature,
+    model: defaultModel,
+    temperature: defaultTemp,
+    frequency_penalty:defaultFrequencyPenalty,
+    presence_penalty:defaultPresencePenalty,
     stream: true,
   });
 
