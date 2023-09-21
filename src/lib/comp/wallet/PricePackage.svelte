@@ -8,11 +8,7 @@
 
 </script>
 
-<!-- Pricing Card -->
 
-<h1>
-    {mpackage.priceId}
-</h1>
 
 <div class="card flex flex-col  text-center p-4  border-2 {specialColor ? `border-${specialColor}-500` : 'border-slate-400'}" >
 
