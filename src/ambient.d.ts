@@ -42,8 +42,8 @@ interface AITextForm{
 }
 
 interface Package{
+    id:string
     name:string
-    priceId:string
     credits:number
     pricePerCredit:number
     currencySymbol:string

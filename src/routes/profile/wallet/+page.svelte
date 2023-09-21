@@ -42,11 +42,6 @@
                 </p>
             </a>
             
-            <a class="btn variant-filled-secondary " href="https://billing.stripe.com/p/login/4gw8A74cK3Uo1yM9AA?prefilled_email={session?.user?.email}">
-                <p>
-                    Portal
-                </p>
-            </a>
         </div>
 
         <a class="btn variant-ringed" href="mailto:support@xeptron.com">

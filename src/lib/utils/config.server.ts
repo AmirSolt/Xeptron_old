@@ -29,7 +29,7 @@ export const detectorCreditPerChar = (saplingCreditPerChar+originalityCreditPerC
 
 export const packages:Package[]=[
     {
-        priceId:"-1",
+        id:"kS5I772QQqxr0K8hPt9Bc6ji",
         name:"TEST",
         credits:100,
         pricePerCredit:0.02,
@@ -42,7 +42,7 @@ export const packages:Package[]=[
         ]
     },
     {
-        priceId:"0",
+        id:"yTRNEz6XdChWCy2kx3Z8pI45",
         name:"Basic",
         credits:100,
         pricePerCredit:creditValue,
@@ -55,7 +55,7 @@ export const packages:Package[]=[
         ]
     },
     {
-        priceId:"1",
+        id:"8HA6OksqeXk0plvpMIo7S2Ss",
         name:"Pro",
         credits:250,
         pricePerCredit:creditValue*0.8,
@@ -68,7 +68,7 @@ export const packages:Package[]=[
         ]
     },
     {
-        priceId:"2",
+        id:"c6pomq4n66tledMhgiza97af",
         name:"Business",
         credits:1200,
         pricePerCredit:creditValue*0.73,
@@ -81,7 +81,7 @@ export const packages:Package[]=[
         ]
     },
     {
-        priceId:"3",
+        id:"G1y0YM37zPX1fUeHP2XGEVmD",
         name:"Enterprise",
         credits:5000,
         pricePerCredit:creditValue*0.6,

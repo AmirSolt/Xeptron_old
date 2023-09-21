@@ -1,5 +1,5 @@
 import type { Stripe } from 'stripe'
-import { stripe } from '$lib/utils/stripeHelper.server.js'
+import { stripe, getProductDescription } from '$lib/utils/stripeHelper.server.js'
 import { PRIVATE_WEBHOOK_SECRET } from '$env/static/private';
 import {packages} from '$lib/utils/config.server.js'
 import {incrementCustomerCredit} from '$lib/funcs/server/database/index.js'
@@ -67,16 +67,18 @@ export const POST = async ({ request }) => {
                 }
             );
 
+
             // Count how much credit was purchased
             let totalCredits:number = 0
             session.line_items?.data.forEach(item=>{
                 const quantity = item.quantity
-                const priceId = item.price?.id
-                if(priceId==null || quantity == null){
+                const description = item.description
+                if(description==null || quantity == null){
                     return;
                 }
+                console.log(">>>",description)
                 const mpackage:Package|undefined = packages.find(mpackage=>{
-                    return mpackage.priceId == priceId
+                    return getProductDescription(mpackage.credits) == description
                 })
                 totalCredits+=mpackage?.credits??0 * quantity
             })

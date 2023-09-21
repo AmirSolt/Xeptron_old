@@ -56,7 +56,7 @@
             
     
             <form method="post" >
-                <input type="hidden" name="priceId" value={mpackage.priceId} />
+                <input type="hidden" name="id" value={mpackage.id} />
                 <button class="btn text-lg md:text-2x w-24 {specialColor ? `variant-filled-${specialColor}` : 'variant-filled'}" type="submit"> 
                     {mpackage.currencySymbol}{(mpackage.pricePerCredit * mpackage.credits).toFixed(1)}
                 </button>

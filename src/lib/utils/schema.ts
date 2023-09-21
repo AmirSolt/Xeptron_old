@@ -59,7 +59,7 @@ export const deleteUserSchema = z.object({
 });
 
 export const pricingSchema = z.object({
-	priceId:z.string().min(1)
+	id:z.string().min(1)
 })
 
 

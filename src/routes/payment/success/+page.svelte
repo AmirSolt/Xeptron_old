@@ -12,7 +12,7 @@
             Thank You!
         </h1>
         <p>
-            Please make sure you recieve the purchased credits.
+            Please make sure that you have recieved the credits.
         </p>
     </div>
 

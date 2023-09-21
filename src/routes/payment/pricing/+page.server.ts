@@ -2,7 +2,7 @@ import { error, redirect, fail } from "@sveltejs/kit";
 import {PUBLIC_DOMAIN} from '$env/static/public';
 import { setError, superValidate } from 'sveltekit-superforms/server'
 import { pricingSchema } from '$lib/utils/schema'
-import {stripe} from '$lib/utils/stripeHelper.server.js'
+import {stripe, getProductDescription} from '$lib/utils/stripeHelper.server.js'
 import {packages, chatInputCreditPerChar, chatOutCreditPerChar, detectorCreditPerChar, charPerCredit} from '$lib/utils/config.server.js'
 
 
@@ -30,7 +30,7 @@ export const actions = {
         
 
 
-        const chosenPackage:Package|undefined = packages.find(dpackage=>dpackage.priceId === form.data.priceId)
+        const chosenPackage:Package|undefined = packages.find(dpackage=>dpackage.id === form.data.id)
         
 
         if (chosenPackage == null) {
@@ -44,7 +44,7 @@ export const actions = {
                     currency:chosenPackage.currency,
                     unit_amount:Math.round(chosenPackage.credits*chosenPackage.pricePerCredit*100),
                     product_data:{
-                        name:`${chosenPackage.credits} Credits`,
+                        name:getProductDescription(chosenPackage.credits),
                     },
                 },
                 quantity: 1,
