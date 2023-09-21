@@ -1,7 +1,7 @@
 
 
 // in USD
-const newUserBonusDollars = 20
+export const newUserBonusDollars = 20
 const creditValue = 0.12 
 export const charPerCredit = 200
 

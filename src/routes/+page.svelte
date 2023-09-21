@@ -5,7 +5,7 @@
 	import { Avatar } from '@skeletonlabs/skeleton';
 
     export let data;
-    let {detectors} = data;
+    let {detectors, newUserBonusDollars} = data;
 
     const offerList:string[]=[
         "Generate undetectable text.",
@@ -40,7 +40,7 @@
     
             </div>
             <a href="/auth/signup" class="btn text-2xl variant-filled-primary w-full md:w-1/2">
-                Get $20 Credit
+                Get ${newUserBonusDollars} Credit
             </a>
         </div>
 
@@ -66,7 +66,7 @@
             </div>
             
             <h2>
-                Get $20 Worth of Credit Now:
+                Get ${newUserBonusDollars} Worth of Credit Now:
             </h2>
             <div class="flex justify-center md:justify-start items-center w-full">
                 <a href="/auth/signup" class="btn text-xl variant-filled-primary w-full md:w-1/2">

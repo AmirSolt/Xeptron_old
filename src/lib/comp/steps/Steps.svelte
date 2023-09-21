@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import type { Session } from '@supabase/supabase-js';
 	import { AlertTriangle } from 'lucide-svelte';
 	export let profile: Profile | null;
@@ -16,7 +17,7 @@
 				<AlertTriangle  size="50" />
 
 				<div class="alert-message" data-toc-ignore>
-					<h2  data-toc-ignore>Sign up and Get $20 in credit</h2>
+					<h2  data-toc-ignore>Sign up and Get ${$page.data.newUserBonusDollars} in credit</h2>
 					<span> Only registered users can use the tools.</span>
 				</div>
 				<div class="alert-actions">

@@ -9,6 +9,7 @@
 	let toastStore = getToastStore();
 
 	export let data;
+	let {session} = data
 	const { form, errors, constraints, enhance, message } = superForm(data.form, {
 		validators: resetPassSchema,
 		onError: (result) => {
@@ -23,6 +24,7 @@
 	<h1>Update Password</h1>
 
 	<form method="POST" class="flex flex-col justify-center items-start gap-4 w-full" use:enhance>
+		<input type="email" name="email" value={session?.user?.email} class="hidden" autocomplete="email">
 		<SuperPassword
 			session={data.session}
 			formAttrName="newPassword"

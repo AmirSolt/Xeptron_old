@@ -1,4 +1,5 @@
 import type { Session } from "@supabase/supabase-js";
+import {newUserBonusDollars} from '$lib/utils/config.server'
 
 
 export const load = async ({ locals: { getSession } }) => {
@@ -7,6 +8,7 @@ export const load = async ({ locals: { getSession } }) => {
 
   return {
     session,
+    newUserBonusDollars
   }
 }
 
