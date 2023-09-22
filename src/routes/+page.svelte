@@ -10,7 +10,7 @@
     const offerList:string[]=[
         "Generate undetectable text.",
         "Humanize already generated text.",
-        "Simultaneously, double check with text detectors.",
+        "Simultaneously, double check with AI detectors.",
         "No credit card required.",
         "Data is not stored, for maximum privacy.",
     ]
@@ -37,7 +37,9 @@
                         Generate Undetectable and High Quality Text
                     </p>
                 </div>
-    
+                <small class="text-slate-300">
+                    *No credit card required
+                </small>
             </div>
             <a href="/auth/signup" class="btn text-2xl variant-filled-primary w-full md:w-1/2">
                 Get 50 Free Credits
