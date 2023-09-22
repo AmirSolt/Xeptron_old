@@ -44,12 +44,6 @@
             
         </div>
 
-        <a class="btn variant-ringed" href="mailto:support@xeptron.com">
-            <p>
-                Ask for a refund
-            </p>
-        </a>
-
     </div>	
 </div>
 
