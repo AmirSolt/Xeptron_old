@@ -17,7 +17,7 @@
 				<AlertTriangle  size="50" />
 
 				<div class="alert-message" data-toc-ignore>
-					<h2  data-toc-ignore>Sign up and Get ${$page.data.newUserBonusDollars} in credit</h2>
+					<h2  data-toc-ignore>Sign up and Get 50 Free Credits</h2>
 					<span> Only registered users can use the tools.</span>
 				</div>
 				<div class="alert-actions">

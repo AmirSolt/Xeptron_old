@@ -1,9 +1,9 @@
 
 
 // in USD
-export const newUserBonusDollars = 20
-const creditValue = 0.12 
 export const charPerCredit = 200
+const creditValue = 0.12 
+export const newUserBonusCredit = 50;
 
 
 // per 1k char
@@ -85,4 +85,3 @@ export const packages:Package[]=[
 
 
 
-export const newUserBonusCredit:number = newUserBonusDollars / packages[0].pricePerCredit;

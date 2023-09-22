@@ -21,6 +21,5 @@ export const load = async ({ fetch, data, depends }) => {
     return { 
         supabaseAuthClient,
         session,
-        newUserBonusDollars: data.newUserBonusDollars,
     };
 };
